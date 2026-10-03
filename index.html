@@ -1,0 +1,975 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vận Hành Dòng Tiền 21 Ngày</title>
+<meta name="description" content="Vận Hành Dòng Tiền 21 Ngày. Chương trình online qua Zoom cùng WI.FINANCE, Tài Chính Tâm Thức. Từ né tránh con số đến bình an nhìn nhận, hiểu và vận hành dòng tiền mỗi ngày.">
+<link rel="icon" href="assets/logo-symbol.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@300;400;500;600;700&family=Lora:ital,wght@0,500;0,600;0,700;1,500;1,600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0B2A5B; --navy-2:#081F45; --navy-3:#06173A;
+  --cobalt:#1E4FA3; --gold:#C89B3C; --gold-l:#E7C67C; --orange:#D9622B;
+  --ivory:#FBF7F0; --ivory-2:#F4ECDD; --gray:#8A8375; --ink:#1B2333;
+  --line:rgba(11,42,91,.12);
+  --r:22px;
+  --serif:"Lora",Georgia,serif; --sans:"Be Vietnam Pro",system-ui,sans-serif;
+}
+@property --ang{syntax:"<angle>";initial-value:0deg;inherits:false}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--ivory);line-height:1.7;font-size:16.5px;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+.wrap{width:min(1160px,100% - 32px);margin-inline:auto}
+.narrow{width:min(780px,100% - 32px);margin-inline:auto}
+section{position:relative;padding:clamp(72px,10vw,128px) 0;overflow:hidden}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.22;color:var(--navy);letter-spacing:-.01em}
+h2{font-size:clamp(28px,4.2vw,44px);margin-bottom:18px}
+h3{font-size:clamp(19px,2.2vw,22px)}
+p+p{margin-top:14px}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;font-size:12.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+.eyebrow::before{content:"";width:26px;height:1px;background:currentColor}
+.lead{font-size:clamp(17px,1.9vw,19px);color:#4a5162;max-width:640px}
+.center{text-align:center}.center .lead{margin-inline:auto}.center .eyebrow::after{content:"";width:26px;height:1px;background:currentColor}
+.head{margin-bottom:clamp(40px,6vw,64px)}
+.muted{color:var(--gray);font-size:14px}
+
+/* ---------- Dark sections ---------- */
+.dark{background:radial-gradient(1200px 600px at 85% -10%,rgba(30,79,163,.55),transparent 60%),radial-gradient(900px 500px at -10% 110%,rgba(200,155,60,.16),transparent 60%),linear-gradient(180deg,var(--navy),var(--navy-3));color:#DCE4F2}
+.dark h1,.dark h2,.dark h3{color:#fff}
+.dark .lead{color:#C3CDE0}
+.dark .muted{color:#9AA8C2}
+/* motif: two asymmetric circles */
+.motif::before,.motif::after{content:"";position:absolute;border-radius:50%;pointer-events:none}
+.motif::before{width:620px;height:620px;right:-180px;top:-160px;border:1px solid rgba(200,155,60,.22);box-shadow:inset 0 0 120px rgba(30,79,163,.25)}
+.motif::after{width:380px;height:380px;right:140px;top:120px;border:1px solid rgba(231,198,124,.18)}
+.ivory-motif::before{content:"";position:absolute;width:520px;height:520px;left:-200px;top:-120px;border-radius:50%;border:1px solid rgba(200,155,60,.25);pointer-events:none}
+.ivory-motif::after{content:"";position:absolute;width:300px;height:300px;left:120px;top:60px;border-radius:50%;border:1px solid rgba(30,79,163,.12);pointer-events:none}
+.soft{background:radial-gradient(800px 400px at 100% 0,rgba(200,155,60,.10),transparent 60%),radial-gradient(700px 400px at 0 100%,rgba(30,79,163,.07),transparent 60%),var(--ivory)}
+.soft-2{background:linear-gradient(180deg,var(--ivory-2),var(--ivory))}
+
+/* ---------- Shimmer CTA buttons ---------- */
+.btn{--h:58px;position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:var(--h);padding:0 34px;border-radius:999px;font-family:var(--sans);font-weight:700;font-size:16.5px;letter-spacing:.01em;text-decoration:none;color:var(--navy);cursor:pointer;border:0;overflow:hidden;
+  background:linear-gradient(110deg,#C89B3C 0%,#F1D08A 18%,#D9622B 38%,#E7B65C 55%,#F6DDA0 70%,#C89B3C 85%,#D9622B 100%);background-size:300% 100%;
+  animation:shimmer 6s linear infinite;
+  box-shadow:0 10px 28px -10px rgba(217,98,43,.55),0 0 0 1px rgba(255,255,255,.25) inset;
+  transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s ease,filter .35s}
+.btn::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.75) 48%,transparent 62%);transform:translateX(-120%);animation:sheen 3.6s ease-in-out infinite}
+.btn svg{width:18px;height:18px;transition:transform .35s}
+.btn:hover,.btn:focus-visible{transform:translateY(-3px) scale(1.02);filter:saturate(1.15) brightness(1.05);
+  box-shadow:0 0 0 1px rgba(255,255,255,.4) inset,0 0 22px rgba(241,208,138,.85),0 0 48px rgba(217,98,43,.55),0 0 90px rgba(200,155,60,.35)}
+.btn:hover svg{transform:translateX(4px)}
+.btn:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.btn-lg{--h:64px;font-size:17.5px;padding:0 42px}
+.btn-block{width:100%}
+.btn-ghost{color:#fff;background:linear-gradient(110deg,rgba(30,79,163,.9),rgba(11,42,91,.9),rgba(30,79,163,.9),rgba(200,155,60,.75),rgba(30,79,163,.9));background-size:300% 100%;box-shadow:0 0 0 1px rgba(231,198,124,.55) inset}
+.btn-ghost:hover,.btn-ghost:focus-visible{box-shadow:0 0 0 1px rgba(231,198,124,.9) inset,0 0 22px rgba(30,79,163,.9),0 0 50px rgba(200,155,60,.45)}
+@keyframes shimmer{to{background-position:300% 0}}
+@keyframes sheen{0%,55%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+.textlink{display:inline-flex;gap:8px;align-items:center;font-weight:500;text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px;transition:color .3s,text-shadow .3s}
+.textlink:hover{color:var(--gold-l);text-shadow:0 0 14px rgba(231,198,124,.7)}
+
+/* ---------- Glowing frames ---------- */
+.glow{position:relative;border-radius:var(--r);background:#fff;padding:clamp(24px,3vw,34px);
+  box-shadow:0 18px 50px -24px rgba(11,42,91,.28),0 0 0 1px rgba(200,155,60,.18);transition:transform .45s cubic-bezier(.2,.8,.2,1),box-shadow .45s}
+.glow::before{content:"";position:absolute;inset:-1.5px;border-radius:inherit;padding:1.5px;pointer-events:none;
+  background:conic-gradient(from var(--ang),rgba(200,155,60,.15),#E7C67C,rgba(30,79,163,.7),rgba(217,98,43,.75),#E7C67C,rgba(200,155,60,.15));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;
+  animation:spin 7s linear infinite;opacity:.85;transition:opacity .4s}
+.glow:hover{transform:translateY(-4px);box-shadow:0 26px 60px -24px rgba(11,42,91,.35),0 0 32px rgba(231,198,124,.45),0 0 0 1px rgba(200,155,60,.3)}
+.glow:hover::before{opacity:1}
+.dark .glow{background:linear-gradient(160deg,rgba(255,255,255,.07),rgba(255,255,255,.02));backdrop-filter:blur(6px);box-shadow:0 0 0 1px rgba(231,198,124,.12),0 0 30px rgba(30,79,163,.25)}
+.dark .glow:hover{box-shadow:0 0 0 1px rgba(231,198,124,.25),0 0 36px rgba(231,198,124,.3),0 0 70px rgba(30,79,163,.45)}
+@keyframes spin{to{--ang:360deg}}
+
+/* ---------- Header ---------- */
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:rgba(251,247,240,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+.top img{width:180px;height:auto}
+.top nav{display:flex;gap:26px;font-size:14.5px;font-weight:500}
+.top nav a{text-decoration:none;color:#3b4457;transition:color .3s}
+.top nav a:hover{color:var(--cobalt)}
+.top .btn{--h:44px;padding:0 22px;font-size:14.5px}
+@media (max-width:980px){.top nav{display:none}}
+@media (max-width:520px){.top .wrap{height:64px}.top img{width:138px}.top .btn{--h:40px;padding:0 16px;font-size:13.5px}}
+
+/* ---------- Hero ---------- */
+.hero{padding:clamp(56px,8vw,96px) 0 clamp(72px,9vw,110px)}
+.hero-grid{display:grid;grid-template-columns:1.12fr .88fr;gap:clamp(36px,5vw,72px);align-items:center;position:relative;z-index:1}
+.hero .brandline{font-size:13.5px;letter-spacing:.08em;color:#AFC0DD;margin-bottom:22px}
+.hero h1{font-size:clamp(40px,6.4vw,72px);line-height:1.08;margin:14px 0 20px}
+.hero h1 em{font-style:normal;background:linear-gradient(100deg,#F6DDA0,#C89B3C 45%,#E7A867);-webkit-background-clip:text;background-clip:text;color:transparent}
+.tagline{font-family:var(--serif);font-style:italic;font-size:clamp(19px,2.3vw,24px);color:#F1E3C2;line-height:1.5;max-width:560px}
+.hook{margin-top:20px;color:#C3CDE0;max-width:540px}
+.facts{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin:32px 0 28px;max-width:600px}
+.fact{padding:16px 18px;border-radius:16px}
+.fact small{display:block;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-l);margin-bottom:4px}
+.fact b{font-weight:600;color:#fff;font-size:15.5px;line-height:1.45;display:block}
+.price-row{display:flex;flex-wrap:wrap;align-items:center;gap:20px 28px}
+.price small{display:block;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:#9AA8C2}
+.price strong{font-size:clamp(28px,3.2vw,34px);font-weight:600;color:#fff;letter-spacing:.01em}
+.price strong span{font-size:.55em;color:var(--gold-l);margin-left:6px}
+.hero .sub{margin-top:22px;font-size:15px;color:#C3CDE0}
+.portrait{position:relative;justify-self:center;width:min(440px,100%)}
+.arch{position:relative;border-radius:240px 240px 28px 28px;padding:6px;background:conic-gradient(from var(--ang),#C89B3C,#1E4FA3,#D9622B,#E7C67C,#C89B3C);animation:spin 9s linear infinite;box-shadow:0 0 50px rgba(231,198,124,.35),0 0 120px rgba(30,79,163,.45)}
+.arch img{border-radius:234px 234px 22px 22px;aspect-ratio:4/5.4;object-fit:cover;object-position:50% 18%;width:100%;background:#cfd3e6}
+.float{position:absolute;padding:14px 18px;border-radius:16px;font-size:13.5px;line-height:1.4;color:#fff;background:rgba(8,31,69,.78);backdrop-filter:blur(10px);box-shadow:0 0 0 1px rgba(231,198,124,.45),0 0 26px rgba(231,198,124,.28)}
+.float b{display:block;font-family:var(--serif);font-size:18px;color:var(--gold-l);font-weight:600}
+.float.f1{left:-28px;bottom:70px}.float.f2{right:-22px;top:56px}
+.coach-tag{text-align:center;margin-top:18px;font-size:14px;color:#AFC0DD}
+.coach-tag b{color:#fff;font-weight:600}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr}.portrait{order:-1;width:min(340px,86%)}.float.f1{left:-14px}.float.f2{right:-14px}}
+@media (max-width:480px){.facts{grid-template-columns:1fr}.float{font-size:12px;padding:10px 12px}.float b{font-size:15px}}
+
+
+/* ---------- Hero stats ---------- */
+.stats{position:relative;z-index:1;display:grid;grid-template-columns:repeat(3,1fr);margin-top:clamp(44px,6vw,72px);border-radius:26px;padding:6px;background:conic-gradient(from var(--ang),#C89B3C,#1E4FA3,#D9622B,#E7C67C,#C89B3C);animation:spin 8s linear infinite;box-shadow:0 0 40px rgba(231,198,124,.35),0 0 90px rgba(30,79,163,.4)}
+.stat{display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:6px;padding:clamp(22px,3vw,34px) 14px;background:linear-gradient(170deg,#0E3170,var(--navy-3))}
+.stat:first-child{border-radius:21px 0 0 21px}.stat:last-child{border-radius:0 21px 21px 0}
+.stat+.stat{border-left:1px solid rgba(231,198,124,.22)}
+.sv{font-family:var(--serif);font-weight:700;font-size:clamp(40px,6vw,68px);line-height:1;background:linear-gradient(120deg,#FFF1CC,#E7C67C 35%,#C89B3C 60%,#F0A574);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 0 18px rgba(231,198,124,.45))}
+.sl{font-size:clamp(13px,1.5vw,15.5px);font-weight:500;letter-spacing:.04em;color:#DCE4F2}
+@media (max-width:640px){.stats{border-radius:20px;padding:4px}.stat{padding:18px 6px;gap:4px}.stat:first-child{border-radius:16px 0 0 16px}.stat:last-child{border-radius:0 16px 16px 0}.sv{font-size:clamp(24px,7.4vw,34px)}.sl{font-size:11.5px;letter-spacing:0;line-height:1.35}}
+.hero .sub{display:flex}
+
+
+/* ---------- Hotline ---------- */
+.hot{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font-weight:600;font-size:14.5px;color:var(--navy);padding:9px 16px;border-radius:999px;box-shadow:0 0 0 1px rgba(200,155,60,.5);transition:box-shadow .3s,color .3s;white-space:nowrap}
+.hot svg{width:16px;height:16px;color:var(--gold)}
+.hot:hover{box-shadow:0 0 0 1px var(--gold),0 0 18px rgba(231,198,124,.6);color:var(--cobalt)}
+.top .acts{display:flex;align-items:center;gap:12px}
+@media (max-width:640px){.top .hot{display:none}}
+.help{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;margin-top:34px}
+.help h3{font-size:21px;margin-bottom:6px}
+.help p{color:#4a5162;font-size:15px}
+.help .num{font-family:var(--serif);font-size:26px;font-weight:600;color:var(--navy);margin-top:8px;letter-spacing:.02em}
+.help .row{display:flex;flex-wrap:wrap;gap:10px;justify-content:flex-end;align-items:center}
+.help .btn svg{width:18px;height:18px}
+@media (max-width:640px){.help{grid-template-columns:1fr}.help .row{justify-content:flex-start}}
+.foot a{color:#F1E3C2;text-decoration:none;font-weight:600}
+.foot a:hover{text-shadow:0 0 12px rgba(231,198,124,.7)}
+
+/* ---------- Pain ---------- */
+.two{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+@media (max-width:820px){.two{grid-template-columns:1fr}}
+.pain .tag{display:inline-block;font-size:12px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--orange);margin-bottom:12px}
+.pain h3{margin-bottom:16px}
+.ticks{list-style:none;display:grid;gap:12px}
+.ticks li{position:relative;padding-left:28px}
+.ticks li::before{content:"";position:absolute;left:0;top:.62em;width:14px;height:14px;border-radius:50%;background:radial-gradient(circle at 35% 35%,#F6DDA0,#C89B3C);box-shadow:0 0 10px rgba(200,155,60,.55)}
+.ticks.blue li::before{background:radial-gradient(circle at 35% 35%,#7FA4E6,#1E4FA3);box-shadow:0 0 10px rgba(30,79,163,.5)}
+.ticks.no li::before{background:none;border:1.5px solid var(--gray);box-shadow:none;width:12px;height:12px}
+.bridge{margin-top:44px;text-align:center;font-family:var(--serif);font-size:clamp(19px,2.3vw,24px);color:var(--navy);line-height:1.55}
+.bridge span{color:var(--cobalt)}
+
+/* ---------- Promise ---------- */
+.three{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+@media (max-width:900px){.three{grid-template-columns:1fr}}
+.num{font-family:var(--serif);font-size:15px;color:var(--gold-l);letter-spacing:.1em;margin-bottom:14px;display:block}
+.three h3{margin-bottom:10px}
+.limit{margin-top:34px;display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:start;padding:26px 30px;border-radius:var(--r);background:rgba(217,98,43,.07);box-shadow:0 0 0 1px rgba(231,198,124,.35),0 0 30px rgba(217,98,43,.15)}
+.limit .ic{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:rgba(231,198,124,.14);color:var(--gold-l)}
+.limit h3{font-size:19px;margin-bottom:6px}
+
+/* ---------- Outputs ---------- */
+.outputs{display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+@media (max-width:1080px){.outputs{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:720px){.outputs{grid-template-columns:1fr 1fr}}
+@media (max-width:460px){.outputs{grid-template-columns:1fr}}
+.out{display:flex;flex-direction:column;gap:10px}
+.out .n{font-family:var(--serif);font-size:44px;line-height:1;background:linear-gradient(140deg,#E7C67C,#C89B3C 50%,#D9622B);-webkit-background-clip:text;background-clip:text;color:transparent}
+.out h3{font-size:19px}
+.out p{font-size:15px;color:#535a6a}
+.out .ph{margin-top:auto;font-size:12.5px;color:var(--cobalt);font-weight:500;padding-top:8px;border-top:1px dashed var(--line)}
+.cond{margin-top:30px;text-align:center}
+
+/* ---------- Modules ---------- */
+.modules{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:820px){.modules{grid-template-columns:1fr}}
+.mod{display:grid;grid-template-columns:62px 1fr;gap:18px;padding:22px 24px}
+.mod .mn{font-family:var(--serif);font-size:30px;color:var(--gold-l);line-height:1}
+.mod .mn small{display:block;font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;color:#9AA8C2;margin-top:6px}
+.mod h3{font-size:18.5px;margin:6px 0 10px}
+.mod dl{display:grid;gap:6px;font-size:14.5px}
+.mod dt{display:inline;font-weight:600;color:#fff}
+.mod dd{display:inline;color:#C3CDE0}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:11.5px;font-weight:600;letter-spacing:.06em;padding:4px 11px;border-radius:999px}
+.pill.live{color:#FFE2CF;background:rgba(217,98,43,.22);box-shadow:0 0 0 1px rgba(217,98,43,.55),0 0 14px rgba(217,98,43,.3)}
+.pill.live::before{content:"";width:7px;height:7px;border-radius:50%;background:#FF8A50;box-shadow:0 0 8px #FF8A50;animation:pulse 1.8s ease-in-out infinite}
+.pill.self{color:#D6E3FF;background:rgba(30,79,163,.3);box-shadow:0 0 0 1px rgba(127,164,230,.45)}
+.pill.phase{color:var(--gold-l);background:rgba(200,155,60,.12);box-shadow:0 0 0 1px rgba(200,155,60,.35)}
+@keyframes pulse{50%{opacity:.35}}
+.legend{display:flex;flex-wrap:wrap;gap:12px 22px;justify-content:center;margin-top:26px;font-size:14px;color:#C3CDE0}
+.legend span{display:inline-flex;gap:10px;align-items:center}
+
+/* ---------- How ---------- */
+.how-grid{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(30px,5vw,64px);align-items:center}
+@media (max-width:900px){.how-grid{grid-template-columns:1fr}}
+.photo-frame{position:relative;border-radius:var(--r);padding:5px;background:conic-gradient(from var(--ang),#C89B3C,#E7C67C,#1E4FA3,#D9622B,#C89B3C);animation:spin 10s linear infinite;box-shadow:0 0 40px rgba(200,155,60,.3)}
+.photo-frame img{border-radius:calc(var(--r) - 5px);width:100%;object-fit:cover}
+.how-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:560px){.how-cards{grid-template-columns:1fr}}
+.how-cards .glow{padding:22px}
+.how-cards h3{font-size:18px;margin:12px 0 8px}
+.how-cards p{font-size:15px;color:#535a6a}
+.ico{width:44px;height:44px;border-radius:14px;display:grid;place-items:center;color:var(--navy);background:linear-gradient(140deg,#F6DDA0,#C89B3C);box-shadow:0 0 18px rgba(200,155,60,.45)}
+.ico svg{width:22px;height:22px}
+.placeholder{display:inline-block;font-family:ui-monospace,Consolas,monospace;font-size:.92em;color:var(--cobalt);background:rgba(30,79,163,.08);padding:1px 7px;border-radius:6px}
+.dark .placeholder{color:#BFD3FF;background:rgba(127,164,230,.16)}
+
+/* ---------- Coach ---------- */
+.coach-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(30px,5vw,70px);align-items:center}
+@media (max-width:900px){.coach-grid{grid-template-columns:1fr}}
+.coach-photos{position:relative;padding-bottom:70px}
+.coach-photos .photo-frame img{aspect-ratio:4/4.6;object-position:50% 20%}
+.coach-photos .mini{position:absolute;right:-14px;bottom:0;width:46%;border-radius:18px;padding:4px;background:linear-gradient(140deg,#E7C67C,#C89B3C,#D9622B);box-shadow:0 0 30px rgba(200,155,60,.45),0 20px 40px -20px rgba(0,0,0,.6)}
+.coach-photos .mini img{border-radius:14px;aspect-ratio:4/5;object-fit:cover;object-position:50% 30%}
+.coach-name{font-size:clamp(30px,4vw,42px);margin:10px 0 6px}
+.coach-role{color:var(--gold-l);font-weight:500;margin-bottom:22px}
+.quote{margin:24px 0;padding:22px 26px;border-radius:18px;font-family:var(--serif);font-style:italic;font-size:19px;line-height:1.6;color:#F1E3C2}
+.badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.badge{font-size:14px;padding:9px 16px;border-radius:999px;color:#fff;background:rgba(255,255,255,.06);box-shadow:0 0 0 1px rgba(231,198,124,.45),0 0 18px rgba(231,198,124,.18)}
+
+/* ---------- Reviews: 6 equal tiles, expand on hover (desktop) or tap (.open) ---------- */
+#phan-hoi{padding-block:clamp(56px,7vw,88px)}
+#phan-hoi .head{margin-bottom:clamp(26px,4vw,40px)}
+.rv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(14px,2vw,22px);width:100%;max-width:880px;margin-inline:auto}
+.tile{position:relative;aspect-ratio:1/1;max-width:100%;margin:0;outline:none;-webkit-tap-highlight-color:transparent}
+.tile .card{position:absolute;top:0;left:0;width:100%;height:100%;overflow:hidden;border-radius:20px;background:#EEF1F6;cursor:zoom-in;
+  box-shadow:0 0 0 1.5px rgba(200,155,60,.45),0 0 22px rgba(231,198,124,.28),0 16px 34px -22px rgba(11,42,91,.45);transition:box-shadow .35s}
+.tile .card img{width:100%;height:auto;display:block}
+.tile .meta{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:10px;padding:46px 14px 12px;background:linear-gradient(rgba(238,241,246,0),#EEF1F6 48%)}
+.tile .av{flex:none;width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-weight:600;font-size:13px;color:var(--navy);background:linear-gradient(140deg,#F6DDA0,#C89B3C);box-shadow:0 0 12px rgba(200,155,60,.5)}
+.tile .meta b{display:block;font-size:14.5px;color:var(--navy);line-height:1.3}
+.tile .meta small{font-size:12px;color:var(--gray)}
+.tile .more{margin-left:auto;flex:none;font-size:12px;font-weight:600;color:var(--cobalt);padding:5px 10px;border-radius:999px;background:rgba(30,79,163,.08)}
+.tile-x{display:none;position:sticky;top:10px;z-index:3;width:40px;height:40px;margin:10px 10px -50px auto;border:0;border-radius:50%;cursor:pointer;font-size:24px;line-height:1;color:var(--navy);background:linear-gradient(140deg,#F6DDA0,#C89B3C);box-shadow:0 0 16px rgba(231,198,124,.7)}
+.tile:focus-visible .card{outline:2px solid var(--cobalt);outline-offset:3px}
+@keyframes pop{from{opacity:.7;transform:scale(.97)}to{opacity:1;transform:none}}
+@keyframes fade{from{opacity:0}to{opacity:1}}
+
+/* Desktop: expand in place on hover or click */
+@media (min-width:721px){
+  .tile.open{z-index:30}
+  .tile.open .card{height:auto;width:135%;max-height:min(72vh,620px);overflow-y:auto;cursor:default;animation:pop .28s ease both;box-shadow:0 0 0 2px #C89B3C,0 0 40px rgba(231,198,124,.6),0 30px 60px -20px rgba(11,42,91,.55)}
+  .tile.open .meta{position:sticky;padding-top:30px}
+  .tile.open .more{display:none}
+  .tile.open:nth-child(3n+2) .card{left:-17.5%}
+  .tile.open:nth-child(3n) .card{left:-35%}
+  .tile.open:nth-child(n+4) .card{top:auto;bottom:0}
+}
+@media (min-width:721px) and (hover:hover) and (pointer:fine){
+  .tile:hover{z-index:30}
+  .tile:hover .card{height:auto;width:135%;max-height:min(72vh,620px);overflow-y:auto;cursor:default;animation:pop .28s ease both;box-shadow:0 0 0 2px #C89B3C,0 0 40px rgba(231,198,124,.6),0 30px 60px -20px rgba(11,42,91,.55)}
+  .tile:hover .meta{position:sticky;padding-top:30px}
+  .tile:hover .more{display:none}
+  .tile:nth-child(3n+2):hover .card{left:-17.5%}
+  .tile:nth-child(3n):hover .card{left:-35%}
+  .tile:nth-child(n+4):hover .card{top:auto;bottom:0}
+}
+/* Phone: tap opens a centered sheet, tap backdrop or × to close */
+@media (max-width:720px){
+  .rv-grid{grid-template-columns:1fr 1fr}
+  .tile .more{display:none}
+  .tile .meta{padding:34px 10px 10px;gap:8px}.tile .meta small{display:none}.tile .av{width:30px;height:30px;font-size:12px}.tile .av svg{width:15px}.tile .meta b{font-size:13px}
+  .tile.open{z-index:90}
+  .tile.open::before{content:"";position:fixed;inset:0;background:rgba(6,23,58,.66);backdrop-filter:blur(3px);animation:fade .2s ease both}
+  .tile.open .card{position:fixed;top:50%;left:50%;width:min(92vw,480px);height:auto;max-height:80vh;overflow-y:auto;overscroll-behavior:contain;transform:translate(-50%,-50%);cursor:default;animation:fade .2s ease both;box-shadow:0 0 0 2px #C89B3C,0 0 40px rgba(231,198,124,.6)}
+  .tile.open .meta{position:sticky;padding-top:24px}
+  .tile.open .tile-x{display:block}
+}
+.note{margin:30px auto 0;max-width:820px;font-size:14px;color:var(--gray);text-align:center;padding:16px 22px;border-radius:14px;border:1px dashed rgba(138,131,117,.45)}
+
+/* ---------- Fit ---------- */
+.fit h3{display:flex;align-items:center;gap:12px;margin-bottom:20px}
+.fit .yes h3 .dot{background:linear-gradient(140deg,#F6DDA0,#C89B3C)}
+.fit .dot{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:var(--sans);font-size:15px;color:var(--navy);background:#E7E2D8}
+
+/* ---------- Choose ---------- */
+.choose{display:grid;grid-template-columns:1fr 1.15fr;gap:26px;align-items:stretch}
+@media (max-width:900px){.choose{grid-template-columns:1fr}}
+.plan{display:flex;flex-direction:column;gap:14px;padding:clamp(26px,3.4vw,40px)}
+.plan .opt{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#9AA8C2}
+.plan h3{font-size:clamp(23px,2.8vw,30px)}
+.plan .meta{color:#C3CDE0;font-size:15px}
+.plan .cost{font-size:clamp(30px,3.6vw,40px);font-weight:600;color:#fff}
+.plan .cost span{font-size:.45em;color:var(--gold-l);margin-left:6px}
+.plan .fitfor{font-size:15px;color:var(--gold-l);font-weight:500}
+.plan .ticks{margin:6px 0 10px;font-size:15.5px}
+.plan .btn{margin-top:auto}
+.plan.main{background:linear-gradient(160deg,rgba(200,155,60,.16),rgba(30,79,163,.2) 60%,rgba(255,255,255,.03))!important;box-shadow:0 0 0 1px rgba(231,198,124,.4),0 0 50px rgba(200,155,60,.25),0 0 100px rgba(30,79,163,.35)!important}
+.plan.main::before{padding:2px;inset:-2px;opacity:1}
+.ribbon{position:absolute;top:-15px;right:28px;padding:7px 16px;border-radius:999px;font-size:12.5px;font-weight:700;letter-spacing:.06em;color:var(--navy);background:linear-gradient(110deg,#F6DDA0,#C89B3C,#E7A867);box-shadow:0 0 20px rgba(231,198,124,.7)}
+.priority{margin-top:28px;text-align:center;color:#C3CDE0;font-size:15px}
+
+/* ---------- Registration modal ---------- */
+html.reg-lock{overflow:hidden}
+.reg{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:16px;opacity:0;transition:opacity .3s}
+.reg.show{opacity:1}
+.reg[hidden]{display:none}
+.reg-bg{position:absolute;inset:0;background:radial-gradient(800px 500px at 80% 0,rgba(30,79,163,.45),transparent 60%),rgba(6,23,58,.82);backdrop-filter:blur(8px)}
+.reg-panel{position:relative;width:min(560px,100%);max-height:calc(100dvh - 32px);overflow-y:auto;overscroll-behavior:contain;border-radius:26px;background:var(--ivory);padding:clamp(24px,4vw,38px);
+  box-shadow:0 0 0 1px rgba(231,198,124,.5),0 0 40px rgba(231,198,124,.35),0 30px 80px -20px rgba(0,0,0,.6);transform:translateY(20px) scale(.98);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+.reg.show .reg-panel{transform:none}
+.reg-x{position:absolute;top:14px;right:14px;width:40px;height:40px;border-radius:50%;border:0;cursor:pointer;font-size:22px;line-height:1;color:var(--navy);background:rgba(11,42,91,.06);transition:background .3s,box-shadow .3s}
+.reg-x:hover{background:rgba(200,155,60,.2);box-shadow:0 0 16px rgba(231,198,124,.6)}
+.reg-dots{list-style:none;display:flex;gap:8px;margin:0 48px 22px 0}
+.reg-dots li{flex:1;font-size:12px;font-weight:600;color:var(--gray);padding-top:10px;border-top:3px solid rgba(11,42,91,.1);transition:color .3s,border-color .3s}
+.reg-dots li.on{color:var(--navy);border-color:var(--gold);box-shadow:0 -6px 12px -8px rgba(200,155,60,.8)}
+.reg h3{font-size:clamp(22px,3vw,26px);margin-bottom:6px}
+.reg .sub2{color:#535a6a;font-size:15px;margin-bottom:20px}
+.opts{display:grid;gap:10px;margin-bottom:18px}
+.opt-card{position:relative;display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:16px;background:#fff;cursor:pointer;box-shadow:0 0 0 1px rgba(11,42,91,.12);transition:box-shadow .3s}
+.opt-card input{position:absolute;opacity:0}
+.opt-card .rd{flex:none;width:20px;height:20px;border-radius:50%;border:2px solid rgba(11,42,91,.3);display:grid;place-items:center}
+.opt-card .rd::after{content:"";width:10px;height:10px;border-radius:50%;background:transparent}
+.opt-card b{display:block;color:var(--navy);font-size:15.5px}
+.opt-card small{color:var(--gray);font-size:13px}
+.opt-card .pr{margin-left:auto;font-weight:600;color:var(--navy);white-space:nowrap;font-size:15px}
+.opt-card:has(input:checked){box-shadow:0 0 0 2px var(--gold),0 0 22px rgba(231,198,124,.5)}
+.opt-card:has(input:checked) .rd{border-color:var(--gold)}
+.opt-card:has(input:checked) .rd::after{background:linear-gradient(140deg,#F6DDA0,#C89B3C)}
+.opt-card:has(input:focus-visible){outline:2px solid var(--cobalt);outline-offset:2px}
+.fld{display:grid;gap:6px;margin-bottom:14px}
+.fld label{font-size:14px;font-weight:600;color:var(--navy)}
+.fld label i{font-style:normal;color:var(--orange)}
+.fld label small{font-weight:400;color:var(--gray)}
+.fld input,.fld textarea{width:100%;font:inherit;font-size:16px;color:var(--ink);padding:13px 16px;border-radius:14px;border:0;background:#fff;box-shadow:0 0 0 1px rgba(11,42,91,.16);transition:box-shadow .3s}
+.fld textarea{min-height:84px;resize:vertical}
+.fld input:focus,.fld textarea:focus{outline:0;box-shadow:0 0 0 2px var(--gold),0 0 18px rgba(231,198,124,.45)}
+.fld .hint{font-size:12.5px;color:var(--gray)}
+.fld .msg{font-size:13px;color:#B9451A;min-height:0}
+.fld.err input,.fld.err textarea{box-shadow:0 0 0 2px #D9622B}
+.chk{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;font-size:13.5px;color:#4a5162;cursor:pointer}
+.chk input{width:20px;height:20px;margin-top:2px;accent-color:var(--navy)}
+.total{display:flex;justify-content:space-between;align-items:center;margin:20px 0 16px;padding:14px 18px;border-radius:14px;background:rgba(11,42,91,.05)}
+.total span{font-size:14px;color:#535a6a}
+.total b{font-size:20px;color:var(--navy)}
+.btn.loading{pointer-events:none;opacity:.75}
+.btn.loading::before{content:"";width:18px;height:18px;border-radius:50%;border:2.5px solid currentColor;border-right-color:transparent;animation:rot .8s linear infinite}
+@keyframes rot{to{transform:rotate(360deg)}}
+.reg .safe a{color:var(--navy);text-decoration:none}
+.reg .safe{margin-top:12px;text-align:center;font-size:12.5px;color:var(--gray)}
+.alert{margin-top:12px;padding:12px 14px;border-radius:12px;font-size:14px;color:#8A2F0E;background:rgba(217,98,43,.1);box-shadow:inset 0 0 0 1px rgba(217,98,43,.35)}
+.qr-wrap{display:grid;justify-items:center;gap:12px;margin:6px 0 18px}
+.qr-img{width:min(260px,72vw);border-radius:20px;padding:8px;background:#fff;box-shadow:0 0 0 2px rgba(200,155,60,.6),0 0 30px rgba(231,198,124,.5)}
+.qr-img img{width:100%;border-radius:12px}
+.qr-brand{font-size:12.5px;color:var(--gray);text-align:center}
+.qr-save{font-size:14px;font-weight:600;color:var(--cobalt);text-decoration:none;border-bottom:1px solid currentColor}
+.pay-rows{display:grid;gap:8px;margin-bottom:16px}
+.pay-row{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:11px 14px;border-radius:12px;background:#fff;box-shadow:0 0 0 1px rgba(11,42,91,.1);font-size:14.5px}
+.pay-row span{color:var(--gray);flex:none}
+.pay-row b{color:var(--navy);text-align:right;word-break:break-word}
+.cp{flex:none;border:0;cursor:pointer;font:inherit;font-size:12.5px;font-weight:600;padding:6px 12px;border-radius:999px;color:var(--navy);background:linear-gradient(140deg,#F6DDA0,#C89B3C);transition:box-shadow .3s}
+.cp:hover{box-shadow:0 0 14px rgba(231,198,124,.8)}
+.cp.ok{background:#CFE8D6}
+.guide{margin-top:4px;padding:16px 18px;border-radius:16px;background:#fff;box-shadow:inset 0 0 0 1px rgba(200,155,60,.35)}
+.guide h4{font-family:var(--serif);font-size:17px;color:var(--navy);margin-bottom:10px}
+.guide ol{list-style:none;display:grid;gap:10px;counter-reset:g}
+.guide li{counter-increment:g;display:grid;grid-template-columns:26px 1fr;gap:10px;font-size:14.5px}
+.guide li::before{content:counter(g);width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:12.5px;font-weight:700;color:var(--navy);background:linear-gradient(140deg,#F6DDA0,#C89B3C)}
+.code{font-family:ui-monospace,Consolas,monospace;font-weight:600;color:var(--cobalt);background:rgba(30,79,163,.08);padding:2px 8px;border-radius:6px;word-break:break-word}
+.wait{display:flex;gap:10px;align-items:center;margin-top:16px;padding:12px 14px;border-radius:12px;font-size:14px;color:var(--navy);background:rgba(30,79,163,.07)}
+.wait::before{content:"";flex:none;width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold);animation:pulse 1.6s ease-in-out infinite}
+.wait[hidden]{display:none}
+.restart{display:block;margin:16px auto 0;border:0;background:none;font:inherit;font-size:13.5px;color:var(--gray);text-decoration:underline;cursor:pointer}
+.done{text-align:center;padding:10px 0}
+.done .ok-ic{width:84px;height:84px;margin:0 auto 18px;border-radius:50%;display:grid;place-items:center;color:var(--navy);background:linear-gradient(140deg,#F6DDA0,#C89B3C);box-shadow:0 0 0 8px rgba(200,155,60,.15),0 0 40px rgba(231,198,124,.7)}
+.done p{color:#4a5162;margin-bottom:22px}
+
+/* ---------- FAQ ---------- */
+.faq{display:grid;gap:14px}
+.faq details{border-radius:18px;background:#fff;box-shadow:0 0 0 1px rgba(200,155,60,.22),0 12px 30px -22px rgba(11,42,91,.3);transition:box-shadow .35s}
+.faq details:hover,.faq details[open]{box-shadow:0 0 0 1px rgba(200,155,60,.6),0 0 26px rgba(231,198,124,.4),0 12px 30px -22px rgba(11,42,91,.3)}
+.faq summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 24px;font-weight:600;font-size:16.5px;color:var(--navy)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary i{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:rgba(200,155,60,.14);color:var(--gold);font-style:normal;font-size:20px;transition:transform .35s,background .35s}
+.faq details[open] summary i{transform:rotate(45deg);background:linear-gradient(140deg,#F6DDA0,#C89B3C);color:var(--navy)}
+.faq .a{padding:0 24px 22px;color:#4a5162;font-size:15.5px}
+
+/* ---------- Lead + Zalo ---------- */
+.lead-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(30px,5vw,64px);align-items:center}
+@media (max-width:860px){.lead-grid{grid-template-columns:1fr}}
+.wb-cover{position:relative;display:block;width:min(420px,100%);margin-inline:auto;border-radius:22px;padding:5px;background:conic-gradient(from var(--ang),#C89B3C,#E7C67C,#1E4FA3,#D9622B,#C89B3C);animation:spin 9s linear infinite;box-shadow:0 0 40px rgba(231,198,124,.35),0 30px 60px -24px rgba(0,0,0,.6);transform:rotate(-2deg);transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .5s}
+.wb-cover img{width:100%;border-radius:18px}
+.wb-cover:hover,.wb-cover:focus-visible{transform:rotate(0) translateY(-6px);box-shadow:0 0 60px rgba(231,198,124,.6),0 0 110px rgba(30,79,163,.5)}
+.wb-cover .free{position:absolute;z-index:2;top:-16px;right:-16px;width:76px;height:76px;border-radius:50%;display:grid;place-items:center;text-align:center;font-size:12px;font-weight:700;line-height:1.2;color:#fff;background:linear-gradient(140deg,#E8834F,#D9622B);box-shadow:0 0 24px rgba(217,98,43,.6);transform:rotate(8deg)}
+@media (max-width:480px){.wb-cover .free{right:-6px;width:64px;height:64px;font-size:11px}}
+.zalo{display:grid;grid-template-columns:auto 1fr auto;gap:28px;align-items:center;padding:clamp(28px,4vw,44px)}
+@media (max-width:820px){.zalo{grid-template-columns:1fr;text-align:center;justify-items:center}}
+.zalo .zi{width:72px;height:72px;border-radius:22px;display:grid;place-items:center;background:linear-gradient(140deg,#1E4FA3,#0B2A5B);color:#fff;box-shadow:0 0 0 2px rgba(231,198,124,.5),0 0 28px rgba(30,79,163,.6)}
+.zalo h2{font-size:clamp(24px,3vw,32px);margin-bottom:8px}
+
+/* ---------- Legal ---------- */
+.legal{padding:clamp(60px,8vw,90px) 0}
+.legal .glow{background:rgba(255,255,255,.04)}
+.legal h3{font-size:20px;margin-bottom:14px}
+.legal p,.legal li{font-size:15px;color:#C3CDE0}
+.legal .ticks li::before{width:10px;height:10px;top:.72em}
+.foot{border-top:1px solid rgba(255,255,255,.08);padding:34px 0 110px;background:var(--navy-3);color:#9AA8C2;font-size:14px}
+.foot .wrap{display:flex;flex-wrap:wrap;gap:18px;justify-content:space-between;align-items:center}
+.foot .logo-plate{background:var(--ivory);padding:12px 20px;border-radius:14px}
+.foot .logo-plate img{width:180px}
+.foot .tl{font-family:var(--serif);font-style:italic;color:#F1E3C2;font-size:16px}
+
+/* ---------- Floating hotline ---------- */
+.fab{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:60;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;color:var(--navy);text-decoration:none;
+  background:linear-gradient(140deg,#F6DDA0,#C89B3C 55%,#D9622B);box-shadow:0 0 0 1px rgba(255,255,255,.35) inset,0 0 22px rgba(231,198,124,.75),0 12px 26px -10px rgba(6,23,58,.6);transition:transform .3s,box-shadow .3s}
+.fab svg{width:26px;height:26px;animation:ring 2.6s ease-in-out infinite}
+.fab::before,.fab::after{content:"";position:absolute;inset:0;border-radius:50%;border:2px solid rgba(231,198,124,.7);animation:wave 2.4s ease-out infinite;pointer-events:none}
+.fab::after{animation-delay:1.2s}
+.fab:hover,.fab:focus-visible{transform:scale(1.08);box-shadow:0 0 0 1px rgba(255,255,255,.5) inset,0 0 34px rgba(241,208,138,.95),0 0 70px rgba(217,98,43,.5)}
+.fab:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.fab-tip{position:absolute;right:72px;top:50%;transform:translateY(-50%);white-space:nowrap;font-size:13.5px;font-weight:600;color:#fff;padding:7px 14px;border-radius:999px;background:rgba(8,31,69,.9);box-shadow:0 0 0 1px rgba(231,198,124,.45),0 0 18px rgba(231,198,124,.3);opacity:0;pointer-events:none;transition:opacity .25s}
+.fab:hover .fab-tip,.fab:focus-visible .fab-tip{opacity:1}
+@keyframes wave{from{transform:scale(1);opacity:.85}to{transform:scale(1.7);opacity:0}}
+@keyframes ring{0%,70%,100%{transform:rotate(0)}75%{transform:rotate(-14deg)}80%{transform:rotate(12deg)}85%{transform:rotate(-8deg)}90%{transform:rotate(5deg)}}
+@media (max-width:520px){.fab{width:54px;height:54px}.fab svg{width:23px;height:23px}}
+
+/* ---------- Reveal ---------- */
+.rv{animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
+@keyframes rise{from{transform:translateY(18px)}to{transform:none}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body class="no-js">
+
+<!-- HEADER -->
+<header class="top">
+  <div class="wrap">
+    <a href="#top" aria-label="WI.FINANCE"><img src="assets/logo-horizontal.png" alt="WI.FINANCE" width="180" height="47"></a>
+    <nav aria-label="Điều hướng">
+      <a href="#dau-ra">Đầu ra</a>
+      <a href="#module">10 module</a>
+      <a href="#cach-hoc">Cách học</a>
+      <a href="#dong-hanh">Người đồng hành</a>
+      <a href="#chon">Học phí</a>
+      <a href="#faq">Hỏi đáp</a>
+    </nav>
+    <div class="acts">
+      <a class="btn" href="#dang-ky" data-course="21">Đăng ký tham gia</a>
+    </div>
+  </div>
+</header>
+
+<main id="top">
+
+<!-- 1. HERO -->
+<section class="hero dark motif">
+  <div class="wrap hero-grid">
+    <div class="rv">
+      <p class="brandline">WI.FINANCE — Tài Chính Tâm Thức</p>
+      <span class="eyebrow">Chương trình online qua Zoom</span>
+      <h1>Vận Hành Dòng Tiền <em>21 Ngày</em></h1>
+      <p class="tagline">“Từ né tránh con số → bình an nhìn nhận, hiểu và vận hành dòng tiền mỗi ngày.”</p>
+      <p class="hook">Bạn không cần thêm một bảng tính khó hiểu. Bạn cần một nhịp đủ nhỏ để mỗi ngày nhìn tiền của mình một chút, cùng những người đang đi chung một đoạn đường.</p>
+
+      <div class="facts">
+        <div class="fact glow"><small>Lịch live</small><b>Zoom tối T2–4–6</b></div>
+        <div class="fact glow"><small>Cấu trúc</small><b>10 module, live kết hợp tự học có hướng dẫn</b></div>
+        <div class="fact glow"><small>Nhịp thực hành</small><b>15 phút mỗi ngày</b></div>
+        <div class="fact glow"><small>Nhóm nhân chứng</small><b>6 đến 8 người</b></div>
+      </div>
+
+      <div class="price-row">
+        <div class="price"><small>Học phí</small><strong>2.499.000<span>VND</span></strong></div>
+        <a class="btn btn-lg" href="#dang-ky" data-course="21">Đăng ký tham gia
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+      <p class="sub"><a class="btn btn-ghost" href="https://claude.ai/artifact/D9GAXbo9kStyno9PjuyR5Y" target="_blank" rel="noopener">Thực hành ngay
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
+    </div>
+
+    <div class="portrait rv">
+      <div class="arch"><img src="assets/coach-hero.jpg" alt="Coach Hoàng Thu Hà, người đồng hành chương trình Vận Hành Dòng Tiền 21 Ngày" width="1100" height="1648"></div>
+      <div class="float f1"><b>15 phút</b>mỗi ngày kết nối với tiền</div>
+      <div class="float f2"><b>5 đầu ra</b>bạn tự tay hoàn thành</div>
+      <p class="coach-tag">Đồng hành cùng <b>Coach Hoàng Thu Hà</b></p>
+    </div>
+  </div>
+  <div class="wrap stats rv">
+    <div class="stat"><span class="sv">600+</span><span class="sl">Khách hàng đã đồng hành</span></div>
+    <div class="stat"><span class="sv">1.000+</span><span class="sl">Giờ khai vấn</span></div>
+    <div class="stat"><span class="sv">15 năm</span><span class="sl">Kinh doanh thực chiến</span></div>
+  </div>
+</section>
+
+<!-- 2. VẤN ĐỀ -->
+<section class="soft ivory-motif" id="van-de">
+  <div class="wrap">
+    <div class="head center rv">
+      <span class="eyebrow">Đồng cảm</span>
+      <h2>Có thể bạn đang quen với cảm giác này</h2>
+      <p class="lead">Bạn làm việc chăm chỉ. Bạn có thu nhập. Nhưng tiền vẫn là một vùng mơ hồ mà bạn ngại nhìn vào.</p>
+    </div>
+    <div class="two">
+      <article class="glow pain rv">
+        <span class="tag">Mất kiểm soát</span>
+        <h3>Làm nhiều, nhưng cuối tháng không rõ tiền đã đi đâu.</h3>
+        <ul class="ticks">
+          <li>Thu nhập có, nhưng con số tổng thể luôn mờ nhòe.</li>
+          <li>Mở app ngân hàng rồi lại tắt, vì ngại nhìn.</li>
+          <li>Chi xong mới thấy tiếc, rồi tháng sau lại lặp lại.</li>
+        </ul>
+      </article>
+      <article class="glow pain rv">
+        <span class="tag">Mất phương hướng</span>
+        <h3>Chăm lo cho nhiều người, dần quên mình muốn cuộc sống như thế nào.</h3>
+        <ul class="ticks blue">
+          <li>Tiền chủ yếu dùng để phản ứng với việc trước mắt.</li>
+          <li>Chưa rõ mình đang để dành cho điều gì.</li>
+          <li>Muốn bắt đầu, nhưng không biết nên bắt đầu từ đâu.</li>
+        </ul>
+      </article>
+    </div>
+    <p class="bridge narrow rv">Điều này không nói lên rằng bạn kém cỏi.<br><span>Có thể dòng tiền của bạn đang có một điểm nghẽn cần được nhìn rõ.</span> Và nhìn rõ là việc có thể học được, từng bước một.</p>
+  </div>
+</section>
+
+<!-- 3. LỜI HỨA VÀ GIỚI HẠN -->
+<section class="dark">
+  <div class="wrap">
+    <div class="head center rv">
+      <span class="eyebrow">Lời hứa của chương trình</span>
+      <h2>Trong 21 ngày, bạn có thể làm được gì</h2>
+      <p class="lead">Không phải một cuộc đổi đời. Đây là 21 ngày để luyện một nhịp mới với tiền, đủ nhỏ để làm được và đúng đủ đều để thấy rõ sự chuyển hóa.</p>
+    </div>
+    <div class="three">
+      <div class="glow rv"><span class="num">01</span><h3>Hình thành nhịp quan sát</h3><p>Mỗi ngày 15 phút, bạn ghi lại tiền vào, tiền ra và một điều ghi nhận bản thân. Nhịp nhỏ, nhưng đều.</p></div>
+      <div class="glow rv"><span class="num">02</span><h3>Nhìn rõ dữ liệu của chính mình</h3><p>Dữ liệu thu chi thật giúp bạn nhìn rõ tiền đang chảy về đâu, thay vì đoán hay tự trách.</p></div>
+      <div class="glow rv"><span class="num">03</span><h3>Có quyết định cho bước tiếp theo</h3><p>Từ điều đã nhìn thấy, bạn chọn một hướng đi cụ thể cho tiền của mình trong thời gian tới.</p></div>
+    </div>
+    <div class="limit rv">
+      <div class="ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3l8 4v5c0 5-3.5 8-8 9-4.5-1-8-4-8-9V7z"/><path d="M12 8v5M12 16h.01"/></svg></div>
+      <div>
+        <h3>Giới hạn cam kết, nói rõ ngay từ đầu</h3>
+        <p>Chương trình không cam kết tăng thu nhập. Chương trình cũng không hứa trả hết nợ, tự do tài chính hay một con số tài sản cụ thể. Điều chúng tôi cam kết là năm đầu ra bên dưới, khi bạn tham gia và thực hành đều đặn.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4. 5 ĐẦU RA -->
+<section class="soft" id="dau-ra">
+  <div class="wrap">
+    <div class="head center rv">
+      <span class="eyebrow">Đầu ra cụ thể</span>
+      <h2>5 thứ bạn tự tay hoàn thành</h2>
+      <p class="lead">Không phải cảm hứng nhất thời. Đây là những gì bạn có thể cầm, xem lại và tiếp tục dùng sau 21 ngày.</p>
+    </div>
+    <div class="outputs">
+      <div class="glow out rv"><span class="n">01</span><h3>Tuyên Ngôn Tiền cá nhân hoá</h3><p>Những nguyên tắc dùng tiền của riêng bạn, viết bằng chính lời của bạn.</p></div>
+      <div class="glow out rv"><span class="n">02</span><h3>Bản soi lỗ rò tiền</h3><p>Những khoản chi âm thầm lặp lại mà trước đây bạn chưa nhìn thấy.</p></div>
+      <div class="glow out rv"><span class="n">03</span><h3>Bảng dòng tiền 14 ngày</h3><p>Dữ liệu thu chi thật của bạn, làm nền cho mọi quyết định tiếp theo.</p></div>
+      <div class="glow out rv"><span class="n">04</span><h3>Quỹ an toàn đã mở</h3><p>Bạn mở quỹ an toàn của mình ngay trong chương trình, với mức khởi đầu do bạn tự chọn.</p></div>
+      <div class="glow out rv"><span class="n">05</span><h3>Bản đồ tài chính cá nhân hóa</h3><p>Bản phác thảo các ưu tiên tài chính cho 90 ngày tiếp theo.</p></div>
+    </div>
+    <p class="cond muted rv">Đầu ra được hoàn thành khi bạn tham gia, check in và hoàn thiện dữ liệu theo hướng dẫn của chương trình.</p>
+  </div>
+</section>
+
+<!-- 5. 10 MODULE -->
+<section class="dark motif" id="module">
+  <div class="wrap">
+    <div class="head center rv">
+      <span class="eyebrow">Lộ trình</span>
+      <h2>Cấu trúc 10 module</h2>
+      <p class="lead">Mỗi module có một mục tiêu và một đầu ra nhỏ. Đi theo logic Hiểu gốc, Rõ dòng, Hành động, Tự chủ.</p>
+    </div>
+    <div class="modules">
+      <article class="glow mod rv"><div class="mn">01<small>GỐC</small></div><div><span class="pill live">Live qua Zoom</span><h3>Nhìn tiền mà không phán xét</h3><dl><div><dt>Mục tiêu: </dt><dd>tạo không gian an toàn và cam kết nhịp 21 ngày.</dd></div><div><dt>Đầu ra: </dt><dd>điểm xuất phát của bạn được ghi lại.</dd></div></dl></div></article>
+      <article class="glow mod rv"><div class="mn">02<small>GỐC</small></div><div><span class="pill live">Live qua Zoom</span><h3>8 quan niệm nền tảng về tiền</h3><dl><div><dt>Mục tiêu: </dt><dd>nhận ra cách bạn đang nghĩ và cảm về tiền.</dd></div><div><dt>Đầu ra: </dt><dd>bản nháp Tuyên Ngôn Tiền.</dd></div></dl></div></article>
+      <article class="glow mod rv"><div class="mn">03<small>RỄ</small></div><div><span class="pill self">Tự học có hướng dẫn</span><h3>Bắt đầu nhật ký thu chi 15 phút</h3><dl><div><dt>Mục tiêu: </dt><dd>thiết lập cách ghi chép đơn giản, vừa với ngày bận.</dd></div><div><dt>Đầu ra: </dt><dd>những ngày dữ liệu đầu tiên.</dd></div></dl></div></article>
+      <article class="glow mod rv"><div class="mn">04<small>RỄ</small></div><div><span class="pill live">Live qua Zoom</span><h3>Ghi nhận bản thân mỗi ngày</h3><dl><div><dt>Mục tiêu: </dt><dd>nhìn con số đi cùng sự ghi nhận, thay vì tự trách.</dd></div><div><dt>Đầu ra: </dt><dd>nhịp check in buổi tối cùng nhóm nhân chứng.</dd></div></dl></div></article>
+      <article class="glow mod rv"><div class="mn">05<small>RỄ</small></div><div><span class="pill self">Tự học có hướng dẫn</span><h3>7 trạng thái sống</h3><dl><div><dt>Mục tiêu: </dt><dd>hiểu trạng thái đang chi phối quyết định tiền.</dd></div><div><dt>Đầu ra: </dt><dd>xác định trạng thái hiện tại của bạn.</dd></div></dl></div></article>
+      <article class="glow mod rv"><div class="mn">06<small>RỄ</small></div><div><span class="pill live">Live qua Zoom</span><h3>Niềm tin và câu nói gia đình về tiền</h3><dl><div><dt>Mục tiêu: </dt><dd>gọi tên một mô thức đang lặp lại.</dd></div><div><dt>Đầu ra: </dt><dd>một niềm tin chủ đạo được viết ra rõ ràng.</dd></div></dl></div></article>
+      <article class="glow mod rv"><div class="mn">07<small>THÂN</small></div><div><span class="pill live">Live qua Zoom</span><h3>Sơ đồ Tiền: chất lượng sống và giá trị sống</h3><dl><div><dt>Mục tiêu: </dt><dd>xếp chi tiêu theo điều bạn thật sự coi trọng.</dd></div><div><dt>Đầu ra: </dt><dd>Sơ đồ Tiền bản đầu tiên.</dd></div></dl></div></article>
+      <article class="glow mod rv"><div class="mn">08<small>THÂN</small></div><div><span class="pill self">Tự học có hướng dẫn</span><h3>Soi lỗ rò từ dữ liệu thật</h3><dl><div><dt>Mục tiêu: </dt><dd>đọc lại dữ liệu thu chi bạn đã ghi.</dd></div><div><dt>Đầu ra: </dt><dd>Bản soi lỗ rò tiền.</dd></div></dl></div></article>
+      <article class="glow mod rv"><div class="mn">09<small>DÒNG</small></div><div><span class="pill live">Live qua Zoom</span><h3>Mở quỹ an toàn, hoàn thiện bảng dòng tiền</h3><dl><div><dt>Mục tiêu: </dt><dd>chuyển điều đã thấy thành hành động.</dd></div><div><dt>Đầu ra: </dt><dd>Quỹ an toàn đã mở và Bảng dòng tiền 14 ngày.</dd></div></dl></div></article>
+      <article class="glow mod rv"><div class="mn">10<small>QUẢ</small></div><div><span class="pill live">Live qua Zoom</span><h3>Thiết kế bước tiếp theo</h3><dl><div><dt>Mục tiêu: </dt><dd>chọn ưu tiên dựa trên cuộc sống bạn muốn xây dựng.</dd></div><div><dt>Đầu ra: </dt><dd>Tuyên Ngôn Tiền hoàn chỉnh và Bản đồ tài chính cá nhân hóa.</dd></div></dl></div></article>
+    </div>
+    <div class="legend rv">
+      <span><span class="pill live">Live qua Zoom</span> tối T2–4–6</span>
+      <span><span class="pill self">Tự học có hướng dẫn</span> tài liệu và bài thực hành theo nhịp riêng</span>
+    </div>
+  </div>
+</section>
+
+<!-- 6. CÁCH HỌC -->
+<section class="soft-2" id="cach-hoc">
+  <div class="wrap how-grid">
+    <div class="rv">
+      <div class="photo-frame"><img src="assets/class-live.jpg" alt="Coach Hoàng Thu Hà trong một buổi chia sẻ" width="1400" height="933" style="aspect-ratio:4/3.4;object-position:40% 50%"></div>
+    </div>
+    <div>
+      <div class="rv">
+        <span class="eyebrow">Cách học</span>
+        <h2>Nhịp nhỏ, đều, và có người cùng đi</h2>
+        <p class="lead" style="margin-bottom:30px">Thay đổi với tiền không đến từ một buổi học thật dài. Nó đến từ việc quay lại nhìn tiền mỗi ngày, trong một không gian an toàn.</p>
+      </div>
+      <div class="how-cards">
+        <div class="glow rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M10 2h4"/></svg></div><h3>15 phút mỗi ngày</h3><p>Mỗi tối, bạn ghi tiền vào, tiền ra và một điều ghi nhận bản thân. Không cần bảng tính phức tạp.</p></div>
+        <div class="glow rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="9" cy="8" r="3.2"/><circle cx="17" cy="9" r="2.6"/><path d="M3 19c.8-3.2 3.2-5 6-5s5.2 1.8 6 5M15 14.2c2.6-.3 4.8 1.2 5.6 4.3"/></svg></div><h3>Nhóm nhân chứng 6 đến 8 người</h3><p>Một nhóm nhỏ cố định cùng bạn đi suốt 21 ngày. Nhân chứng lắng nghe và giữ nhịp, không phán xét.</p></div>
+        <div class="glow rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a8 8 0 0 1-11.8 7L4 20l1.1-4.6A8 8 0 1 1 21 12z"/><path d="M8.5 12l2.2 2.2L15.5 9.5"/></svg></div><h3>Check in và phản hồi</h3><p>Sau mỗi ngày thực hành, bạn check in ngắn trong nhóm. Vướng mắc được phản hồi trong nhóm và trong các buổi live.</p></div>
+        <div class="glow rv"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="6" width="13" height="12" rx="2.5"/><path d="M16 10.5l5-3v9l-5-3"/></svg></div><h3>Video xem lại đầy đủ</h3><p>Sau mỗi buổi học live đều có video ghi hình đầy đủ. Bận việc hay lỡ buổi, bạn vẫn xem lại trọn nội dung và theo kịp nhịp của nhóm.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NGƯỜI ĐỒNG HÀNH -->
+<section class="dark motif" id="dong-hanh">
+  <div class="wrap coach-grid">
+    <div class="coach-photos rv">
+      <div class="photo-frame"><img src="assets/coach-garden.jpg" alt="Coach Hoàng Thu Hà" width="1105" height="1280"></div>
+      <div class="mini"><img src="assets/coach-book.jpg" alt="Coach Hoàng Thu Hà cùng cuốn sách Khai Vấn Nhân Mệnh, Làm Chủ Cuộc Đời" width="1000" height="1493"></div>
+    </div>
+    <div class="rv">
+      <span class="eyebrow">Người đồng hành</span>
+      <h2 class="coach-name">Coach Hoàng Thu Hà</h2>
+      <p class="coach-role">Người đồng hành chương trình Vận Hành Dòng Tiền 21 Ngày</p>
+      <p>Hà bước ra từ kinh doanh logistics. Không dừng lại ở những giá trị vật chất, Hà chọn bước vào hành trình phát triển nội tâm, nghiên cứu chuyên sâu Tử vi Đẩu Số và Coaching.</p>
+      <p>Từ sự kết hợp giữa trí tuệ phương Đông và kỹ năng coaching hiện đại, Hà phát triển phương pháp Khai vấn Nhân Mệnh. Đây là hành trình giúp mỗi người thấu hiểu bản thân, tháo gỡ rào cản bên trong và chủ động thiết kế cuộc sống có chủ đích.</p>
+      <blockquote class="quote glow">Mỗi người đều có một bản thiết kế độc nhất. Khi thấu hiểu chính mình, chúng ta có thể trở thành kiến trúc sư cho cuộc đời mình.</blockquote>
+      <div class="badges">
+        <span class="badge">Tác giả sách “Khai Vấn Nhân Mệnh, Làm Chủ Cuộc Đời”</span>
+        <span class="badge">Phương pháp Khai vấn Nhân Mệnh</span>
+      </div>
+      <p class="muted" style="margin-top:18px">600+ khách hàng đã đồng hành · 1.000+ giờ khai vấn · 15 năm kinh doanh thực chiến</p>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEW -->
+<section class="soft ivory-motif" id="phan-hoi">
+  <div class="wrap">
+    <div class="head center rv">
+      <span class="eyebrow">Phản hồi thật</span>
+      <h2>Điều người từng được Hà đồng hành chia sẻ</h2>
+      <p class="lead">Sáu tin nhắn gửi lại sau các buổi coach 1:1, giữ nguyên văn. Rê chuột hoặc chạm vào từng ô để đọc trọn tin nhắn.</p>
+    </div>
+    <div class="rv-grid rv">
+      <figure class="tile" tabindex="0" aria-label="Phản hồi của Mến Đặng. Rê chuột hoặc chạm để đọc đầy đủ">
+        <div class="card">
+          <button class="tile-x" type="button" aria-label="Đóng">×</button>
+          <img src="assets/review-2.jpg" alt="Tin nhắn phản hồi: Rất là biết ơn cô Hà vì một buổi coach thật đặc biệt. Qua sự lắng nghe và những câu hỏi của cô đã giúp em nhìn lại chính mình, nhìn sâu hơn vào những nút thắt bên trong và tự tìm ra câu trả lời của mình. Một buổi trò chuyện để lại trong em rất nhiều sự sáng rõ." loading="lazy" width="800">
+          <figcaption class="meta"><span class="av">MĐ</span><span><b>Mến Đặng</b><small>Sau buổi coach 1:1</small></span><span class="more">Xem đầy đủ</span></figcaption>
+        </div>
+      </figure>
+      <figure class="tile" tabindex="0" aria-label="Phản hồi của khách hàng. Rê chuột hoặc chạm để đọc đầy đủ">
+        <div class="card">
+          <button class="tile-x" type="button" aria-label="Đóng">×</button>
+          <img src="assets/review-5.jpg" alt="Tin nhắn phản hồi: Thật sự biết ơn coach Hoàng Hà. Em học 3 năm nay miệt mài đi tìm lý do vì sao lại gặp vấn đề về con, về tiền mà chưa xử lý được, hôm nay gặp cô chỉ trong 1 tiếng em hiểu ngay nguyên nhân. Như kiểu đang bị lạc giữa đường và có người cầm tay chỉ rõ con đường." loading="lazy" width="800">
+          <figcaption class="meta"><span class="av"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4.2-6 8-6s7 2 8 6"/></svg></span><span><b>Khách hàng</b><small>Sau buổi coach 1:1</small></span><span class="more">Xem đầy đủ</span></figcaption>
+        </div>
+      </figure>
+      <figure class="tile" tabindex="0" aria-label="Phản hồi của Bích Đặng. Rê chuột hoặc chạm để đọc đầy đủ">
+        <div class="card">
+          <button class="tile-x" type="button" aria-label="Đóng">×</button>
+          <img src="assets/review-3.jpg" alt="Tin nhắn phản hồi: Biết ơn em vì buổi chia sẻ hôm nay rất chất lượng. Chị nhìn thấy rõ hành trình của chị đi và định tâm được mong muốn lựa chọn của mình." loading="lazy" width="800">
+          <figcaption class="meta"><span class="av">BĐ</span><span><b>Bích Đặng</b><small>Sau buổi coach 1:1</small></span><span class="more">Xem đầy đủ</span></figcaption>
+        </div>
+      </figure>
+      <figure class="tile" tabindex="0" aria-label="Phản hồi của Nghi Khương. Rê chuột hoặc chạm để đọc đầy đủ">
+        <div class="card">
+          <button class="tile-x" type="button" aria-label="Đóng">×</button>
+          <img src="assets/review-1.jpg" alt="Tin nhắn phản hồi: Như 1 vùng trời mở ra. Trước đó mây đen mù mịt lắm, vẫn vừa đi vừa dò đường. Bây giờ đã thấu rõ mình hơn, thấy con đường đi thuộc về mình. Cũng cần có tư duy đúng về tiền." loading="lazy" width="800">
+          <figcaption class="meta"><span class="av">NK</span><span><b>Nghi Khương</b><small>Sau buổi coach 1:1</small></span><span class="more">Xem đầy đủ</span></figcaption>
+        </div>
+      </figure>
+      <figure class="tile" tabindex="0" aria-label="Phản hồi của khách hàng. Rê chuột hoặc chạm để đọc đầy đủ">
+        <div class="card">
+          <button class="tile-x" type="button" aria-label="Đóng">×</button>
+          <img src="assets/review-6.jpg" alt="Tin nhắn phản hồi: Hôm nay được zoom với Hoàng Hà chị cảm thấy một cuộc gặp ý nghĩa nhất cuộc đời trong 19 năm qua. Đặc biệt em đã khơi dậy những năng lực bên trong bản thân và định hướng theo lá số của chị." loading="lazy" width="800">
+          <figcaption class="meta"><span class="av"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4.2-6 8-6s7 2 8 6"/></svg></span><span><b>Khách hàng</b><small>Sau buổi coach 1:1</small></span><span class="more">Xem đầy đủ</span></figcaption>
+        </div>
+      </figure>
+      <figure class="tile" tabindex="0" aria-label="Phản hồi của Nguyễn Sang. Rê chuột hoặc chạm để đọc đầy đủ">
+        <div class="card">
+          <button class="tile-x" type="button" aria-label="Đóng">×</button>
+          <img src="assets/review-4.jpg" alt="Tin nhắn phản hồi: Rồi sau 3 năm em không chịu kiếm tiền, tài chính em tưởng trùng bế tắc, mà hôm nay em có cảm hứng bán hàng luôn. Em biết ơn cô rất nhiều." loading="lazy" width="800">
+          <figcaption class="meta"><span class="av">NS</span><span><b>Nguyễn Sang</b><small>Sau buổi coach 1:1</small></span><span class="more">Xem đầy đủ</span></figcaption>
+        </div>
+      </figure>
+    </div>
+    <p class="note rv">Đây là trải nghiệm cá nhân sau các buổi coach 1:1 cùng Coach Hoàng Thu Hà. Phản hồi không phải kết quả điển hình và không phải đánh giá về khoá Vận Hành Dòng Tiền 21 Ngày. Kết quả của mỗi người phụ thuộc vào hoàn cảnh và mức độ thực hành riêng.</p>
+  </div>
+</section>
+
+<!-- 7. PHÙ HỢP -->
+<section class="soft-2 fit">
+  <div class="wrap">
+    <div class="head center rv">
+      <span class="eyebrow">Để bạn tự lọc</span>
+      <h2>Chương trình này dành cho ai</h2>
+    </div>
+    <div class="two">
+      <div class="glow yes rv">
+        <h3><span class="dot">✓</span>Dành cho bạn nếu</h3>
+        <ul class="ticks">
+          <li>Bạn có thu nhập nhưng chưa nhìn rõ dòng tiền của mình.</li>
+          <li>Bạn muốn nhìn thẳng vào con số thật, theo cách nhẹ nhàng và có phương pháp.</li>
+          <li>Bạn sẵn sàng dành 15 phút mỗi ngày trong 21 ngày.</li>
+          <li>Bạn muốn làm việc với cả niềm tin lẫn con số.</li>
+          <li>Bạn thích học trong nhóm nhỏ, có người đồng hành và giữ nhịp.</li>
+        </ul>
+      </div>
+      <div class="glow rv">
+        <h3><span class="dot">✕</span>Chưa dành cho bạn nếu</h3>
+        <ul class="ticks no">
+          <li>Bạn tìm cách làm giàu nhanh hoặc một lời hứa lợi nhuận.</li>
+          <li>Bạn cần tư vấn đầu tư, chứng khoán, bảo hiểm, thuế hoặc pháp lý.</li>
+          <li>Bạn muốn người khác làm thay mà không tự ghi dữ liệu.</li>
+          <li>Bạn chưa thể dành thời gian thực hành mỗi ngày trong giai đoạn này.</li>
+          <li>Bạn đang gặp khủng hoảng nợ hoặc vấn đề pháp lý cần hỗ trợ chuyên môn ngay. Khi đó, hãy tìm đến chuyên gia phù hợp trước.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9. CHỌN CHƯƠNG TRÌNH -->
+<section class="dark motif" id="chon">
+  <div class="wrap">
+    <div class="head center rv">
+      <span class="eyebrow">Chọn chương trình</span>
+      <h2>Chọn bước phù hợp với bạn lúc này</h2>
+      <p class="lead">Trang này được thiết kế cho khoá 21 ngày. Nếu bạn cần một bước nhẹ hơn để làm quen, khoá 2 ngày luôn ở đây.</p>
+    </div>
+    <div class="choose">
+      <div class="glow plan rv">
+        <span class="opt">Option A</span>
+        <h3>Kích Hoạt Dòng Tiền</h3>
+        <p class="meta">2 ngày online</p>
+        <div class="cost">199.000<span>VND</span></div>
+        <p class="fitfor">Phù hợp nếu bạn cần một bước nhẹ</p>
+        <ul class="ticks">
+          <li>Làm quen việc nhìn con số</li>
+          <li>Không áp lực</li>
+          <li>Bước khởi động trước khi vào 21 ngày</li>
+        </ul>
+        <a class="btn btn-ghost btn-block" href="#dang-ky" data-course="2">Bắt đầu với khoá 2 ngày</a>
+      </div>
+      <div class="glow plan main rv">
+        <span class="ribbon">Lựa chọn ưu tiên</span>
+        <span class="opt">Option B</span>
+        <h3>Vận Hành Dòng Tiền 21 Ngày</h3>
+        <p class="meta">Chương trình online qua Zoom</p>
+        <div class="cost">2.499.000<span>VND</span></div>
+        <p class="fitfor">Phù hợp nếu bạn sẵn sàng đi sâu</p>
+        <ul class="ticks">
+          <li>10 module, live qua Zoom tối T2–4–6</li>
+          <li>15 phút nhật ký thu chi và ghi nhận bản thân mỗi ngày</li>
+          <li>Nhóm nhân chứng 6 đến 8 người</li>
+          <li>5 đầu ra cụ thể bạn tự tay hoàn thành</li>
+        </ul>
+        <a class="btn btn-lg btn-block" href="#dang-ky" data-course="21">Đăng ký tham gia
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8. FAQ -->
+<section class="soft-2" id="faq">
+  <div class="narrow">
+    <div class="head center rv">
+      <span class="eyebrow">Hỏi đáp</span>
+      <h2>Những câu bạn có thể đang băn khoăn</h2>
+    </div>
+    <div class="faq rv">
+      <details open><summary>Mình không giỏi số, có học được không?<i>+</i></summary><div class="a">Có. Bạn không cần kiến thức tài chính. Những ngày đầu, bạn chỉ ghi lại tiền vào và tiền ra theo cách đơn giản nhất. Công cụ được hướng dẫn từng bước trong buổi live và trong module tự học. Nếu bạn cộng trừ được và dùng được điện thoại, bạn có thể bắt đầu.</div></details>
+      <details><summary>Mình bận, có học được không?<i>+</i></summary><div class="a">Nhịp thực hành được thiết kế khoảng 15 phút mỗi ngày. Buổi live diễn ra tối T2–4–6. Sau mỗi buổi đều có video xem lại đầy đủ, và một số module là tự học có hướng dẫn để bạn chủ động thời gian. Điều quan trọng là giữ nhịp đều, không phải làm thật nhiều trong một lần.</div></details>
+      <details><summary>Có cần chia sẻ tài chính riêng tư không?<i>+</i></summary><div class="a">Không bắt buộc. Bạn ghi dữ liệu cho chính mình. Trong nhóm nhân chứng, bạn chỉ chia sẻ ở mức bạn thấy thoải mái. Bạn không cần công khai số dư, khoản nợ hay thông tin ngân hàng.</div></details>
+      <details><summary>Khoá học có cam kết tăng thu nhập không?<i>+</i></summary><div class="a">Không. Chương trình không cam kết tăng thu nhập, trả hết nợ hay tự do tài chính. Chương trình giúp bạn nhìn rõ dòng tiền hiện tại và hoàn thành năm đầu ra đã nêu. Kết quả phụ thuộc vào hoàn cảnh và mức độ thực hành của từng người.</div></details>
+      <details><summary>Nếu bỏ lỡ buổi Zoom thì sao?<i>+</i></summary><div class="a">Sau mỗi buổi học sẽ có video xem lại đầy đủ. Bạn xem lại vào lúc thuận tiện, rồi tiếp tục giữ nhịp 15 phút mỗi ngày và check in cùng nhóm nhân chứng để không bị đứt mạch.</div></details>
+      <details><summary>Nội dung có phải tư vấn đầu tư không?<i>+</i></summary><div class="a">Không. WI.FINANCE cung cấp giáo dục và công cụ thực hành tài chính cá nhân. Nội dung không thay thế tư vấn đầu tư, pháp lý, thuế và không khuyến nghị mua bán bất kỳ tài sản cụ thể nào.</div></details>
+      <details><summary>Mình nên chọn khoá 2 ngày hay khoá 21 ngày?<i>+</i></summary><div class="a">Nếu bạn còn ngại nhìn con số và muốn thử một bước nhẹ, khoá 2 ngày là điểm khởi đầu phù hợp. Nếu bạn đã sẵn sàng xây nhịp và đi sâu hơn, khoá 21 ngày là chương trình được thiết kế cho bạn.</div></details>
+      <details><summary>Sau khi chuyển khoản, khi nào mình nhận được xác nhận?<i>+</i></summary><div class="a">Khi bạn chuyển đúng số tiền và đúng nội dung, cổng thanh toán xác nhận ngay và gửi email tự động về Gmail bạn đã đăng ký.</div></details>
+    </div>
+    <div class="glow help rv" id="hotline">
+      <div>
+        <h3>Bạn còn điều muốn hỏi thêm?</h3>
+        <p>Gọi hotline để được tư vấn chọn khoá phù hợp hoặc hỗ trợ đăng ký và thanh toán.</p>
+      </div>
+      <div class="row">
+        <a class="btn" href="tel:0948387418"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>Gọi hotline</a>
+        <button class="cp" type="button" data-copy="0948387418">Chép số hotline</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12. LEAD MAGNET -->
+<section class="dark" id="workbook">
+  <div class="wrap lead-grid">
+    <div class="rv">
+      <a class="wb-cover" href="https://claude.ai/artifact/D9GAXbo9kStyno9PjuyR5Y" target="_blank" rel="noopener" aria-label="Mở sổ tay 9 thói quen nhỏ kích hoạt dòng tiền">
+        <span class="free">MIỄN<br>PHÍ</span>
+        <img src="assets/workbook-cover.jpg" alt="Bìa sổ tay thực hành 9 thói quen nhỏ kích hoạt dòng tiền của Coach Hoàng Thu Hà" width="535" height="599">
+      </a>
+    </div>
+    <div class="rv">
+      <h2>9 thói quen nhỏ kích hoạt dòng tiền</h2>
+      <p class="lead">Sổ tay thực hành 9 ngày của Coach Hoàng Thu Hà. Mỗi ngày một câu chuyện, một quan niệm về tiền và một việc làm trong 5 phút. Không cần kiếm thêm ngay, chỉ cần đổi cách mình đối xử với đồng tiền đang có.</p>
+      <ul class="ticks" style="margin:24px 0 30px">
+        <li>9 ngày, mỗi ngày một thói quen nhỏ</li>
+        <li>Khoảng 5 phút thực hành, vừa với ngày bận rộn</li>
+        <li>Hoàn toàn miễn phí</li>
+      </ul>
+      <a class="btn btn-lg" href="https://claude.ai/artifact/D9GAXbo9kStyno9PjuyR5Y" target="_blank" rel="noopener">Thực hành ngay
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- 11. ZALO -->
+<section class="soft" style="padding:clamp(60px,8vw,96px) 0">
+  <div class="wrap">
+    <div class="glow zalo rv">
+      <div class="zi"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.6 7.4L3 20l1.3-4.6A8.5 8.5 0 1 1 21 11.5z"/><path d="M8 9.5h5l-5 5h5M15.5 9.5v5"/></svg></div>
+      <div>
+        <span class="eyebrow">Cộng đồng</span>
+        <h2>Phụ nữ làm chủ tài chính</h2>
+        <p style="color:#4a5162">Tham gia cộng đồng Zalo để nhận nhắc nhở thực hành, những chia sẻ gần gũi và tài nguyên từ WI.FINANCE.</p>
+      </div>
+      <a class="btn btn-ghost" href="https://zalo.me/g/sk6vnppwxvvmqpdhlngc" target="_blank" rel="noopener">Vào cộng đồng Zalo</a>
+    </div>
+  </div>
+</section>
+
+<!-- 13. DISCLAIMER VÀ BẢO MẬT -->
+<section class="dark legal">
+  <div class="wrap two">
+    <div class="glow rv">
+      <h3>Tuyên bố an toàn</h3>
+      <p>WI.FINANCE cung cấp nội dung giáo dục và công cụ thực hành tài chính cá nhân. Kết quả phụ thuộc vào hoàn cảnh, quyết định và mức độ thực hành của từng người. Nội dung không thay thế tư vấn đầu tư, pháp lý, thuế hoặc khuyến nghị mua bán tài sản cụ thể.</p>
+      <p>Nếu bạn đang gặp khủng hoảng nợ, dấu hiệu lừa đảo hoặc vấn đề pháp lý, hãy tìm đến chuyên gia hoặc đơn vị hỗ trợ phù hợp.</p>
+    </div>
+    <div class="glow rv">
+      <h3>Nguyên tắc bảo mật dữ liệu</h3>
+      <ul class="ticks">
+        <li>Chỉ thu thập dữ liệu cần thiết để vận hành lớp: họ tên, số điện thoại, Gmail và thông tin thanh toán.</li>
+        <li>Dữ liệu thu chi bạn ghi trong quá trình học thuộc về bạn. Bạn không cần gửi sao kê hay số dư tài khoản.</li>
+        <li>WI.FINANCE không bao giờ hỏi mật khẩu hay mã OTP ngân hàng của bạn.</li>
+        <li>Chỉ người phụ trách vận hành lớp được tiếp cận thông tin của bạn, theo nguyên tắc tối thiểu cần thiết.</li>
+        <li>Không đăng câu chuyện, tin nhắn hay con số của bạn khi chưa có sự đồng ý.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <div class="logo-plate"><img src="assets/logo-horizontal.png" alt="WI.FINANCE" width="180" height="47"></div>
+    <p class="tl">Làm chủ tài chính. Làm chủ cuộc đời.</p>
+    <p><a href="tel:0948387418">Hotline</a></p>
+    <p>© 2026 WI.FINANCE. Tài Chính Tâm Thức.</p>
+  </div>
+</footer>
+
+<!-- FORM ĐĂNG KÝ + THANH TOÁN -->
+<div class="reg" id="reg" role="dialog" aria-modal="true" aria-labelledby="reg-title" hidden>
+  <div class="reg-bg" data-reg-close></div>
+  <div class="reg-panel">
+    <button class="reg-x" type="button" aria-label="Đóng" data-reg-close>×</button>
+    <ol class="reg-dots" aria-hidden="true"><li class="on">1. Thông tin</li><li>2. Thanh toán</li><li>3. Xác nhận</li></ol>
+
+    <!-- Bước 1 -->
+    <div class="reg-step" data-step="1">
+      <h3 id="reg-title">Đăng ký tham gia</h3>
+      <p class="sub2">Điền thông tin bên dưới. Sau khi gửi, mã VietQR thanh toán đúng khoá bạn chọn sẽ hiện ngay.</p>
+      <form id="reg-form" novalidate>
+        <div class="opts" role="radiogroup" aria-label="Chọn khoá học">
+          <label class="opt-card"><input type="radio" name="course" value="21" checked><span class="rd"></span><span><b>Vận Hành Dòng Tiền 21 Ngày</b><small>Chương trình online qua Zoom</small></span><span class="pr">2.499.000 VND</span></label>
+          <label class="opt-card"><input type="radio" name="course" value="2"><span class="rd"></span><span><b>Kích Hoạt Dòng Tiền</b><small>2 ngày online</small></span><span class="pr">199.000 VND</span></label>
+        </div>
+        <div class="fld" data-field="fullname"><label for="f-name">Họ và tên <i>*</i></label><input id="f-name" name="fullname" autocomplete="name" placeholder="Nguyễn Thị An"><span class="msg"></span></div>
+        <div class="fld" data-field="phone"><label for="f-phone">Số điện thoại Zalo <i>*</i></label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="0912345678"><span class="msg"></span></div>
+        <div class="fld" data-field="email"><label for="f-mail">Gmail <i>*</i></label><input id="f-mail" name="email" type="email" inputmode="email" autocomplete="email" placeholder="ten@gmail.com"><span class="hint">Email xác nhận và tài liệu khoá học sẽ gửi về địa chỉ này.</span><span class="msg"></span></div>
+        <div class="fld"><label for="f-city">Tỉnh hoặc thành phố <small>(không bắt buộc)</small></label><input id="f-city" name="city" autocomplete="address-level1" placeholder="Hà Nội"></div>
+        <div class="fld"><label for="f-wish">Điều bạn mong muốn nhất khi tham gia <small>(không bắt buộc)</small></label><textarea id="f-wish" name="wish" placeholder="Ví dụ: mình muốn biết rõ mỗi tháng tiền đang đi đâu"></textarea></div>
+        <div class="fld" data-field="consent"><label class="chk"><input type="checkbox" name="consent"><span>Tôi đồng ý để WI.FINANCE dùng thông tin này để liên hệ và vận hành lớp học. Thông tin được bảo mật, không chia sẻ cho bên thứ ba.</span></label><span class="msg"></span></div>
+        <div class="total"><span>Học phí <b id="reg-cname" style="font-size:14px;font-weight:500;color:#535a6a"></b></span><b id="reg-price"></b></div>
+        <button class="btn btn-lg btn-block" type="submit">Gửi thông tin và nhận mã QR</button>
+        <div class="alert" id="reg-send-err" hidden>Chưa gửi được thông tin. Vui lòng kiểm tra kết nối mạng và bấm gửi lại.</div>
+        <p class="safe">Cần tư vấn trước khi đăng ký? <a href="tel:0948387418"><b>Gọi Hotline</b></a></p>
+        <p class="safe">WI.FINANCE không bao giờ hỏi mật khẩu hay mã OTP ngân hàng của bạn.</p>
+      </form>
+    </div>
+
+    <!-- Bước 2 -->
+    <div class="reg-step" data-step="2" hidden>
+      <h3>Quét mã để hoàn tất học phí</h3>
+      <p class="sub2">Mở app ngân hàng và quét mã. Số tiền và nội dung đã được điền sẵn cho khoá <b id="pay-course" style="color:var(--navy)"></b>.</p>
+      <div class="qr-wrap">
+        <div class="qr-img"><img id="reg-qr" alt="Mã VietQR thanh toán học phí" width="300" height="300"></div>
+        <span class="qr-brand">VietQR · Napas 247 · Techcombank</span>
+        <a class="qr-save" id="reg-qr-save" href="#">Lưu ảnh QR về máy</a>
+      </div>
+      <div class="pay-rows">
+        <div class="pay-row"><span>Ngân hàng</span><b>Techcombank</b></div>
+        <div class="pay-row"><span>Số tài khoản</span><b>6990 0666 66</b><button class="cp" type="button" data-copy="6990066666">Chép</button></div>
+        <div class="pay-row"><span>Chủ tài khoản</span><b>HOANG THU HA</b></div>
+      </div>
+      <div class="guide">
+        <h4>Hướng dẫn chuyển khoản</h4>
+        <ol>
+          <li><span>Số tiền cần chuyển: <b id="pay-amount"></b> <button class="cp" type="button" id="pay-amount-copy" data-copy="">Chép</button></span></li>
+          <li><span>Nội dung chuyển khoản: <span class="code" id="pay-note"></span> <button class="cp" type="button" id="pay-note-copy" data-copy="">Chép</button></span></li>
+          <li><span>Lưu ý: chuyển đúng nội dung để hệ thống xác nhận nhanh.</span></li>
+        </ol>
+      </div>
+      <div class="wait" id="pay-wait">Đang chờ xác nhận thanh toán. Khi nhận được, hệ thống tự gửi email về <b id="pay-email"></b>.</div>
+      <p class="safe">Cần hỗ trợ thanh toán? <a href="tel:0948387418"><b>Gọi Hotline</b></a></p>
+      <button class="restart" type="button" id="reg-restart">Sửa thông tin hoặc đổi khoá học</button>
+    </div>
+
+    <!-- Bước 3 -->
+    <div class="reg-step done" data-step="3" hidden>
+      <div class="ok-ic"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      <h3>Thanh toán thành công</h3>
+      <p>Cảm ơn bạn. Email xác nhận đã được gửi về <b id="done-email" style="color:var(--navy)"></b>. Nếu chưa thấy, hãy kiểm tra thêm mục Quảng cáo hoặc Spam.</p>
+      <a class="btn btn-block" id="reg-zalo" href="#" target="_blank" rel="noopener">Vào cộng đồng Zalo</a>
+    </div>
+  </div>
+</div>
+
+<a class="fab" href="tel:0948387418" aria-label="Gọi Hotline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span class="fab-tip">Hotline</span></a>
+
+<script>
+document.body.classList.remove('no-js');
+(function(){
+  function closeAll(except){document.querySelectorAll('.tile.open').forEach(function(t){if(t!==except)t.classList.remove('open')})}
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('.tile');
+    if(!t){closeAll();return}
+    if(window.innerWidth>720&&window.matchMedia('(hover:hover) and (pointer:fine)').matches)return;
+    if(e.target.closest('.tile-x')||(t.classList.contains('open')&&e.target===t)){t.classList.remove('open');return}
+    if(!t.classList.contains('open')){closeAll(t);t.classList.add('open')}
+  });
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){closeAll();return}
+    var t=document.activeElement;
+    if(t&&t.classList&&t.classList.contains('tile')&&(e.key==='Enter'||e.key===' ')){e.preventDefault();var o=t.classList.contains('open');closeAll();if(!o)t.classList.add('open')}
+  });
+  window.addEventListener('scroll',function(){if(window.innerWidth>720)closeAll()},{passive:true});
+})();
+document.addEventListener('click',function(e){var b=e.target.closest('.help [data-copy]');if(!b)return;var v=b.getAttribute('data-copy'),t=b.textContent;var ok=function(){b.textContent='Đã chép';setTimeout(function(){b.textContent=t},1400)};if(navigator.clipboard){navigator.clipboard.writeText(v).then(ok,function(){})}});
+(function(){
+  var els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return}
+  var io=new IntersectionObserver(function(en){en.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12,rootMargin:'0px 0px -40px 0px'});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script src="assets/vietqr.js"></script>
+<script src="assets/register.js"></script>
+</body>
+</html>
