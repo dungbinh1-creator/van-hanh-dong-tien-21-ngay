@@ -2,3 +2,4 @@ _*.html
 Thumbs.db
 .DS_Store
 google-apps-script/WEBHOOK-TOKEN.txt
+google-apps-script/CODE-DAN-VAO-APPS-SCRIPT.gs
