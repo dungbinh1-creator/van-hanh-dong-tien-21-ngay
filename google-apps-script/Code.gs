@@ -14,6 +14,27 @@ var WEBHOOK_TOKEN = 'DOI-THANH-CHUOI-BI-MAT-CUA-BAN';
 
 var SENDER_NAME = 'WI.FINANCE';
 
+// Thông tin nhận tiền, dùng trong email hướng dẫn chuyển khoản.
+var BANK = { name: 'Techcombank', account: '6990066666', holder: 'HOANG THU HA' };
+
+// Gửi ngay email "Đã nhận đăng ký" kèm hướng dẫn chuyển khoản khi khách gửi form.
+var SEND_REGISTER_EMAIL = true;
+var REGISTER_EMAIL = {
+  subject: 'WI.FINANCE · Đã nhận đăng ký {KhoaHoc}',
+  html: '<p>Chào {HoTen},</p>'
+      + '<p>WI.FINANCE đã nhận thông tin đăng ký khoá <b>{KhoaHoc}</b>. Mã đơn của bạn: <b>{MaDon}</b>.</p>'
+      + '<p>Để hoàn tất, bạn chuyển khoản theo thông tin sau:</p>'
+      + '<table cellpadding="6" style="border-collapse:collapse">'
+      + '<tr><td>Ngân hàng</td><td><b>{NganHang}</b></td></tr>'
+      + '<tr><td>Số tài khoản</td><td><b>{SoTaiKhoan}</b></td></tr>'
+      + '<tr><td>Chủ tài khoản</td><td><b>{ChuTaiKhoan}</b></td></tr>'
+      + '<tr><td>Số tiền</td><td><b>{SoTien}</b></td></tr>'
+      + '<tr><td>Nội dung</td><td><b>{NoiDung}</b></td></tr>'
+      + '</table>'
+      + '<p>Lưu ý: chuyển đúng nội dung để hệ thống xác nhận nhanh. Khi nhận được học phí, WI.FINANCE sẽ gửi email xác nhận cho bạn.</p>'
+      + '<p>Thân mến,<br>WI.FINANCE · Tài Chính Tâm Thức</p>'
+};
+
 var COURSES = {
   WIF21: { name: 'Vận Hành Dòng Tiền 21 Ngày', price: 2499000 },
   WIF02: { name: 'Kích Hoạt Dòng Tiền',        price: 199000 }
@@ -124,7 +145,21 @@ function handleRegister_(b) {
   } finally {
     lock.releaseLock();
   }
+  if (SEND_REGISTER_EMAIL) sendRegister_(b, course);
   return json_({ ok: true });
+}
+
+function sendRegister_(b, course) {
+  var vars = {
+    '{HoTen}': b.fullname, '{KhoaHoc}': course.name, '{MaDon}': b.orderId, '{SoTien}': money_(course.price),
+    '{NoiDung}': b.transferNote, '{NganHang}': BANK.name, '{SoTaiKhoan}': BANK.account, '{ChuTaiKhoan}': BANK.holder
+  };
+  function fill(s) { Object.keys(vars).forEach(function (k) { s = s.split(k).join(String(vars[k] == null ? '' : vars[k])); }); return s; }
+  try {
+    MailApp.sendEmail({ to: b.email, subject: fill(REGISTER_EMAIL.subject), htmlBody: fill(REGISTER_EMAIL.html), name: SENDER_NAME });
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 // Chuẩn hoá giao dịch từ SePay (1 giao dịch) hoặc Casso ({ data: [...] }).

@@ -1,3 +1,4 @@
 _*.html
 Thumbs.db
 .DS_Store
+google-apps-script/WEBHOOK-TOKEN.txt
