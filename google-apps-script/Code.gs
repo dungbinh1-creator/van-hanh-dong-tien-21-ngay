@@ -21,7 +21,7 @@ var REPLY_TO = 'coachmethuha@gmail.com';
 var BANK = { name: 'Techcombank', account: '6990066666', holder: 'HOANG THU HA' };
 
 // Gửi ngay email "Đã nhận đăng ký" kèm hướng dẫn chuyển khoản khi khách gửi form.
-var SEND_REGISTER_EMAIL = true;
+var SEND_REGISTER_EMAIL = false; // Tắt: trang web đã hiện hướng dẫn chuyển khoản
 var REGISTER_EMAIL = {
   subject: 'WI.FINANCE · Đã nhận đăng ký {KhoaHoc}',
   html: '<p>Chào {HoTen},</p>'
