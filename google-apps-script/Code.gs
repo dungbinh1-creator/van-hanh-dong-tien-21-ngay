@@ -7,7 +7,8 @@
 
 // ===================== CẤU HÌNH =====================
 var SHEET_ID  = '1ToXiLGWr41MZ3bp6kRHB9U_cjq_H92RvhtKH1hInMAQ';
-var SHEET_GID = 1779343221;
+// Đơn từ landing page được ghi vào tab riêng này (tự tạo nếu chưa có), không đụng các tab Google Form cũ.
+var SHEET_NAME = 'Đăng ký Landing 21 ngày';
 
 // Đổi thành một chuỗi bí mật bất kỳ, rồi gắn vào URL webhook: .../exec?token=CHUOI_NAY
 var WEBHOOK_TOKEN = 'DOI-THANH-CHUOI-BI-MAT-CUA-BAN';
@@ -68,7 +69,7 @@ var ST_WAIT = 'Chờ thanh toán', ST_PAID = 'Đã thanh toán', ST_SHORT = 'Chu
 
 function sheet_() {
   var ss = SpreadsheetApp.openById(SHEET_ID);
-  var sh = ss.getSheets().filter(function (s) { return s.getSheetId() === SHEET_GID; })[0] || ss.getSheets()[0];
+  var sh = ss.getSheetByName(SHEET_NAME) || ss.insertSheet(SHEET_NAME);
   if (sh.getLastRow() === 0) {
     sh.appendRow(HEADERS);
     sh.getRange(1, 1, 1, HEADERS.length).setFontWeight('bold').setBackground('#0B2A5B').setFontColor('#FFFFFF');

@@ -16,7 +16,7 @@ Luồng hoạt động:
 3. Xoá code mẫu, dán toàn bộ nội dung file `Code.gs` vào, rồi bấm Lưu.
 4. Ở dòng `WEBHOOK_TOKEN`, đổi thành một chuỗi bí mật của riêng bạn, ví dụ `wif-8k2p9x`.
 
-Tab có mã `gid=1779343221` sẽ được dùng. Nếu tab đang trống, dòng tiêu đề sẽ tự được tạo.
+Đơn được ghi vào tab riêng **Đăng ký Landing 21 ngày**. Tab này tự được tạo kèm dòng tiêu đề ở lần ghi đầu tiên, các tab Google Form cũ giữ nguyên.
 
 ## Bước 2. Cấp quyền và chạy thử
 
