@@ -12,7 +12,7 @@ Tìm và thay trong `index.html` (Ctrl + H):
 
 | Placeholder | Ý nghĩa |
 |---|---|
-| `appsScriptUrl` trong `assets/register.js` | URL Web App Apps Script, xem `google-apps-script/HUONG-DAN-KET-NOI.md` |
+| (không còn) | Web App Apps Script đã gắn vào `assets/register.js` |
 
 Form đăng ký, VietQR Techcombank (HOANG THU HA, 6990066666) và link Zalo đã được gắn sẵn trên trang.
 

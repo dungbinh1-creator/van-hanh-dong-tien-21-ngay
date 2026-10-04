@@ -1,7 +1,7 @@
 /* Đăng ký trên trang: form → lưu Google Sheet (qua Apps Script) → VietQR → chờ xác nhận thanh toán. */
 window.WIF_CONFIG = {
   // Dán URL Web App của Google Apps Script (kết thúc bằng /exec) vào đây sau khi triển khai.
-  appsScriptUrl: '',
+  appsScriptUrl: 'https://script.google.com/macros/s/AKfycbx6oOH3D2kSWa1DHiMsxZ3SHL8RcinEYFjqVQxetUHM4P9Xb5MV5fcNV0-GJHpC6_9m/exec',
   bank: {
     bin: '970407',
     short: 'TCB',

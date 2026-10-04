@@ -13,7 +13,9 @@ var SHEET_NAME = 'Đăng ký Landing 21 ngày';
 // Đổi thành một chuỗi bí mật bất kỳ, rồi gắn vào URL webhook: .../exec?token=CHUOI_NAY
 var WEBHOOK_TOKEN = 'DOI-THANH-CHUOI-BI-MAT-CUA-BAN';
 
-var SENDER_NAME = 'WI.FINANCE';
+var SENDER_NAME = 'WI.FINANCE · Coach Hoàng Thu Hà';
+// Khách bấm "Trả lời" email sẽ gửi về địa chỉ này.
+var REPLY_TO = 'coachmethuha@gmail.com';
 
 // Thông tin nhận tiền, dùng trong email hướng dẫn chuyển khoản.
 var BANK = { name: 'Techcombank', account: '6990066666', holder: 'HOANG THU HA' };
@@ -157,7 +159,7 @@ function sendRegister_(b, course) {
   };
   function fill(s) { Object.keys(vars).forEach(function (k) { s = s.split(k).join(String(vars[k] == null ? '' : vars[k])); }); return s; }
   try {
-    MailApp.sendEmail({ to: b.email, subject: fill(REGISTER_EMAIL.subject), htmlBody: fill(REGISTER_EMAIL.html), name: SENDER_NAME });
+    MailApp.sendEmail({ to: b.email, subject: fill(REGISTER_EMAIL.subject), htmlBody: fill(REGISTER_EMAIL.html), name: SENDER_NAME, replyTo: REPLY_TO });
   } catch (err) {
     console.error(err);
   }
@@ -236,7 +238,7 @@ function sendConfirm_(r, code, amount) {
   };
   function fill(s) { Object.keys(vars).forEach(function (k) { s = s.split(k).join(vars[k]); }); return s; }
   try {
-    MailApp.sendEmail({ to: vars['{Gmail}'], subject: fill(tpl.subject), htmlBody: fill(tpl.html), name: SENDER_NAME });
+    MailApp.sendEmail({ to: vars['{Gmail}'], subject: fill(tpl.subject), htmlBody: fill(tpl.html), name: SENDER_NAME, replyTo: REPLY_TO });
     return true;
   } catch (err) {
     console.error(err);
