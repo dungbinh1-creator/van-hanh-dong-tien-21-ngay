@@ -39,7 +39,7 @@ var REGISTER_EMAIL = {
 };
 
 var COURSES = {
-  WIF21: { name: 'Vận Hành Dòng Tiền 21 Ngày', price: 2499000 },
+  WIF21: { name: 'Bản Đồ Tài Chính', price: 2499000 },
   WIF02: { name: 'Kích Hoạt Dòng Tiền',        price: 199000 }
 };
 

@@ -10,7 +10,7 @@ window.WIF_CONFIG = {
     holder: 'HOANG THU HA'
   },
   courses: {
-    '21': { code: 'WIF21', name: 'Vận Hành Dòng Tiền 21 Ngày', price: 2499000 },
+    '21': { code: 'WIF21', name: 'Bản Đồ Tài Chính', price: 2499000 },
     '2':  { code: 'WIF02', name: 'Kích Hoạt Dòng Tiền', price: 199000 }
   },
   zalo: 'https://zalo.me/g/sk6vnppwxvvmqpdhlngc',
