@@ -190,9 +190,9 @@ p+p{margin-top:14px}
 /* ---------- Modules ---------- */
 .modules{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 @media (max-width:820px){.modules{grid-template-columns:1fr}}
-.mod{display:grid;grid-template-columns:62px 1fr;gap:18px;padding:22px 24px}
+.mod{display:grid;grid-template-columns:76px 1fr;gap:18px;padding:22px 24px}
 .mod .mn{font-family:var(--serif);font-size:30px;color:var(--gold-l);line-height:1}
-.mod .mn small{display:block;font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;color:#9AA8C2;margin-top:6px}
+.mod .mn small{display:block;white-space:nowrap;font-family:var(--sans);font-size:10.5px;letter-spacing:.14em;color:#9AA8C2;margin-top:6px}
 .mod h3{font-size:18.5px;margin:6px 0 10px}
 .mod dl{display:grid;gap:6px;font-size:14.5px}
 .mod dt{display:inline;font-weight:600;color:#fff}
@@ -429,6 +429,13 @@ html.reg-lock{overflow:hidden}
 @keyframes wave{from{transform:scale(1);opacity:.85}to{transform:scale(1.7);opacity:0}}
 @keyframes ring{0%,70%,100%{transform:rotate(0)}75%{transform:rotate(-14deg)}80%{transform:rotate(12deg)}85%{transform:rotate(-8deg)}90%{transform:rotate(5deg)}}
 @media (max-width:520px){.fab{width:54px;height:54px}.fab svg{width:23px;height:23px}}
+.fab-zalo{bottom:calc(18px + 60px + 16px + env(safe-area-inset-bottom,0px));color:#fff;background:linear-gradient(140deg,#2F6FD6,#1E4FA3 55%,#0B2A5B);box-shadow:0 0 0 2px rgba(231,198,124,.7),0 0 22px rgba(30,79,163,.75),0 12px 26px -10px rgba(6,23,58,.6)}
+.fab-zalo::before,.fab-zalo::after{display:none}
+.fab-zalo .zl{font-weight:800;font-size:14.5px;letter-spacing:.01em}
+.fab-zalo:hover,.fab-zalo:focus-visible{box-shadow:0 0 0 2px #E7C67C,0 0 34px rgba(47,111,214,.95),0 0 70px rgba(200,155,60,.45)}
+.mod-close{max-width:820px;margin:30px auto 0;text-align:center;font-family:var(--serif);font-style:italic;font-size:clamp(17px,2vw,20px);line-height:1.6;color:#F1E3C2}
+@media (max-width:520px){.fab-zalo{bottom:calc(18px + 54px + 14px + env(safe-area-inset-bottom,0px))}.fab-zalo .zl{font-size:13px}}
+
 
 /* ---------- Reveal ---------- */
 .rv{animation:rise .9s cubic-bezier(.2,.8,.2,1) both}
@@ -444,7 +451,7 @@ html.reg-lock{overflow:hidden}
     <a href="#top" aria-label="WI.FINANCE"><img src="assets/logo-horizontal.png" alt="WI.FINANCE" width="180" height="47"></a>
     <nav aria-label="Điều hướng">
       <a href="#dau-ra">Đầu ra</a>
-      <a href="#module">10 module</a>
+      <a href="#module">9 module</a>
       <a href="#cach-hoc">Cách học</a>
       <a href="#dong-hanh">Người đồng hành</a>
       <a href="#chon">Học phí</a>
@@ -470,7 +477,7 @@ html.reg-lock{overflow:hidden}
 
       <div class="facts">
         <div class="fact glow"><small>Lịch live</small><b>Zoom tối T2–4–6</b></div>
-        <div class="fact glow"><small>Cấu trúc</small><b>10 module, live kết hợp tự học có hướng dẫn</b></div>
+        <div class="fact glow"><small>Cấu trúc</small><b>9 module và 1 buổi tổng kết, tất cả live qua Zoom</b></div>
         <div class="fact glow"><small>Nhịp thực hành</small><b>15 phút mỗi ngày</b></div>
         <div class="fact glow"><small>Nhóm nhân chứng</small><b>6 đến 8 người</b></div>
       </div>
@@ -487,7 +494,6 @@ html.reg-lock{overflow:hidden}
     <div class="portrait rv">
       <div class="arch"><img src="assets/coach-hero.jpg" alt="Coach Hoàng Thu Hà, người đồng hành chương trình Vận Hành Dòng Tiền 21 Ngày" width="1100" height="1648"></div>
       <div class="float f1"><b>15 phút</b>mỗi ngày kết nối với tiền</div>
-      <div class="float f2"><b>5 đầu ra</b>bạn tự tay hoàn thành</div>
       <p class="coach-tag">Đồng hành cùng <b>Coach Hoàng Thu Hà</b></p>
     </div>
   </div>
@@ -572,30 +578,28 @@ html.reg-lock{overflow:hidden}
   </div>
 </section>
 
-<!-- 5. 10 MODULE -->
+<!-- 5. 9 MODULE + 1 BUỔI TỔNG KẾT -->
 <section class="dark motif" id="module">
   <div class="wrap">
     <div class="head center rv">
       <span class="eyebrow">Lộ trình</span>
-      <h2>Cấu trúc 10 module</h2>
-      <p class="lead">Mỗi module có một mục tiêu và một đầu ra nhỏ. Đi theo logic Hiểu gốc, Rõ dòng, Hành động, Tự chủ.</p>
+      <h2>Cấu trúc 9 module và 1 buổi tổng kết</h2>
+      <p class="lead">Mỗi module có một mục tiêu và một đầu ra nhỏ. Đi theo logic Hiểu gốc, Gỡ rễ, Rõ dòng, Tự chủ.</p>
     </div>
     <div class="modules">
-      <article class="glow mod rv"><div class="mn">01<small>GỐC</small></div><div><span class="pill live">Live qua Zoom</span><h3>Nhìn tiền mà không phán xét</h3><dl><div><dt>Mục tiêu: </dt><dd>tạo không gian an toàn và cam kết nhịp 21 ngày.</dd></div><div><dt>Đầu ra: </dt><dd>điểm xuất phát của bạn được ghi lại.</dd></div></dl></div></article>
-      <article class="glow mod rv"><div class="mn">02<small>GỐC</small></div><div><span class="pill live">Live qua Zoom</span><h3>8 quan niệm nền tảng về tiền</h3><dl><div><dt>Mục tiêu: </dt><dd>nhận ra cách bạn đang nghĩ và cảm về tiền.</dd></div><div><dt>Đầu ra: </dt><dd>bản nháp Tuyên Ngôn Tiền.</dd></div></dl></div></article>
-      <article class="glow mod rv"><div class="mn">03<small>RỄ</small></div><div><span class="pill self">Tự học có hướng dẫn</span><h3>Bắt đầu nhật ký thu chi 15 phút</h3><dl><div><dt>Mục tiêu: </dt><dd>thiết lập cách ghi chép đơn giản, vừa với ngày bận.</dd></div><div><dt>Đầu ra: </dt><dd>những ngày dữ liệu đầu tiên.</dd></div></dl></div></article>
-      <article class="glow mod rv"><div class="mn">04<small>RỄ</small></div><div><span class="pill live">Live qua Zoom</span><h3>Ghi nhận bản thân mỗi ngày</h3><dl><div><dt>Mục tiêu: </dt><dd>nhìn con số đi cùng sự ghi nhận, thay vì tự trách.</dd></div><div><dt>Đầu ra: </dt><dd>nhịp check in buổi tối cùng nhóm nhân chứng.</dd></div></dl></div></article>
-      <article class="glow mod rv"><div class="mn">05<small>RỄ</small></div><div><span class="pill self">Tự học có hướng dẫn</span><h3>7 trạng thái sống</h3><dl><div><dt>Mục tiêu: </dt><dd>hiểu trạng thái đang chi phối quyết định tiền.</dd></div><div><dt>Đầu ra: </dt><dd>xác định trạng thái hiện tại của bạn.</dd></div></dl></div></article>
-      <article class="glow mod rv"><div class="mn">06<small>RỄ</small></div><div><span class="pill live">Live qua Zoom</span><h3>Niềm tin và câu nói gia đình về tiền</h3><dl><div><dt>Mục tiêu: </dt><dd>gọi tên một mô thức đang lặp lại.</dd></div><div><dt>Đầu ra: </dt><dd>một niềm tin chủ đạo được viết ra rõ ràng.</dd></div></dl></div></article>
-      <article class="glow mod rv"><div class="mn">07<small>THÂN</small></div><div><span class="pill live">Live qua Zoom</span><h3>Sơ đồ Tiền: chất lượng sống và giá trị sống</h3><dl><div><dt>Mục tiêu: </dt><dd>xếp chi tiêu theo điều bạn thật sự coi trọng.</dd></div><div><dt>Đầu ra: </dt><dd>Sơ đồ Tiền bản đầu tiên.</dd></div></dl></div></article>
-      <article class="glow mod rv"><div class="mn">08<small>THÂN</small></div><div><span class="pill self">Tự học có hướng dẫn</span><h3>Soi lỗ rò từ dữ liệu thật</h3><dl><div><dt>Mục tiêu: </dt><dd>đọc lại dữ liệu thu chi bạn đã ghi.</dd></div><div><dt>Đầu ra: </dt><dd>Bản soi lỗ rò tiền.</dd></div></dl></div></article>
-      <article class="glow mod rv"><div class="mn">09<small>DÒNG</small></div><div><span class="pill live">Live qua Zoom</span><h3>Mở quỹ an toàn, hoàn thiện bảng dòng tiền</h3><dl><div><dt>Mục tiêu: </dt><dd>chuyển điều đã thấy thành hành động.</dd></div><div><dt>Đầu ra: </dt><dd>Quỹ an toàn đã mở và Bảng dòng tiền 14 ngày.</dd></div></dl></div></article>
-      <article class="glow mod rv"><div class="mn">10<small>QUẢ</small></div><div><span class="pill live">Live qua Zoom</span><h3>Thiết kế bước tiếp theo</h3><dl><div><dt>Mục tiêu: </dt><dd>chọn ưu tiên dựa trên cuộc sống bạn muốn xây dựng.</dd></div><div><dt>Đầu ra: </dt><dd>Tuyên Ngôn Tiền hoàn chỉnh và Bản đồ tài chính cá nhân hóa.</dd></div></dl></div></article>
+      <article class="glow mod rv"><div class="mn">01<small>GỐC</small></div><div><span class="pill live">Live qua Zoom</span><h3>Nhìn lại mối quan hệ của bạn với tiền</h3><dl><div><dt>Mục tiêu: </dt><dd>nhìn thẳng vào cách bạn đang sống cùng tiền và sẵn sàng bắt đầu 21 ngày.</dd></div><div><dt>Đầu ra: </dt><dd>điểm xuất phát được ghi lại, danh sách nguồn lực bạn đang có, và ngày ghi chép thu chi đầu tiên.</dd></div></dl></div></article>
+      <article class="glow mod rv"><div class="mn">02<small>GỐC</small></div><div><span class="pill live">Live qua Zoom</span><h3>Điều bạn thật sự muốn</h3><dl><div><dt>Mục tiêu: </dt><dd>nhớ lại những điều quan trọng với bạn, để mỗi đồng tiền đều có nơi để về.</dd></div><div><dt>Đầu ra: </dt><dd>danh sách giá trị sống quan trọng nhất và bức tranh cuộc sống bạn mong muốn.</dd></div></dl></div></article>
+      <article class="glow mod rv"><div class="mn">03<small>GỐC</small></div><div><span class="pill live">Live qua Zoom</span><h3>Tuyên Ngôn Tiền của riêng bạn</h3><dl><div><dt>Mục tiêu: </dt><dd>biến mong muốn thành mục tiêu rõ ràng và một cách tiêu tiền có ý nghĩa.</dd></div><div><dt>Đầu ra: </dt><dd>mục tiêu tài chính cho 21 ngày và 90 ngày, cùng bản nháp Tuyên Ngôn Tiền.</dd></div></dl></div></article>
+      <article class="glow mod rv"><div class="mn">04<small>RỄ</small></div><div><span class="pill live">Live qua Zoom</span><h3>Vì sao mình cứ chi như vậy</h3><dl><div><dt>Mục tiêu: </dt><dd>hiểu điều gì khiến bạn chi tiêu, trì hoãn hay né tránh theo cùng một vòng lặp.</dd></div><div><dt>Đầu ra: </dt><dd>bản đồ nhu cầu và hành vi, cùng danh sách những lỗ rò đang làm thất thoát tiền.</dd></div></dl></div></article>
+      <article class="glow mod rv"><div class="mn">05<small>RỄ</small></div><div><span class="pill live">Live qua Zoom</span><h3>Những câu về tiền bạn nghe từ nhỏ</h3><dl><div><dt>Mục tiêu: </dt><dd>gọi tên niềm tin cũ về tiền, chuyển từ cảm giác thiếu sang cảm giác đủ có căn cứ.</dd></div><div><dt>Đầu ra: </dt><dd>bộ niềm tin mới về tiền và cách soi lại một khoản chi trước khi quyết định.</dd></div></dl></div></article>
+      <article class="glow mod rv"><div class="mn">06<small>RỄ</small></div><div><span class="pill live">Live qua Zoom</span><h3>Dám nhận điều mình xứng đáng</h3><dl><div><dt>Mục tiêu: </dt><dd>buông nỗi sợ và cảm giác không xứng đáng, nhìn rõ giá trị bạn đang trao đi.</dd></div><div><dt>Đầu ra: </dt><dd>những việc tiền bạc còn dang dở được hoàn tất, và giá trị bạn có thể trao cho người khác được viết ra rõ ràng.</dd></div></dl></div></article>
+      <article class="glow mod rv"><div class="mn">07<small>DÒNG</small></div><div><span class="pill live">Live qua Zoom</span><h3>Toàn cảnh tiền của gia đình bạn</h3><dl><div><dt>Mục tiêu: </dt><dd>nhìn rõ bức tranh tài chính gia đình và dựng hệ thống quỹ cho dòng tiền thật.</dd></div><div><dt>Đầu ra: </dt><dd>bản đồ dòng tiền trên một trang giấy, hệ thống quỹ, quỹ an toàn đã mở và bảng dòng tiền 14 ngày.</dd></div></dl></div></article>
+      <article class="glow mod rv"><div class="mn">08<small>DÒNG</small></div><div><span class="pill live">Live qua Zoom</span><h3>Giữ nhịp khi mọi thứ không như ý</h3><dl><div><dt>Mục tiêu: </dt><dd>giữ kỷ luật khi gặp trục trặc, và đi cùng một nhóm nâng đỡ bạn.</dd></div><div><dt>Đầu ra: </dt><dd>ngân sách tháng tới, kế hoạch xử lý nợ nếu có, và nghi thức giữ mình vững vàng khi làm việc với tiền.</dd></div></dl></div></article>
+      <article class="glow mod rv"><div class="mn">09<small>QUẢ</small></div><div><span class="pill live">Live qua Zoom</span><h3>Con người mới của bạn với tiền</h3><dl><div><dt>Mục tiêu: </dt><dd>khẳng định con người tài chính mới và nhìn tiền bằng lòng biết ơn thay vì nỗi sợ.</dd></div><div><dt>Đầu ra: </dt><dd>Tuyên Ngôn Tiền hoàn chỉnh và Bản đồ tài chính cho chặng đường tiếp theo.</dd></div></dl></div></article>
+      <article class="glow mod rv"><div class="mn">10<small>TỔNG KẾT</small></div><div><span class="pill live">Live qua Zoom</span><h3>Nhìn lại 21 ngày đã qua</h3><dl><div><dt>Mục tiêu: </dt><dd>nhìn lại bạn của ngày đầu tiên và bạn của hôm nay, ghi nhận trọn vẹn những gì đã thay đổi.</dd></div><div><dt>Đầu ra: </dt><dd>bức tranh trước và sau 21 ngày, cùng bước tiếp theo bạn đã chọn.</dd></div></dl></div></article>
     </div>
-    <div class="legend rv">
-      <span><span class="pill live">Live qua Zoom</span> tối T2–4–6</span>
-      <span><span class="pill self">Tự học có hướng dẫn</span> tài liệu và bài thực hành theo nhịp riêng</span>
-    </div>
+    <p class="legend rv"><span><span class="pill live">Live qua Zoom</span> Toàn bộ buổi học đều live qua Zoom vào tối thứ Hai, thứ Tư và thứ Sáu. Mỗi buổi đều có video xem lại đầy đủ.</span></p>
+    <p class="mod-close rv">Sau 21 ngày: từ mất kiểm soát đến làm chủ dòng tiền, từ cảm giác không xứng đáng đến dám đón nhận, từ mất phương hướng đến có một chiếc la bàn tài chính cho đời mình.</p>
   </div>
 </section>
 
@@ -762,7 +766,7 @@ html.reg-lock{overflow:hidden}
         <div class="cost">2.499.000<span>VND</span></div>
         <p class="fitfor">Phù hợp nếu bạn sẵn sàng đi sâu</p>
         <ul class="ticks">
-          <li>10 module, live qua Zoom tối T2–4–6</li>
+          <li>9 module và 1 buổi tổng kết, live qua Zoom tối T2–4–6</li>
           <li>15 phút nhật ký thu chi và ghi nhận bản thân mỗi ngày</li>
           <li>Nhóm nhân chứng 6 đến 8 người</li>
           <li>5 đầu ra cụ thể bạn tự tay hoàn thành</li>
@@ -782,8 +786,8 @@ html.reg-lock{overflow:hidden}
       <h2>Những câu bạn có thể đang băn khoăn</h2>
     </div>
     <div class="faq rv">
-      <details open><summary>Mình không giỏi số, có học được không?<i>+</i></summary><div class="a">Có. Bạn không cần kiến thức tài chính. Những ngày đầu, bạn chỉ ghi lại tiền vào và tiền ra theo cách đơn giản nhất. Công cụ được hướng dẫn từng bước trong buổi live và trong module tự học. Nếu bạn cộng trừ được và dùng được điện thoại, bạn có thể bắt đầu.</div></details>
-      <details><summary>Mình bận, có học được không?<i>+</i></summary><div class="a">Nhịp thực hành được thiết kế khoảng 15 phút mỗi ngày. Buổi live diễn ra tối T2–4–6. Sau mỗi buổi đều có video xem lại đầy đủ, và một số module là tự học có hướng dẫn để bạn chủ động thời gian. Điều quan trọng là giữ nhịp đều, không phải làm thật nhiều trong một lần.</div></details>
+      <details open><summary>Mình không giỏi số, có học được không?<i>+</i></summary><div class="a">Có. Bạn không cần kiến thức tài chính. Những ngày đầu, bạn chỉ ghi lại tiền vào và tiền ra theo cách đơn giản nhất. Công cụ được hướng dẫn từng bước trong các buổi live, và bạn luôn có video xem lại. Nếu bạn cộng trừ được và dùng được điện thoại, bạn có thể bắt đầu.</div></details>
+      <details><summary>Mình bận, có học được không?<i>+</i></summary><div class="a">Nhịp thực hành khoảng 15 phút mỗi ngày. Các buổi học live diễn ra vào tối thứ Hai, thứ Tư và thứ Sáu qua Zoom. Nếu bận một buổi, bạn xem lại video đầy đủ vào lúc thuận tiện rồi quay lại nhịp cùng nhóm nhân chứng. Điều quan trọng là giữ đều, không phải làm thật nhiều trong một lần.</div></details>
       <details><summary>Có cần chia sẻ tài chính riêng tư không?<i>+</i></summary><div class="a">Không bắt buộc. Bạn ghi dữ liệu cho chính mình. Trong nhóm nhân chứng, bạn chỉ chia sẻ ở mức bạn thấy thoải mái. Bạn không cần công khai số dư, khoản nợ hay thông tin ngân hàng.</div></details>
       <details><summary>Khoá học có cam kết tăng thu nhập không?<i>+</i></summary><div class="a">Không. Chương trình không cam kết tăng thu nhập, trả hết nợ hay tự do tài chính. Chương trình giúp bạn nhìn rõ dòng tiền hiện tại và hoàn thành năm đầu ra đã nêu. Kết quả phụ thuộc vào hoàn cảnh và mức độ thực hành của từng người.</div></details>
       <details><summary>Nếu bỏ lỡ buổi Zoom thì sao?<i>+</i></summary><div class="a">Sau mỗi buổi học sẽ có video xem lại đầy đủ. Bạn xem lại vào lúc thuận tiện, rồi tiếp tục giữ nhịp 15 phút mỗi ngày và check in cùng nhóm nhân chứng để không bị đứt mạch.</div></details>
@@ -934,11 +938,12 @@ html.reg-lock{overflow:hidden}
       <div class="ok-ic"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
       <h3>Thanh toán thành công</h3>
       <p>Cảm ơn bạn. Email xác nhận đã được gửi về <b id="done-email" style="color:var(--navy)"></b>. Nếu chưa thấy, hãy kiểm tra thêm mục Quảng cáo hoặc Spam.</p>
-      <a class="btn btn-block" id="reg-zalo" href="#" target="_blank" rel="noopener">Vào cộng đồng Zalo</a>
+      <a class="btn btn-block" id="reg-zalo" href="https://zalo.me/g/sk6vnppwxvvmqpdhlngc" target="_blank" rel="noopener">Vào cộng đồng Zalo</a>
     </div>
   </div>
 </div>
 
+<a class="fab fab-zalo" href="https://zalo.me/g/sk6vnppwxvvmqpdhlngc" target="_blank" rel="noopener" aria-label="Vào cộng đồng Zalo"><span class="zl">Zalo</span><span class="fab-tip">Cộng đồng Zalo</span></a>
 <a class="fab" href="tel:0948387418" aria-label="Gọi Hotline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg><span class="fab-tip">Hotline</span></a>
 
 <script>
