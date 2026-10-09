@@ -1,0 +1,3 @@
+# Script và trang luôn được trình duyệt kiểm tra lại, tránh chạy bản cũ sau khi sửa.
+/assets/*.js
+  Cache-Control: public, max-age=0, must-revalidate
