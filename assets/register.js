@@ -48,6 +48,7 @@ window.WIF_CONFIG = {
     modal.hidden = false;
     document.documentElement.classList.add('reg-lock');
     requestAnimationFrame(function () { modal.classList.add('show'); });
+    setTimeout(function () { modal.classList.add('show'); }, 40); // phòng khi trình duyệt chưa vẽ khung kịp
     var pending = store(STORE);
     if (pending && Date.now() - pending.ts < 48 * 3600 * 1000 && (!course || C.courses[course].code === pending.code)) {
       renderPayment(pending);
@@ -187,7 +188,7 @@ window.WIF_CONFIG = {
         .then(function (d) {
           if (!d || !d.paid) return;
           stopPolling(); store(STORE, null);
-          if (modal.hidden) { modal.hidden = false; document.documentElement.classList.add('reg-lock'); requestAnimationFrame(function () { modal.classList.add('show'); }); }
+          if (modal.hidden) { modal.hidden = false; document.documentElement.classList.add('reg-lock'); setTimeout(function () { modal.classList.add('show'); }, 40); }
           showStep(3);
         })
         .catch(function () {})
