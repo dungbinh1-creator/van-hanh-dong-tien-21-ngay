@@ -18,7 +18,7 @@ var SENDER_NAME = 'WI.FINANCE · Coach Hoàng Thu Hà';
 var REPLY_TO = 'coachmethuha@gmail.com';
 
 // Thông tin nhận tiền, dùng trong email hướng dẫn chuyển khoản.
-var BANK = { name: 'Techcombank', account: '6990066666', holder: 'HOANG THU HA' };
+var BANK = { name: 'Techcombank', account: '1669889999', holder: 'HOANG THU HA' };
 
 // Gửi ngay email "Đã nhận đăng ký" kèm hướng dẫn chuyển khoản khi khách gửi form.
 var SEND_REGISTER_EMAIL = false; // Tắt: trang web đã hiện hướng dẫn chuyển khoản

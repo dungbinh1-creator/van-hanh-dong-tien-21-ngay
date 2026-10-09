@@ -43,9 +43,9 @@ Lưu file, rồi mở trang và đăng ký thử một lần. Kiểm tra dòng m
 
 ## Bước 5. Tự động xác nhận chuyển khoản (SePay hoặc Casso)
 
-Trang web không tự biết khách đã chuyển tiền hay chưa. Cần một dịch vụ đọc biến động số dư tài khoản Techcombank 6990066666 (HOANG THU HA) rồi báo về Apps Script.
+Trang web không tự biết khách đã chuyển tiền hay chưa. Cần một dịch vụ đọc biến động số dư tài khoản Techcombank 1669889999 (HOANG THU HA) rồi báo về Apps Script.
 
-1. Đăng ký SePay (sepay.vn) hoặc Casso (casso.vn). Khi đăng ký, kiểm tra dịch vụ có hỗ trợ Techcombank rồi liên kết tài khoản 6990066666.
+1. Đăng ký SePay (sepay.vn) hoặc Casso (casso.vn). Khi đăng ký, kiểm tra dịch vụ có hỗ trợ Techcombank rồi liên kết tài khoản 1669889999.
 2. Tạo Webhook với:
    - URL: `URL_EXEC_CUA_BAN?token=CHUOI_BI_MAT_O_BUOC_1`
    - Phương thức: POST, kiểu JSON

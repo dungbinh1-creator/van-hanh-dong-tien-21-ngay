@@ -6,7 +6,7 @@ window.WIF_CONFIG = {
     bin: '970407',
     short: 'TCB',
     name: 'Techcombank',
-    account: '6990066666',
+    account: '1669889999',
     holder: 'HOANG THU HA'
   },
   courses: {
