@@ -116,7 +116,7 @@ window.WIF_CONFIG = {
       orderId: c.code + '-' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2, 5).toUpperCase(),
       code: c.code, course: c.name, price: c.price,
       fullname: name, phone: phone, email: form.email.value.trim().toLowerCase(),
-      city: form.city.value.trim(), wish: form.wish.value.trim(),
+      city: '', wish: '',
       transferNote: c.code + ' ' + cleanName + ' ' + phone,
       source: utm(), page: location.href.split('?')[0], ts: Date.now()
     };
