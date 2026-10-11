@@ -258,7 +258,24 @@ footer b{font-family:var(--serif);color:var(--ink);font-weight:600}
 }
 @media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 
-.back-bar{display:flex;flex-wrap:wrap;gap:6px 18px;justify-content:center;padding:8px 16px;background:#0B2A5B;font-size:13.5px}.back-bar a{color:#F1E3C2;text-decoration:none;font-weight:600}.back-bar a:hover{color:#fff;text-decoration:underline}
+.wf-top{position:sticky;top:env(safe-area-inset-top,0px);z-index:60;background:rgba(251,247,240,.92);backdrop-filter:blur(14px);border-bottom:1px solid rgba(11,42,91,.12);font-family:"Be Vietnam Pro",system-ui,sans-serif}
+.wf-wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:72px;width:min(1160px,100% - 32px);margin-inline:auto}
+.wf-logo img{display:block;width:230px;height:auto}
+.wf-nav{display:flex;gap:26px;font-size:14.5px;font-weight:500}
+.wf-nav a{text-decoration:none;color:#3b4457;transition:color .3s}
+.wf-nav a:hover,.wf-nav a.on{color:#1E4FA3}
+.wf-nav a.on{font-weight:600}
+.wf-btn{position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 22px;border-radius:999px;font-weight:700;font-size:14.5px;text-decoration:none;color:#0B2A5B;overflow:hidden;white-space:nowrap;
+  background:linear-gradient(110deg,#C89B3C 0%,#F1D08A 18%,#D9622B 38%,#E7B65C 55%,#F6DDA0 70%,#C89B3C 85%,#D9622B 100%);background-size:300% 100%;animation:wfShimmer 6s linear infinite;
+  box-shadow:0 10px 28px -10px rgba(217,98,43,.55),0 0 0 1px rgba(255,255,255,.25) inset;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,filter .35s}
+.wf-btn::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.75) 48%,transparent 62%);transform:translateX(-120%);animation:wfSheen 3.6s ease-in-out infinite}
+.wf-btn:hover,.wf-btn:focus-visible{transform:translateY(-3px) scale(1.02);filter:saturate(1.15) brightness(1.05);box-shadow:0 0 0 1px rgba(255,255,255,.4) inset,0 0 22px rgba(241,208,138,.85),0 0 48px rgba(217,98,43,.55),0 0 90px rgba(200,155,60,.35)}
+@keyframes wfShimmer{to{background-position:300% 0}}
+@keyframes wfSheen{0%,55%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
+@media (max-width:980px){.wf-nav{display:none}}
+@media (max-width:520px){.wf-wrap{height:64px}.wf-logo img{width:168px}.wf-btn{min-height:40px;padding:0 16px;font-size:13.5px}}
+@media (prefers-reduced-motion:reduce){.wf-btn,.wf-btn::after{animation:none}}
+.brand-txt{border-left:0!important;padding-left:0!important}
 .zalo-join{display:grid;grid-template-columns:180px 1fr;gap:20px;align-items:center;margin-top:20px;padding:18px;border-radius:16px;background:#FFFFFF;border:1.5px solid #1E4FA3;color:#1A2233;text-align:left}
 .zalo-join img{width:100%;height:auto;border-radius:10px;display:block}
 .zalo-join .zj-t{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:22px;color:#0B2A5B;margin:0 0 6px}
@@ -312,10 +329,22 @@ footer b{font-family:var(--serif);color:var(--ink);font-weight:600}
 @media (max-width:460px){.cx-steps{grid-template-columns:1fr}}
 </style>
 
-<div class="back-bar"><a href="/">← Về trang khoá học Bản Đồ Tài Chính</a><a href="https://zalo.me/g/sk6vnppwxvvmqpdhlngc" target="_blank" rel="noopener">Cộng đồng Zalo</a><a href="tel:0948387418">Hotline</a></div>
+<header class="wf-top"><div class="wf-wrap">
+  <a class="wf-logo" href="/" aria-label="WI.FINANCE · Bản Đồ Tài Chính"><img src="/assets/logo-wifinance.png" alt="WI.FINANCE" width="640" height="151"></a>
+  <nav class="wf-nav" aria-label="Điều hướng">
+    <a href="/#dau-ra">Đầu ra</a>
+    <a href="/#module">Lộ trình</a>
+    <a href="/#cach-hoc">Cách học</a>
+    <a href="/#dong-hanh">Người đồng hành</a>
+    <a href="/#chon">Học phí</a>
+    <a href="/#faq">Hỏi đáp</a>
+    <a href="/cong-cu/" class="on" aria-current="page">Công cụ</a>
+  </nav>
+  <a class="wf-btn" href="/#dang-ky">Đăng ký tham gia</a>
+</div></header>
 <div class="wrap">
   <header class="top">
-    <a class="brand" href="#" id="home-link"><img class="logo" src="/assets/logo-wifinance.png" alt="WI.FINANCE"><span class="brand-txt"><b>Tài Chính Tâm Thức</b><small>Bộ công cụ tài chính</small></span></a>
+    <a class="brand" href="#" id="home-link"><span class="brand-txt"><b>Tài Chính Tâm Thức</b><small>Bộ công cụ tài chính</small></span></a>
     <label class="search" for="q">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
       <input id="q" type="search" placeholder="Tìm công cụ: lãi kép, trả góp, VietQR…" autocomplete="off">
