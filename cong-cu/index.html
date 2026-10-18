@@ -25,8 +25,8 @@
 :root{
   --logo-bg:transparent; --logo-pad:0;
   --ink:#0B2A5B; --cobalt:#1E4FA3; --cobalt-soft:#E8F0FC; --page:#FBF7F0; --surface:#FFFFFF;
-  --line:#E3DCCD; --muted:#7D776B; --gold:#B8872A; --gold-soft:#F6EBD2; --earth:#D9622B;
-  --good:#2F7A4F; --good-soft:#E3F1E8; --warn:#A8671A; --warn-soft:#FBEBD5; --bad:#B3402A; --bad-soft:#F8E1DB;
+  --line:#E3DCCD; --muted:#7D776B; --gold:#B8872A; --gold-soft:#F6EBD2; --earth:#C89B3C;
+  --good:#2F7A4F; --good-soft:#E3F1E8; --warn:#1E4FA3; --warn-soft:#FBF6EA; --bad:#0B2A5B; --bad-soft:#F6F8FB;
   --shadow:0 1px 2px rgba(11,42,91,.06),0 8px 24px -12px rgba(11,42,91,.18);
   --serif:"Fraunces",Georgia,"Times New Roman",serif;
   --sans:"Be Vietnam Pro",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
@@ -34,15 +34,15 @@
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
   color-scheme:dark; --logo-bg:#fff; --logo-pad:4px 8px;
   --ink:#F2EAD8; --cobalt:#6C9BE8; --cobalt-soft:#1B2A45; --page:#101a29; --surface:#172336;
-  --line:#2A3852; --muted:#A9A296; --gold:#E0B75C; --gold-soft:#3A301A; --earth:#E8763F;
-  --good:#6CC08F; --good-soft:#18352A; --warn:#E6A85A; --warn-soft:#3A2B17; --bad:#EE8A74; --bad-soft:#3D2019;
+  --line:#2A3852; --muted:#A9A296; --gold:#E0B75C; --gold-soft:#3A301A; --earth:#E6C98A;
+  --good:#6CC08F; --good-soft:#18352A; --warn:#E6C98A; --warn-soft:#3A301A; --bad:#FFFFFF; --bad-soft:#1E4FA3;
   --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 28px -14px rgba(0,0,0,.6);
 }}
 :root[data-theme="dark"]{
   color-scheme:dark; --logo-bg:#fff; --logo-pad:4px 8px;
   --ink:#F2EAD8; --cobalt:#6C9BE8; --cobalt-soft:#1B2A45; --page:#101a29; --surface:#172336;
-  --line:#2A3852; --muted:#A9A296; --gold:#E0B75C; --gold-soft:#3A301A; --earth:#E8763F;
-  --good:#6CC08F; --good-soft:#18352A; --warn:#E6A85A; --warn-soft:#3A2B17; --bad:#EE8A74; --bad-soft:#3D2019;
+  --line:#2A3852; --muted:#A9A296; --gold:#E0B75C; --gold-soft:#3A301A; --earth:#E6C98A;
+  --good:#6CC08F; --good-soft:#18352A; --warn:#E6C98A; --warn-soft:#3A301A; --bad:#FFFFFF; --bad-soft:#1E4FA3;
   --shadow:0 1px 2px rgba(0,0,0,.3),0 10px 28px -14px rgba(0,0,0,.6);
 }
 *{box-sizing:border-box}
@@ -266,21 +266,26 @@ footer b{font-family:var(--serif);color:var(--ink);font-weight:600}
 .wf-nav a:hover,.wf-nav a.on{color:#1E4FA3}
 .wf-nav a.on{font-weight:600}
 .wf-btn{position:relative;isolation:isolate;display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:0 22px;border-radius:999px;font-weight:700;font-size:14.5px;text-decoration:none;color:#0B2A5B;overflow:hidden;white-space:nowrap;
-  background:linear-gradient(110deg,#C89B3C 0%,#F1D08A 18%,#D9622B 38%,#E7B65C 55%,#F6DDA0 70%,#C89B3C 85%,#D9622B 100%);background-size:300% 100%;animation:wfShimmer 6s linear infinite;
-  box-shadow:0 10px 28px -10px rgba(217,98,43,.55),0 0 0 1px rgba(255,255,255,.25) inset;transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,filter .35s}
+  background:linear-gradient(110deg,#C89B3C 0%,#E6C98A 100%);text-shadow:0 1px 0 rgba(255,250,235,.45);
+  box-shadow:0 10px 28px -10px rgba(184,135,46,.7);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s,filter .35s}
 .wf-btn::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.75) 48%,transparent 62%);transform:translateX(-120%);animation:wfSheen 3.6s ease-in-out infinite}
-.wf-btn:hover,.wf-btn:focus-visible{transform:translateY(-3px) scale(1.02);filter:saturate(1.15) brightness(1.05);box-shadow:0 0 0 1px rgba(255,255,255,.4) inset,0 0 22px rgba(241,208,138,.85),0 0 48px rgba(217,98,43,.55),0 0 90px rgba(200,155,60,.35)}
-@keyframes wfShimmer{to{background-position:300% 0}}
+.wf-btn:hover,.wf-btn:focus-visible{transform:translateY(-3px) scale(1.02);filter:saturate(1.1) brightness(1.06);box-shadow:0 0 0 2px rgba(230,201,138,.6),0 0 24px 5px rgba(230,201,138,.7),0 0 50px 10px rgba(200,155,60,.45);animation:wfGlow 1.6s ease-in-out infinite;outline:none}
+.wf-btn:focus-visible{outline:2px solid #C89B3C;outline-offset:3px}
+@keyframes wfGlow{0%,100%{box-shadow:0 0 0 2px rgba(230,201,138,.6),0 0 24px 5px rgba(230,201,138,.7),0 0 50px 10px rgba(200,155,60,.45)}50%{box-shadow:0 0 0 3px rgba(230,201,138,.85),0 0 34px 9px rgba(230,201,138,.85),0 0 70px 16px rgba(200,155,60,.55)}}
 @keyframes wfSheen{0%,55%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
 @media (max-width:1120px){.wf-nav{display:none}}
 @media (max-width:520px){.wf-wrap{height:64px}.wf-logo img{width:168px}.wf-btn{min-height:40px;padding:0 16px;font-size:13.5px}}
 @media (prefers-reduced-motion:reduce){.wf-btn,.wf-btn::after{animation:none}}
+.btn,.zj-btn{transition:box-shadow .3s ease,background-color .3s,color .3s}
+.btn:hover,.btn:focus-visible,.zj-btn:hover,.zj-btn:focus-visible{box-shadow:0 0 0 2px rgba(230,201,138,.6),0 0 24px 5px rgba(230,201,138,.7),0 0 50px 10px rgba(200,155,60,.45);outline:none}
+.btn.ghost{border-width:2px}
+.btn.ghost:hover,.btn.ghost:focus-visible{background:var(--cobalt);color:#fff}
 .wf-cover{padding:clamp(20px,4vw,40px) 16px clamp(28px,5vw,48px);text-align:center;background:radial-gradient(120% 80% at 50% 0%,#FFF6E2 0%,#FBF7F0 55%,#F2EAD8 100%)}
 .wf-cover img{display:block;width:min(520px,100%);height:auto;margin:0 auto;border-radius:20px;box-shadow:0 0 0 1px rgba(200,155,60,.35),0 28px 60px -26px rgba(11,42,91,.55)}
 .wf-cover-cta{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;margin-top:24px}
 .wf-cover-cta .wf-btn{min-height:52px;padding:0 30px;font-size:16px}
-.wf-cover-cta .wf-ghost{display:inline-flex;align-items:center;min-height:52px;padding:0 26px;border-radius:999px;border:1.5px solid #1E4FA3;color:#1E4FA3;font:600 15.5px "Be Vietnam Pro",system-ui,sans-serif;text-decoration:none;background:#fff;cursor:pointer;transition:box-shadow .3s,transform .3s}
-.wf-cover-cta .wf-ghost:hover{transform:translateY(-2px);box-shadow:0 0 22px rgba(30,79,163,.3)}
+.wf-cover-cta .wf-ghost{display:inline-flex;align-items:center;min-height:52px;padding:0 26px;border-radius:999px;border:2px solid #0B2A5B;color:#0B2A5B;font:600 15.5px "Be Vietnam Pro",system-ui,sans-serif;text-decoration:none;background:transparent;cursor:pointer;transition:box-shadow .3s ease,transform .3s,background-color .3s,color .3s}
+.wf-cover-cta .wf-ghost:hover,.wf-cover-cta .wf-ghost:focus-visible{transform:translateY(-2px);background:#0B2A5B;color:#fff;box-shadow:0 0 0 2px rgba(230,201,138,.6),0 0 24px 5px rgba(230,201,138,.7),0 0 50px 10px rgba(200,155,60,.45);outline:none}
 .tc-cover{margin:24px 0 8px;border-radius:24px}
 .tc-cover .wf-btn{border:0;cursor:pointer;font-family:"Be Vietnam Pro",system-ui,sans-serif}
 
@@ -617,7 +622,7 @@ window.TC_TOOL_ILLU=(function(){
     'thue-tncn-bds':`<rect x="52" y="12" width="70" height="86" rx="6" fill="${P}" stroke="${C}" stroke-width="3"/>${[30,44,58].map(y=>`<path d="M64 ${y} h46" stroke="${M}" stroke-width="3" stroke-linecap="round"/>`).join('')}<circle cx="136" cy="74" r="22" fill="none" stroke="${E}" stroke-width="4"/>${T(136,80,'%',16,E)}`,
     'than-so-hoc':`<circle cx="100" cy="55" r="44" fill="${S}" stroke="${C}" stroke-width="2.5"/>${[1,2,3,4,5,6,7,8,9].map(n=>{const a=(n/9)*Math.PI*2-Math.PI/2;return T(100+Math.cos(a)*32,59+Math.sin(a)*32,n,13,I)}).join('')}<circle cx="100" cy="55" r="15" fill="${C}"/>${T(100,61,'33',14,P)}`,
     'tu-vi-tai-bach':`<g transform="translate(46 4)">${[[0,0],[1,0],[2,0],[3,0],[0,1],[3,1],[0,2],[3,2],[0,3],[1,3],[2,3],[3,3]].map(([c,r],i)=>`<rect x="${c*27}" y="${r*25}" width="25" height="23" rx="3" fill="${i===5||i===9?C:P}" stroke="${C}" stroke-width="1.5"/>`).join('')}<rect x="27" y="25" width="52" height="48" rx="4" fill="${S}" stroke="${C}" stroke-width="1.5"/><path d="M53 36 l4 9 10 1 -8 6 3 10 -9 -5 -9 5 3 -10 -8 -6 10 -1z" fill="${G}"/></g>`,
-    'can-chi-ngu-hanh':`<circle cx="100" cy="55" r="42" fill="${P}" stroke="${C}" stroke-width="2.5"/>${['Kim','Mộc','Thủy','Hỏa','Thổ'].map((t,i)=>{const a=i/5*Math.PI*2-Math.PI/2,x=100+Math.cos(a)*30,y=55+Math.sin(a)*30;return `<circle cx="${x}" cy="${y}" r="11" fill="${[G,OK,C,E,'#A8671A'][i]}"/>`+T(x,y+3.5,t[0],10,P)}).join('')}<circle cx="100" cy="55" r="9" fill="${S}" stroke="${C}" stroke-width="2"/>`,
+    'can-chi-ngu-hanh':`<circle cx="100" cy="55" r="42" fill="${P}" stroke="${C}" stroke-width="2.5"/>${['Kim','Mộc','Thủy','Hỏa','Thổ'].map((t,i)=>{const a=i/5*Math.PI*2-Math.PI/2,x=100+Math.cos(a)*30,y=55+Math.sin(a)*30;return `<circle cx="${x}" cy="${y}" r="11" fill="${[G,OK,C,E,'#0B2A5B'][i]}"/>`+T(x,y+3.5,t[0],10,P)}).join('')}<circle cx="100" cy="55" r="9" fill="${S}" stroke="${C}" stroke-width="2"/>`,
     'khai-van-tai-chinh':`<rect x="30" y="16" width="80" height="46" rx="14" fill="${C}"/><path d="M50 60 L44 76 L66 62" fill="${C}"/>${T(70,47,'?',24,P)}<rect x="96" y="44" width="80" height="42" rx="14" fill="${P}" stroke="${C}" stroke-width="3"/><path d="M156 84 L164 96 L144 86" fill="${P}" stroke="${C}" stroke-width="3" stroke-linejoin="round"/><path d="M110 60 h44 M110 72 h28" stroke="${G}" stroke-width="4" stroke-linecap="round"/>`,
     'vietqr':`<rect x="66" y="6" width="68" height="96" rx="12" fill="${P}" stroke="${C}" stroke-width="3"/><rect x="76" y="20" width="48" height="48" rx="4" fill="${S}"/>${[[78,22],[106,22],[78,50]].map(([x,y])=>`<rect x="${x}" y="${y}" width="16" height="16" rx="2" fill="${C}"/><rect x="${x+5}" y="${y+5}" width="6" height="6" fill="${P}"/>`).join('')}${[[108,52],[116,58],[108,62],[100,44],[92,54]].map(([x,y])=>`<rect x="${x}" y="${y}" width="6" height="6" fill="${I}"/>`).join('')}<rect x="82" y="78" width="36" height="10" rx="5" fill="${G}"/>`,
     'doc-so-tien':`${T(62,62,'123',30,C)}<path d="M96 54 h18" stroke="${I}" stroke-width="4" stroke-linecap="round"/><path d="M108 46 l8 8 -8 8" fill="none" stroke="${I}" stroke-width="4" stroke-linecap="round"/><rect x="124" y="30" width="56" height="48" rx="6" fill="${P}" stroke="${C}" stroke-width="2.5"/>${[42,54,66].map(y=>`<path d="M132 ${y} h40" stroke="${M}" stroke-width="3" stroke-linecap="round"/>`).join('')}`,
@@ -862,8 +867,8 @@ window.TC_TOOL_ILLU=(function(){
         q('#vietqr-payload').value = payload;
         if(typeof qrcode === 'function'){
           try{ const qr = qrcode(0,'M'); qr.addData(payload); qr.make(); q('#vietqr-box').innerHTML = qr.createSvgTag({cellSize:6, margin:2, scalable:true}); const sv = q('#vietqr-box svg'); if(sv){ sv.style.width = '100%'; sv.style.height = 'auto'; sv.setAttribute('role','img'); sv.setAttribute('aria-label','Mã VietQR') } }
-          catch(e){ q('#vietqr-box').innerHTML = '<p style="color:#B3402A;line-height:1.5;padding:30px 8px;margin:0">Không tạo được mã QR. Thử rút ngắn nội dung.</p>' }
-        } else q('#vietqr-box').innerHTML = '<p style="color:#B3402A;line-height:1.5;padding:30px 8px;margin:0">Chưa tải được thư viện QR. Kiểm tra kết nối mạng rồi tải lại trang.</p>';
+          catch(e){ q('#vietqr-box').innerHTML = '<p style="color:#1E4FA3;line-height:1.5;padding:30px 8px;margin:0">Không tạo được mã QR. Thử rút ngắn nội dung.</p>' }
+        } else q('#vietqr-box').innerHTML = '<p style="color:#1E4FA3;line-height:1.5;padding:30px 8px;margin:0">Chưa tải được thư viện QR. Kiểm tra kết nối mạng rồi tải lại trang.</p>';
         q('#vietqr-info').innerHTML = `<div style="font-weight:600">${esc(bank)} · ${esc(acc)}</div>${name ? `<div class="muted">${esc(name)}</div>` : ''}<div class="muted" style="font-size:13px">${amt > 0 ? vnd(amt) : 'Người chuyển tự nhập số tiền'}${note ? ' · ' + esc(note) : ''}</div>`;
       }
       q('#vietqr-copy').onclick = e => { const v = q('#vietqr-payload').value; if(v) copyText(v, q('#vietqr-payload'), e.currentTarget) };
@@ -2320,8 +2325,8 @@ window.TC_TOOL_ILLU=(function(){
   }
   function fullAppPanel(txt){
     return `<div class="panel stack"><h3 class="sub">Xem lá số tử vi đầy đủ (hơn 100 sao, đại vận, lưu niên)</h3>
-      <p style="margin:0">Bản rút gọn ở đây giúp bạn đọc nhanh góc tài chính; lá số đầy đủ trên app của Coach Hoàng Hà dùng để luận giải chuyên sâu.</p>
-      <div class="split" style="align-items:center"><div class="stack" style="gap:8px"><a class="btn" href="https://www.coachhoangha.com/la-so-tu-vi/" target="_blank" rel="noopener">Mở app lá số của Coach Hoàng Hà</a><span class="muted" style="font-size:12.5px">App mở ở tab mới — nhập các thông tin bên cạnh vào form của app.</span></div>
+      <p style="margin:0">Bản rút gọn ở đây giúp bạn đọc nhanh góc tài chính; lá số đầy đủ trên app của Hoàng Hà dùng để luận giải chuyên sâu.</p>
+      <div class="split" style="align-items:center"><div class="stack" style="gap:8px"><a class="btn" href="https://www.coachhoangha.com/la-so-tu-vi/" target="_blank" rel="noopener">Mở app lá số của Hoàng Hà</a><span class="muted" style="font-size:12.5px">App mở ở tab mới — nhập các thông tin bên cạnh vào form của app.</span></div>
       <div class="note info stack" style="gap:6px"><div class="row" style="justify-content:space-between"><b>Thông tin để nhập</b><button type="button" class="btn ghost sm" id="tv-copy">Sao chép</button></div>
       <div id="tv-copytxt" style="white-space:pre-line;user-select:all;font-size:13px">${esc(txt)}</div></div></div></div>`;
   }
@@ -2957,7 +2962,7 @@ window.TC_TOOL_ILLU=(function(){
   const PHOTO={khaivan:IMG.oneone,nhanmenh:IMG.book};
   function illu(gid){return PHOTO[gid]?`<img src="${PHOTO[gid]}" alt="" loading="lazy">`:(ILLU[gid]||'')}
   function founder(){ if(!IMG.stage)return '';
-    return `<section class="founder" aria-labelledby="f-h"><div class="pics"><img src="${IMG.group}" alt="Hoàng Thu Hà chia sẻ tại buổi khai vấn nhóm nhỏ" loading="lazy"><img src="${IMG.stage}" alt="Hoàng Thu Hà chia sẻ tại hội nghị VCI" loading="lazy"><img src="${IMG.oneone}" alt="Coach Hoàng Thu Hà khai vấn 1-1 cùng học viên" loading="lazy"></div>
+    return `<section class="founder" aria-labelledby="f-h"><div class="pics"><img src="${IMG.group}" alt="Hoàng Thu Hà chia sẻ tại buổi khai vấn nhóm nhỏ" loading="lazy"><img src="${IMG.stage}" alt="Hoàng Thu Hà chia sẻ tại hội nghị VCI" loading="lazy"><img src="${IMG.oneone}" alt="Hoàng Thu Hà khai vấn 1-1 cùng học viên" loading="lazy"></div>
       <div><span class="eyebrow">Người đồng hành</span><h2 id="f-h">Hoàng Thu Hà</h2>
       <p class="mission">“Lấy TÂM THỨC TÀI CHÍNH làm nền tảng, giúp 1 triệu phụ nữ Việt Nam khơi thông dòng tiền, kiến tạo môi trường quản lý tài chính hạnh phúc.”</p>
       <ul><li>Người sáng lập Tài Chính Tâm Thức</li><li>Nhà Khai vấn Nhân mệnh</li><li>Tác giả sách “Khai Vấn Nhân Mệnh – Làm Chủ Cuộc Đời”</li></ul>

@@ -13,7 +13,7 @@ var SHEET_NAME = 'Đăng ký Landing 21 ngày';
 // Đổi thành một chuỗi bí mật bất kỳ, rồi gắn vào URL webhook: .../exec?token=CHUOI_NAY
 var WEBHOOK_TOKEN = 'DOI-THANH-CHUOI-BI-MAT-CUA-BAN';
 
-var SENDER_NAME = 'WI.FINANCE · Coach Hoàng Thu Hà';
+var SENDER_NAME = 'WI.FINANCE · Hoàng Thu Hà';
 // Khách bấm "Trả lời" email sẽ gửi về địa chỉ này.
 var REPLY_TO = 'coachmethuha@gmail.com';
 
