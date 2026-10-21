@@ -14,6 +14,8 @@ window.WIF_CONFIG = {
     '2':  { code: 'WIF02', name: 'Kích Hoạt Dòng Tiền', price: 199000 }
   },
   zalo: 'https://zalo.me/g/sk6vnppwxvvmqpdhlngc',
+  // Khoá 2 ngày đã có trang bán riêng
+  twoDayUrl: 'https://kichhoatdongtien.wifinance.com.vn/',
   pollEveryMs: 6000,
   pollForMs: 30 * 60 * 1000
 };
@@ -197,5 +199,6 @@ window.WIF_CONFIG = {
   }
 
   $('#reg-zalo').href = C.zalo;
-  if (location.hash === '#dang-ky' || location.hash === '#dang-ky-2') open(location.hash === '#dang-ky-2' ? '2' : '21');
+  if (location.hash === '#dang-ky-2') { location.replace(C.twoDayUrl); return; }
+  if (location.hash === '#dang-ky') open('21');
 })();

@@ -301,8 +301,10 @@ p+p{margin-top:14px}
 .fit .dot{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;font-family:var(--sans);font-size:15px;color:var(--navy);background:#E7E2D8}
 
 /* ---------- Choose ---------- */
-.choose{display:grid;grid-template-columns:1fr 1.15fr;gap:26px;align-items:stretch}
-@media (max-width:900px){.choose{grid-template-columns:1fr}}
+.choose{display:grid;grid-template-columns:minmax(0,600px);justify-content:center;gap:26px}
+.alt-step{margin-top:28px;text-align:center;color:#C3CDE0;font-size:15.5px}
+.alt-step .textlink{color:#E6C98A;margin-left:6px}
+.alt-step .textlink svg{width:16px;height:16px}
 .plan{display:flex;flex-direction:column;gap:14px;padding:clamp(26px,3.4vw,40px)}
 .plan .opt{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#9AA8C2}
 .plan h3{font-size:clamp(23px,2.8vw,30px)}
@@ -402,6 +404,7 @@ html.reg-lock{overflow:hidden}
 .faq summary i{flex:none;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:rgba(200,155,60,.14);color:var(--gold);font-style:normal;font-size:20px;transition:transform .35s,background .35s}
 .faq details[open] summary i{transform:rotate(45deg);background:linear-gradient(140deg,#F6DDA0,#C89B3C);color:var(--navy)}
 .faq .a{padding:0 24px 22px;color:#4a5162;font-size:15.5px}
+.faq .a a{color:var(--cobalt);font-weight:600;text-decoration:underline;text-underline-offset:3px}
 
 /* ---------- Lead + Zalo ---------- */
 .lead-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(30px,5vw,64px);align-items:center}
@@ -775,27 +778,12 @@ html.reg-lock{overflow:hidden}
 <section class="dark motif" id="chon">
   <div class="wrap">
     <div class="head center rv">
-      <span class="eyebrow">Chọn chương trình</span>
-      <h2>Chọn bước phù hợp với bạn lúc này</h2>
-      <p class="lead">Trang này được thiết kế cho khoá 21 ngày. Nếu bạn cần một bước nhẹ hơn để làm quen, khoá 2 ngày luôn ở đây.</p>
+      <span class="eyebrow">Học phí</span>
+      <h2>Đầu tư cho một nhịp mới với tiền</h2>
+      <p class="lead">Một chương trình với lộ trình rõ ràng. Bạn biết trước mình sẽ học gì, thực hành ra sao và tự tay hoàn thành những đầu ra nào.</p>
     </div>
     <div class="choose">
-      <div class="glow plan rv">
-        <span class="opt">Option A</span>
-        <h3>Kích Hoạt Dòng Tiền</h3>
-        <p class="meta">2 ngày online</p>
-        <div class="cost">199.000<span>VND</span></div>
-        <p class="fitfor">Phù hợp nếu bạn cần một bước nhẹ</p>
-        <ul class="ticks">
-          <li>Làm quen việc nhìn con số</li>
-          <li>Không áp lực</li>
-          <li>Bước khởi động trước khi vào 21 ngày</li>
-        </ul>
-        <a class="btn btn-ghost btn-block" href="#dang-ky" data-course="2">Bắt đầu với khoá 2 ngày</a>
-      </div>
       <div class="glow plan main rv">
-        <span class="ribbon">Lựa chọn ưu tiên</span>
-        <span class="opt">Option B</span>
         <h3>Bản Đồ Tài Chính</h3>
         <p class="meta">Chương trình online qua Zoom</p>
         <div class="cost">2.499.000<span>VND</span></div>
@@ -810,6 +798,8 @@ html.reg-lock{overflow:hidden}
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
+  </div>
+    <p class="alt-step rv">Muốn bắt đầu nhẹ hơn? <a class="textlink" href="https://kichhoatdongtien.wifinance.com.vn/" target="_blank" rel="noopener">Xem khoá Kích Hoạt Dòng Tiền 2 ngày <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
   </div>
 </section>
 
@@ -827,7 +817,7 @@ html.reg-lock{overflow:hidden}
       <details><summary>Khoá học có cam kết tăng thu nhập không?<i>+</i></summary><div class="a">Không. Chương trình không cam kết tăng thu nhập, trả hết nợ hay tự do tài chính. Chương trình giúp bạn nhìn rõ dòng tiền hiện tại và hoàn thành năm đầu ra đã nêu. Kết quả phụ thuộc vào hoàn cảnh và mức độ thực hành của từng người.</div></details>
       <details><summary>Nếu bỏ lỡ buổi Zoom thì sao?<i>+</i></summary><div class="a">Sau mỗi buổi học sẽ có video xem lại đầy đủ. Bạn xem lại vào lúc thuận tiện, rồi tiếp tục giữ nhịp 15 phút mỗi ngày và check in cùng nhóm nhân chứng để không bị đứt mạch.</div></details>
       <details><summary>Nội dung có phải tư vấn đầu tư không?<i>+</i></summary><div class="a">Không. WI.FINANCE cung cấp giáo dục và công cụ thực hành tài chính cá nhân. Nội dung không thay thế tư vấn đầu tư, pháp lý, thuế và không khuyến nghị mua bán bất kỳ tài sản cụ thể nào.</div></details>
-      <details><summary>Mình nên chọn khoá 2 ngày hay khoá 21 ngày?<i>+</i></summary><div class="a">Nếu bạn còn ngại nhìn con số và muốn thử một bước nhẹ, khoá 2 ngày là điểm khởi đầu phù hợp. Nếu bạn đã sẵn sàng xây nhịp và đi sâu hơn, khoá 21 ngày là chương trình được thiết kế cho bạn.</div></details>
+      <details><summary>Mình nên chọn khoá 2 ngày hay khoá 21 ngày?<i>+</i></summary><div class="a">Nếu bạn còn ngại nhìn con số và muốn thử một bước nhẹ, khoá Kích Hoạt Dòng Tiền 2 ngày là điểm khởi đầu phù hợp. Bạn xem lịch học và đăng ký tại <a href="https://kichhoatdongtien.wifinance.com.vn/" target="_blank" rel="noopener">trang khoá 2 ngày</a>. Nếu bạn đã sẵn sàng xây nhịp và đi sâu hơn, khoá 21 ngày là chương trình được thiết kế cho bạn.</div></details>
       <details><summary>Sau khi chuyển khoản, khi nào mình nhận được xác nhận?<i>+</i></summary><div class="a">Khi bạn chuyển đúng số tiền và đúng nội dung, cổng thanh toán xác nhận ngay và gửi email tự động về Gmail bạn đã đăng ký.</div></details>
     </div>
     <div class="glow help rv" id="hotline">
@@ -925,11 +915,10 @@ html.reg-lock{overflow:hidden}
     <!-- Bước 1 -->
     <div class="reg-step" data-step="1">
       <h3 id="reg-title">Đăng ký tham gia</h3>
-      <p class="sub2">Điền thông tin bên dưới. Sau khi gửi, mã VietQR thanh toán đúng khoá bạn chọn sẽ hiện ngay.</p>
+      <p class="sub2">Điền thông tin bên dưới. Sau khi gửi, mã VietQR thanh toán sẽ hiện ngay.</p>
       <form id="reg-form" novalidate>
-        <div class="opts" role="radiogroup" aria-label="Chọn khoá học">
+        <div class="opts" role="radiogroup" aria-label="Khoá học">
           <label class="opt-card"><input type="radio" name="course" value="21" checked><span class="rd"></span><span><b>Bản Đồ Tài Chính</b><small>Chương trình online qua Zoom</small></span><span class="pr">2.499.000 VND</span></label>
-          <label class="opt-card"><input type="radio" name="course" value="2"><span class="rd"></span><span><b>Kích Hoạt Dòng Tiền</b><small>2 ngày online</small></span><span class="pr">199.000 VND</span></label>
         </div>
         <div class="fld" data-field="fullname"><label for="f-name">Họ và tên <i>*</i></label><input id="f-name" name="fullname" autocomplete="name" placeholder="Nguyễn Thị An"><span class="msg"></span></div>
         <div class="fld" data-field="phone"><label for="f-phone">Số điện thoại Zalo <i>*</i></label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="0912345678"><span class="msg"></span></div>
@@ -1010,7 +999,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('.help [dat
 })();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
-<script src="assets/vietqr.js?v=202610091430"></script>
-<script src="assets/register.js?v=202610091430"></script>
+<script src="assets/vietqr.js?v=202610211200"></script>
+<script src="assets/register.js?v=202610211200"></script>
 </body>
 </html>
