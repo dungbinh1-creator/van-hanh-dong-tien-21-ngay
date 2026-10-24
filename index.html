@@ -310,22 +310,41 @@ p+p{margin-top:14px}
 .plan .opt{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:#E6C98A}
 .plan h3{font-size:clamp(23px,2.8vw,30px)}
 .plan .meta{color:#C3CDE0;font-size:15px}
-.deal{position:absolute;z-index:2;top:-20px;right:22px;width:86px;height:86px;border-radius:50%;display:grid;place-content:center;text-align:center;line-height:1;font-weight:800;font-size:22px;color:var(--navy);background:linear-gradient(140deg,#E6C98A,#C89B3C);box-shadow:0 0 0 3px rgba(11,42,91,.9),0 0 26px rgba(230,201,138,.6);transform:rotate(8deg)}
-.deal small{display:block;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
-.price-box{padding:18px 20px;border-radius:16px;background:rgba(6,23,58,.55);box-shadow:inset 0 0 0 1px rgba(230,201,138,.35)}
-.price-box small{display:block;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#E6C98A}
-.price-box strong{display:block;margin:6px 0 4px;font-family:var(--serif);font-weight:700;font-size:clamp(34px,4vw,44px);line-height:1.1;background:linear-gradient(120deg,#FFF1CC,#E6C98A 45%,#C89B3C);-webkit-background-clip:text;background-clip:text;color:transparent}
-.price-box .was{font-size:14.5px;color:#9AA8C2}
-.price-box s{color:#C3CDE0}
-.seats{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;padding:7px 15px;border-radius:999px;font-size:14px;font-weight:600;color:#E6C98A;background:rgba(230,201,138,.08);box-shadow:inset 0 0 0 1px rgba(230,201,138,.5)}
-.seats svg{width:13px;height:13px}
-.bonus{display:flex;align-items:center;gap:10px;font-weight:600;color:#F1E3C2}
-.bonus svg{flex:none;width:20px;height:20px;color:#E6C98A}
 .plan .fitfor{font-size:15px;color:var(--gold-l);font-weight:500}
 .plan .ticks{margin:6px 0 10px;font-size:15.5px}
 .plan .btn{margin-top:auto}
-.plan.main{background:linear-gradient(160deg,rgba(200,155,60,.16),rgba(30,79,163,.2) 60%,rgba(255,255,255,.03))!important;box-shadow:0 0 0 1px rgba(231,198,124,.4),0 0 50px rgba(200,155,60,.25),0 0 100px rgba(30,79,163,.35)!important}
+/* Thẻ giá nổi bật: nền ngà sáng trên nền xanh đậm */
+.plan.main{gap:16px;color:var(--ink);background:linear-gradient(170deg,#FFFDF8 0%,#FBF6EA 100%)!important;box-shadow:0 0 0 1.5px rgba(200,155,60,.7),0 0 60px rgba(230,201,138,.35),0 40px 80px -30px rgba(0,0,0,.6)!important}
 .plan.main::before{padding:2px;inset:-2px;opacity:1}
+.plan.main:hover{transform:translateY(-4px)}
+.plan.main .opt{color:#C89B3C}
+.dark .plan.main h3{color:var(--navy);font-size:clamp(26px,3.2vw,34px);margin-top:-4px}
+.plan.main .meta{color:var(--cobalt);font-weight:600;font-size:15.5px;margin-top:-8px}
+.plan.main .when{color:#5b6476;font-size:14.5px;margin-top:-10px}
+.deal{position:absolute;z-index:2;top:-22px;right:22px;width:90px;height:90px;border-radius:50%;display:grid;place-content:center;text-align:center;line-height:1;font-weight:800;font-size:23px;color:var(--navy);background:radial-gradient(circle at 35% 30%,#FFF1CC,#E6C98A 45%,#C89B3C);box-shadow:0 0 0 4px #FFFDF8,0 10px 26px -8px rgba(184,135,46,.8);transform:rotate(8deg)}
+.deal small{display:block;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
+.price-box{padding:18px 20px;border-radius:18px;background:linear-gradient(160deg,#FBF1DC,#F6E7C4);box-shadow:inset 0 0 0 1px rgba(200,155,60,.45)}
+.price-box small{display:block;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#B8872E}
+.pb-row{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px;margin:4px 0 2px}
+.price-box strong{font-family:var(--serif);font-weight:700;font-size:clamp(40px,5vw,54px);line-height:1.1;background:linear-gradient(110deg,#A97B22,#C89B3C 45%,#E6C98A);-webkit-background-clip:text;background-clip:text;color:transparent}
+.price-box .per{font-size:14.5px;color:#5b6476}
+.price-box .was{font-size:14.5px;color:#7a7466}
+.price-box s{color:#1E4FA3;text-decoration-thickness:1.5px}
+.perks{display:flex;flex-wrap:wrap;align-items:center;gap:10px 18px}
+.seats{display:inline-flex;align-items:center;gap:8px;padding:7px 15px;border-radius:999px;font-size:14px;font-weight:600;color:var(--navy);background:#FBF1DC;box-shadow:inset 0 0 0 1px rgba(200,155,60,.55)}
+.seats svg{width:15px;height:15px;color:#C89B3C}
+.bonus{display:inline-flex;align-items:center;gap:8px;font-size:14.5px;font-weight:600;color:var(--navy)}
+.bonus svg{flex:none;width:18px;height:18px;color:#C89B3C}
+.plan.main .fitfor{font-family:var(--serif);font-style:italic;font-size:16.5px;color:#B8872E;padding-top:14px;border-top:1px solid rgba(200,155,60,.3)}
+.plan.main .ticks li{color:var(--ink)}
+.deal-note{padding:12px 16px;border-radius:14px;font-size:14px;line-height:1.6;color:#5b6476;background:#FBF6EA;box-shadow:inset 0 0 0 1px rgba(200,155,60,.4)}
+.deal-note b{color:#B8872E}
+.plan.main .btn{margin-top:4px}
+.steps3{list-style:none;display:flex;flex-wrap:wrap;justify-content:center;gap:8px 18px;font-size:13.5px;color:#5b6476}
+.steps3 li{display:inline-flex;align-items:center;gap:7px}
+.steps3 i{font-style:normal;display:grid;place-items:center;width:22px;height:22px;border-radius:50%;font-size:12px;font-weight:700;color:var(--navy);background:linear-gradient(140deg,#E6C98A,#C89B3C)}
+.support{text-align:center;font-size:13.5px;color:#7a7466;padding-top:12px;border-top:1px solid rgba(200,155,60,.3)}
+.support a{color:var(--navy);font-weight:600;text-decoration:underline;text-underline-offset:3px}
 .ribbon{position:absolute;top:-15px;right:28px;padding:7px 16px;border-radius:999px;font-size:12.5px;font-weight:700;letter-spacing:.06em;color:var(--navy);background:linear-gradient(110deg,#C89B3C,#E6C98A);box-shadow:0 0 20px rgba(231,198,124,.7)}
 .priority{margin-top:28px;text-align:center;color:#C3CDE0;font-size:15px}
 
@@ -797,14 +816,14 @@ html.reg-lock{overflow:hidden}
         <span class="opt">Giai đoạn 2 · Chương trình trọng tâm</span>
         <h3>Bản Đồ Tài Chính Cá Nhân</h3>
         <p class="meta">21 ngày · 9 buổi Zoom</p>
+        <p class="when">Live tối Thứ Hai, Thứ Tư, Thứ Sáu</p>
         <div class="price-box">
           <small>Giá ưu đãi</small>
-          <strong>2.499.000đ</strong>
+          <div class="pb-row"><strong>2.499.000đ</strong><span class="per">/người · trọn chương trình</span></div>
           <span class="was">Giá gốc <s>3.890.000đ</s></span>
         </div>
-        <span class="seats"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 9-9 9-9-9z"/></svg>Cho 30 suất đầu tiên</span>
-        <p class="bonus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v9h14v-9M12 8v13M12 8c-1.5-3.5-5-4-5.5-2S9 8 12 8zM12 8c1.5-3.5 5-4 5.5-2S15 8 12 8z"/></svg>Tặng sách Khai Vấn Nhân Mệnh</p>
-        <p class="fitfor">5 đầu ra bạn tự tay hoàn thành</p>
+        <div class="perks"><span class="seats"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z"/></svg>Cho 30 suất đầu tiên</span><span class="bonus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v9h14v-9M12 8v13M12 8c-1.5-3.5-5-4-5.5-2S9 8 12 8zM12 8c1.5-3.5 5-4 5.5-2S15 8 12 8z"/></svg>Tặng sách Khai Vấn Nhân Mệnh</span></div>
+        <p class="fitfor">Phù hợp nếu bạn sẵn sàng đi sâu và tự tay hoàn thành 5 đầu ra</p>
         <ul class="ticks">
           <li>Tuyên Ngôn Tiền của riêng bạn</li>
           <li>Bản soi lỗ rò dòng tiền</li>
@@ -812,8 +831,10 @@ html.reg-lock{overflow:hidden}
           <li>Quỹ an toàn đã mở</li>
           <li>Bản đồ tài chính cá nhân</li>
         </ul>
-        <a class="btn btn-lg btn-block" href="#dang-ky" data-course="21">Đăng ký tham gia
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <p class="deal-note">Áp dụng cho <b>30 suất hoàn tất thanh toán đầu tiên</b>. Sau ưu đãi, giá trở về 3.890.000đ/người.</p>
+        <a class="btn btn-lg btn-block" href="#dang-ky" data-course="21">Đăng ký giá ưu đãi <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <ol class="steps3"><li><i>1</i>Điền thông tin</li><li><i>2</i>Quét mã VietQR</li><li><i>3</i>Nhận xác nhận và link Zoom qua Gmail</li></ol>
+        <p class="support">Hỗ trợ: <a href="tel:0948387418">Hotline</a> · <a href="https://zalo.me/0948387418" target="_blank" rel="noopener">Zalo</a></p>
       </div>
     </div>
     <p class="alt-step rv">Muốn bắt đầu nhẹ hơn? <a class="textlink" href="https://kichhoatdongtien.wifinance.com.vn/" target="_blank" rel="noopener">Xem khoá Kích Hoạt Dòng Tiền 2 ngày <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
