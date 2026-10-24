@@ -115,7 +115,8 @@ p+p{margin-top:14px}
 .price-row{display:flex;flex-wrap:wrap;align-items:center;gap:20px 28px}
 .price small{display:block;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;color:#9AA8C2}
 .price strong{font-size:clamp(28px,3.2vw,34px);font-weight:600;color:#fff;letter-spacing:.01em}
-.price strong span{font-size:.55em;color:var(--gold-l);margin-left:6px}
+.price .was{display:block;margin-top:2px;font-size:13.5px;color:#9AA8C2}
+.price .was s{color:#C3CDE0}
 .hero .sub{margin-top:22px;font-size:15px;color:#C3CDE0}
 .portrait{position:relative;justify-self:center;width:min(440px,100%)}
 .arch{position:relative;border-radius:240px 240px 28px 28px;padding:6px;background:conic-gradient(from var(--ang),#C89B3C,#1E4FA3,#E6C98A,#E7C67C,#C89B3C);animation:spin 9s linear infinite;box-shadow:0 0 50px rgba(231,198,124,.35),0 0 120px rgba(30,79,163,.45)}
@@ -306,11 +307,20 @@ p+p{margin-top:14px}
 .alt-step .textlink{color:#E6C98A;margin-left:6px}
 .alt-step .textlink svg{width:16px;height:16px}
 .plan{display:flex;flex-direction:column;gap:14px;padding:clamp(26px,3.4vw,40px)}
-.plan .opt{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;color:#9AA8C2}
+.plan .opt{font-size:12.5px;letter-spacing:.16em;text-transform:uppercase;font-weight:700;color:#E6C98A}
 .plan h3{font-size:clamp(23px,2.8vw,30px)}
 .plan .meta{color:#C3CDE0;font-size:15px}
-.plan .cost{font-size:clamp(30px,3.6vw,40px);font-weight:600;color:#fff}
-.plan .cost span{font-size:.45em;color:var(--gold-l);margin-left:6px}
+.deal{position:absolute;z-index:2;top:-20px;right:22px;width:86px;height:86px;border-radius:50%;display:grid;place-content:center;text-align:center;line-height:1;font-weight:800;font-size:22px;color:var(--navy);background:linear-gradient(140deg,#E6C98A,#C89B3C);box-shadow:0 0 0 3px rgba(11,42,91,.9),0 0 26px rgba(230,201,138,.6);transform:rotate(8deg)}
+.deal small{display:block;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:4px}
+.price-box{padding:18px 20px;border-radius:16px;background:rgba(6,23,58,.55);box-shadow:inset 0 0 0 1px rgba(230,201,138,.35)}
+.price-box small{display:block;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#E6C98A}
+.price-box strong{display:block;margin:6px 0 4px;font-family:var(--serif);font-weight:700;font-size:clamp(34px,4vw,44px);line-height:1.1;background:linear-gradient(120deg,#FFF1CC,#E6C98A 45%,#C89B3C);-webkit-background-clip:text;background-clip:text;color:transparent}
+.price-box .was{font-size:14.5px;color:#9AA8C2}
+.price-box s{color:#C3CDE0}
+.seats{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;padding:7px 15px;border-radius:999px;font-size:14px;font-weight:600;color:#E6C98A;background:rgba(230,201,138,.08);box-shadow:inset 0 0 0 1px rgba(230,201,138,.5)}
+.seats svg{width:13px;height:13px}
+.gift{display:flex;align-items:center;gap:10px;font-weight:600;color:#F1E3C2}
+.gift svg{flex:none;width:20px;height:20px;color:#E6C98A}
 .plan .fitfor{font-size:15px;color:var(--gold-l);font-weight:500}
 .plan .ticks{margin:6px 0 10px;font-size:15.5px}
 .plan .btn{margin-top:auto}
@@ -514,7 +524,7 @@ html.reg-lock{overflow:hidden}
       </div>
 
       <div class="price-row">
-        <div class="price"><small>Học phí</small><strong>2.499.000<span>VND</span></strong></div>
+        <div class="price"><small>Giá ưu đãi</small><strong>2.499.000đ</strong><span class="was">Giá gốc <s>3.890.000đ</s> · Cho 30 suất đầu tiên</span></div>
         <a class="btn btn-lg" href="#dang-ky" data-course="21">Đăng ký tham gia
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
@@ -783,21 +793,29 @@ html.reg-lock{overflow:hidden}
     </div>
     <div class="choose">
       <div class="glow plan main rv">
-        <h3>Bản Đồ Tài Chính</h3>
-        <p class="meta">Chương trình online qua Zoom</p>
-        <div class="cost">2.499.000<span>VND</span></div>
-        <p class="fitfor">Phù hợp nếu bạn sẵn sàng đi sâu</p>
+        <span class="deal" aria-label="Ưu đãi giảm 36%"><small>Ưu đãi</small>-36%</span>
+        <span class="opt">Giai đoạn 2 · Chương trình trọng tâm</span>
+        <h3>Bản Đồ Tài Chính Cá Nhân</h3>
+        <p class="meta">21 ngày · 9 buổi Zoom</p>
+        <div class="price-box">
+          <small>Giá ưu đãi</small>
+          <strong>2.499.000đ</strong>
+          <span class="was">Giá gốc <s>3.890.000đ</s></span>
+        </div>
+        <span class="seats"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l9 9-9 9-9-9z"/></svg>Cho 30 suất đầu tiên</span>
+        <p class="gift"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v9h14v-9M12 8v13M12 8c-1.5-3.5-5-4-5.5-2S9 8 12 8zM12 8c1.5-3.5 5-4 5.5-2S15 8 12 8z"/></svg>Tặng sách Khai Vấn Nhân Mệnh</p>
+        <p class="fitfor">5 đầu ra bạn tự tay hoàn thành</p>
         <ul class="ticks">
-          <li>9 module và 1 buổi tổng kết live qua Zoom tối T2–4–6, kèm 2 bài tự học có hướng dẫn</li>
-          <li>15 phút nhật ký thu chi và ghi nhận bản thân mỗi ngày</li>
-          <li>Nhóm nhân chứng 6 đến 8 người</li>
-          <li>5 đầu ra cụ thể bạn tự tay hoàn thành</li>
+          <li>Tuyên Ngôn Tiền của riêng bạn</li>
+          <li>Bản soi lỗ rò dòng tiền</li>
+          <li>Bảng dòng tiền chạy đủ 14 ngày</li>
+          <li>Quỹ an toàn đã mở</li>
+          <li>Bản đồ tài chính cá nhân</li>
         </ul>
         <a class="btn btn-lg btn-block" href="#dang-ky" data-course="21">Đăng ký tham gia
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
     </div>
-  </div>
     <p class="alt-step rv">Muốn bắt đầu nhẹ hơn? <a class="textlink" href="https://kichhoatdongtien.wifinance.com.vn/" target="_blank" rel="noopener">Xem khoá Kích Hoạt Dòng Tiền 2 ngày <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></p>
   </div>
 </section>
@@ -910,7 +928,7 @@ html.reg-lock{overflow:hidden}
       <p class="sub2">Điền thông tin bên dưới. Sau khi gửi, mã VietQR thanh toán sẽ hiện ngay.</p>
       <form id="reg-form" novalidate>
         <div class="opts" role="radiogroup" aria-label="Khoá học">
-          <label class="opt-card"><input type="radio" name="course" value="21" checked><span class="rd"></span><span><b>Bản Đồ Tài Chính</b><small>Chương trình online qua Zoom</small></span><span class="pr">2.499.000 VND</span></label>
+          <label class="opt-card"><input type="radio" name="course" value="21" checked><span class="rd"></span><span><b>Bản Đồ Tài Chính Cá Nhân</b><small>21 ngày · 9 buổi Zoom</small></span><span class="pr">2.499.000đ</span></label>
         </div>
         <div class="fld" data-field="fullname"><label for="f-name">Họ và tên <i>*</i></label><input id="f-name" name="fullname" autocomplete="name" placeholder="Nguyễn Thị An"><span class="msg"></span></div>
         <div class="fld" data-field="phone"><label for="f-phone">Số điện thoại Zalo <i>*</i></label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="0912345678"><span class="msg"></span></div>
