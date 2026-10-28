@@ -275,6 +275,14 @@ footer b{font-family:var(--serif);color:var(--ink);font-weight:600}
 @keyframes wfSheen{0%,55%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
 @media (max-width:1120px){.wf-nav{display:none}}
 @media (max-width:520px){.wf-wrap{height:64px}.wf-logo img{width:168px}.wf-btn{min-height:40px;padding:0 16px;font-size:13.5px}}
+.wf-links{display:flex;flex-wrap:wrap;gap:22px 44px;justify-content:center;font-family:"Be Vietnam Pro",system-ui,sans-serif}
+.wf-lg{display:grid;justify-items:center;gap:10px}
+.wf-lt{margin:0;font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--wf-lt,#E6C98A)}
+.wf-lr{display:flex;gap:12px}
+.wf-lr a{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;color:#0B2A5B;text-decoration:none;background:linear-gradient(140deg,#E6C98A,#C89B3C);box-shadow:0 0 0 1px rgba(255,250,235,.35) inset,0 8px 20px -10px rgba(184,135,46,.8);transition:box-shadow .3s ease,transform .3s}
+.wf-lr a:hover,.wf-lr a:focus-visible{transform:translateY(-2px);box-shadow:0 0 0 2px rgba(230,201,138,.6),0 0 24px 5px rgba(230,201,138,.7),0 0 50px 10px rgba(200,155,60,.45);outline:none}
+.wf-lr svg{width:19px;height:19px}
+.wf-lr .zl{font-size:12.5px;font-weight:800;letter-spacing:.01em}
 @media (prefers-reduced-motion:reduce){.wf-btn,.wf-btn::after{animation:none}}
 .btn,.zj-btn{transition:box-shadow .3s ease,background-color .3s,color .3s}
 .btn:hover,.btn:focus-visible,.zj-btn:hover,.zj-btn:focus-visible{box-shadow:0 0 0 2px rgba(230,201,138,.6),0 0 24px 5px rgba(230,201,138,.7),0 0 50px 10px rgba(200,155,60,.45);outline:none}
@@ -350,7 +358,7 @@ footer b{font-family:var(--serif);color:var(--ink);font-weight:600}
     <a href="/#module">Lộ trình</a>
     <a href="/#cach-hoc">Cách học</a>
     <a href="/#dong-hanh">Người đồng hành</a>
-    <a href="/#chon">Học phí</a>
+    <a href="/#chon">Ưu đãi</a>
     <a href="/#faq">Hỏi đáp</a>
     <a href="/qua-tang/" class="on" aria-current="page">Quà tặng</a>
   </nav>
@@ -372,6 +380,24 @@ footer b{font-family:var(--serif);color:var(--ink);font-weight:600}
   <footer>
     <span><b>Vững gốc, vươn xa.</b> Tài Chính Tâm Thức · Hoàng Thu Hà · <a href="/">bandotaichinh.wifinance.com.vn</a></span>
     <span>Mọi phép tính chạy ngay trên máy bạn. Thông tin liên hệ chỉ được gửi khi bạn chủ động để lại để nhận kết quả đầy đủ. Kết quả mang tính tham khảo.</span>
+    <div class="wf-links" style="--wf-lt:var(--ink);flex-basis:100%;margin-top:8px">
+        <div class="wf-lg">
+          <p class="wf-lt">Liên hệ</p>
+          <div class="wf-lr">
+            <a href="tel:0948387418" aria-label="Gọi Hotline" title="Hotline"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg></a>
+            <a href="https://zalo.me/0948387418" target="_blank" rel="noopener" aria-label="Nhắn Zalo Hotline" title="Zalo"><span class="zl">Zalo</span></a>
+            <a href="https://wifinance.com.vn/" target="_blank" rel="noopener" aria-label="Trang chính thức WI.FINANCE" title="wifinance.com.vn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.5 3.8 5.5 3.8 9s-1.3 6.5-3.8 9c-2.5-2.5-3.8-5.5-3.8-9S9.5 5.5 12 3z"/></svg></a>
+          </div>
+        </div>
+        <div class="wf-lg">
+          <p class="wf-lt">Kết nối</p>
+          <div class="wf-lr">
+            <a href="https://zalo.me/g/sk6vnppwxvvmqpdhlngc" target="_blank" rel="noopener" aria-label="Cộng đồng Zalo WI.FINANCE" title="Cộng đồng Zalo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3.5 19c.6-3 2.8-4.8 5.5-4.8s4.9 1.8 5.5 4.8"/><circle cx="16.5" cy="9" r="2.6"/><path d="M15.8 14.3c2.3.2 4 1.8 4.6 4.7"/></svg></a>
+            <a href="https://www.facebook.com/share/19ncNaesSb/" target="_blank" rel="noopener" aria-label="Facebook WI.FINANCE" title="Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 22v-8.2h2.8l.4-3.2h-3.2V8.6c0-.9.3-1.6 1.6-1.6h1.7V4.1c-.3 0-1.3-.1-2.5-.1-2.5 0-4.2 1.5-4.2 4.3v2.4H7.3v3.2h2.8V22h3.4z"/></svg></a>
+            <a href="https://youtube.com/@wi.finance_tamthuctaichinh" target="_blank" rel="noopener" aria-label="YouTube WI.FINANCE" title="YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4a2.5 2.5 0 0 0-1.8 1.8C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8C5.8 19 12 19 12 19s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8zM10 15V9l5.2 3z"/></svg></a>
+          </div>
+        </div>
+    </div>
   </footer>
 </div>
 
