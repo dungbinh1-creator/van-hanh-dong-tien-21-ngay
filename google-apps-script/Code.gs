@@ -43,15 +43,30 @@ var COURSES = {
   WIF02: { name: 'Kích Hoạt Dòng Tiền',        price: 199000 }
 };
 
-// Nội dung email sau khi thanh toán thành công. Bạn thay nội dung thật vào đây.
-// Có thể dùng các biến: {HoTen} {KhoaHoc} {SoTien} {MaDon} {Gmail} {SDT}
+// Thông tin lớp gửi trong email xác nhận khoá 21 ngày.
+// Khi link còn trống, hệ thống KHÔNG gửi email và ghi "Chưa có link Zoom" vào cột Email xác nhận.
+var ZOOM = {
+  link: '',      // Link phòng Zoom, ví dụ https://us02web.zoom.us/j/...
+  meetingId: '', // Không bắt buộc
+  passcode: '',  // Không bắt buộc
+  schedule: ''   // Lịch học, ví dụ: 20h00 tối thứ Ba và thứ Năm, khai giảng 05/11/2026
+};
+
+// Nội dung email sau khi thanh toán thành công.
+// Có thể dùng các biến: {HoTen} {KhoaHoc} {SoTien} {MaDon} {Gmail} {SDT} {LichHoc} {ZoomLink} {ZoomInfo}
 var EMAILS = {
   WIF21: {
-    subject: 'WI.FINANCE · Xác nhận thanh toán khoá {KhoaHoc}',
+    subject: 'WI.FINANCE · Xác nhận đăng ký và link Zoom khoá {KhoaHoc}',
     html: '<p>Chào {HoTen},</p>'
-        + '<p>WI.FINANCE đã nhận học phí <b>{SoTien}</b> cho khoá <b>{KhoaHoc}</b>. Mã đơn của bạn: <b>{MaDon}</b>.</p>'
-        + '<p>[NỘI DUNG EMAIL KHOÁ 21 NGÀY SẼ CẬP NHẬT SAU]</p>'
-        + '<p>Thân mến,<br>WI.FINANCE · Học Viện Tài Chính Tâm Thức</p>'
+        + '<p>Hà đã nhận học phí <b>{SoTien}</b> cho khoá <b>{KhoaHoc}</b>. Mã đơn của bạn: <b>{MaDon}</b>.</p>'
+        + '<p>Cảm ơn bạn đã chọn đồng hành cùng Hà trong hành trình này. Thông tin lớp học của bạn:</p>'
+        + '<table cellpadding="6" style="border-collapse:collapse">'
+        + '<tr><td>Lịch học</td><td><b>{LichHoc}</b></td></tr>'
+        + '<tr><td>Link Zoom</td><td><a href="{ZoomLink}"><b>Vào phòng học</b></a></td></tr>'
+        + '{ZoomInfo}'
+        + '</table>'
+        + '<p>Bạn lưu email này lại để vào lớp đúng giờ. Nếu cần hỗ trợ, bạn trả lời email này hoặc gọi Hotline 0948387418.</p>'
+        + '<p>Thân mến,<br>Hoàng Thu Hà<br>WI.FINANCE · Tài Chính Tâm Thức</p>'
   },
   WIF02: {
     subject: 'WI.FINANCE · Xác nhận thanh toán khoá {KhoaHoc}',
@@ -218,7 +233,7 @@ function handlePayment_(b) {
         data[i][COL['Trạng thái'] - 1] = paid ? ST_PAID : ST_SHORT;
         data[i][COL['Mã giao dịch'] - 1] = tx.id;
         if (paid) {
-          sh.getRange(rowNo, COL['Email xác nhận']).setValue(sendConfirm_(r, code, tx.amount) ? 'Đã gửi ' + new Date().toLocaleString('vi-VN') : 'Lỗi gửi email');
+          sh.getRange(rowNo, COL['Email xác nhận']).setValue(sendConfirm_(r, code, tx.amount));
         }
         matched++;
         break;
@@ -230,20 +245,86 @@ function handlePayment_(b) {
   return json_({ success: true, matched: matched });
 }
 
+function esc_(v) {
+  return String(v == null ? '' : v).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+// Gửi email xác nhận, trả về chữ ghi vào cột "Email xác nhận".
 function sendConfirm_(r, code, amount) {
   var tpl = EMAILS[code];
+  if (!tpl) return 'Không có mẫu email cho mã ' + code;
+  if (code === 'WIF21' && !ZOOM.link) return 'Chưa có link Zoom, chưa gửi';
+  var to = String(r[COL['Gmail'] - 1]).trim();
+  if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(to)) return 'Gmail không hợp lệ, chưa gửi';
+  var info = (ZOOM.meetingId ? '<tr><td>Meeting ID</td><td><b>' + esc_(ZOOM.meetingId) + '</b></td></tr>' : '')
+           + (ZOOM.passcode ? '<tr><td>Mật khẩu</td><td><b>' + esc_(ZOOM.passcode) + '</b></td></tr>' : '');
   var vars = {
-    '{HoTen}': r[COL['Họ và tên'] - 1], '{KhoaHoc}': r[COL['Khoá học'] - 1], '{SoTien}': money_(amount),
-    '{MaDon}': r[COL['Mã đơn'] - 1], '{Gmail}': r[COL['Gmail'] - 1], '{SDT}': String(r[COL['Số điện thoại'] - 1]).replace(/\D/g, '')
+    '{HoTen}': esc_(r[COL['Họ và tên'] - 1]), '{KhoaHoc}': esc_(r[COL['Khoá học'] - 1]), '{SoTien}': money_(amount),
+    '{MaDon}': esc_(r[COL['Mã đơn'] - 1]), '{Gmail}': esc_(to), '{SDT}': String(r[COL['Số điện thoại'] - 1]).replace(/\D/g, ''),
+    '{LichHoc}': esc_(ZOOM.schedule || 'Hà sẽ gửi lịch cụ thể qua Zalo'), '{ZoomLink}': esc_(ZOOM.link), '{ZoomInfo}': info
   };
   function fill(s) { Object.keys(vars).forEach(function (k) { s = s.split(k).join(vars[k]); }); return s; }
   try {
-    MailApp.sendEmail({ to: vars['{Gmail}'], subject: fill(tpl.subject), htmlBody: fill(tpl.html), name: SENDER_NAME, replyTo: REPLY_TO });
-    return true;
+    MailApp.sendEmail({ to: to, subject: fill(tpl.subject).replace(/&amp;/g, '&'), htmlBody: fill(tpl.html), name: SENDER_NAME, replyTo: REPLY_TO });
+    return 'Đã gửi ' + new Date().toLocaleString('vi-VN');
   } catch (err) {
     console.error(err);
-    return false;
+    return 'Lỗi gửi email';
   }
+}
+
+// ---------- Cách B: đổi Trạng thái trên Sheet thành "Đã thanh toán" thì tự gửi email ----------
+// Chạy hàm này MỘT LẦN trong trình soạn Apps Script để bật tính năng (Google sẽ hỏi cấp quyền).
+function caiDatGuiEmailTheoSheet() {
+  var ss = SpreadsheetApp.openById(SHEET_ID);
+  ScriptApp.getProjectTriggers().forEach(function (t) {
+    if (t.getHandlerFunction() === 'onStatusEdit') ScriptApp.deleteTrigger(t);
+  });
+  ScriptApp.newTrigger('onStatusEdit').forSpreadsheet(ss).onEdit().create();
+  // Ô Trạng thái thành danh sách chọn, tránh gõ sai chữ.
+  var sh = sheet_();
+  var rule = SpreadsheetApp.newDataValidation().requireValueInList([ST_WAIT, ST_PAID, ST_SHORT], true).setAllowInvalid(true).build();
+  sh.getRange(2, COL['Trạng thái'], sh.getMaxRows() - 1, 1).setDataValidation(rule);
+  console.log('Đã bật: đổi Trạng thái thành "' + ST_PAID + '" sẽ tự gửi email xác nhận.');
+}
+
+function onStatusEdit(e) {
+  var rg = e && e.range;
+  if (!rg) return;
+  var sh = rg.getSheet();
+  if (sh.getName() !== SHEET_NAME) return;
+  var c = COL['Trạng thái'];
+  if (rg.getColumn() > c || rg.getLastColumn() < c || rg.getLastRow() < 2) return;
+
+  var lock = LockService.getScriptLock();
+  lock.waitLock(20000);
+  try {
+    var first = Math.max(rg.getRow(), 2), count = rg.getLastRow() - first + 1;
+    var data = sh.getRange(first, 1, count, HEADERS.length).getValues();
+    data.forEach(function (r, i) {
+      if (r[c - 1] !== ST_PAID || String(r[COL['Email xác nhận'] - 1]).indexOf('Đã gửi') === 0) return;
+      var rowNo = first + i;
+      var code = String(r[COL['Mã khoá'] - 1]);
+      var amount = Number(r[COL['Số tiền nhận'] - 1]) || Number(r[COL['Học phí'] - 1]);
+      if (!r[COL['Thời gian thanh toán'] - 1]) sh.getRange(rowNo, COL['Thời gian thanh toán']).setValue(new Date());
+      if (!r[COL['Số tiền nhận'] - 1]) sh.getRange(rowNo, COL['Số tiền nhận']).setValue(amount);
+      if (!r[COL['Mã giao dịch'] - 1]) sh.getRange(rowNo, COL['Mã giao dịch']).setValue('Xác nhận tay');
+      sh.getRange(rowNo, COL['Email xác nhận']).setValue(sendConfirm_(r, code, amount));
+    });
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+// Gửi thử email xác nhận khoá 21 ngày về chính Gmail đang mở trình soạn, không ghi gì vào Sheet.
+function thuGuiEmailXacNhan() {
+  var r = [];
+  r[COL['Họ và tên'] - 1] = 'Học Viên Thử';
+  r[COL['Khoá học'] - 1] = COURSES.WIF21.name;
+  r[COL['Mã đơn'] - 1] = 'TEST-' + Date.now();
+  r[COL['Gmail'] - 1] = Session.getActiveUser().getEmail();
+  r[COL['Số điện thoại'] - 1] = '0900000000';
+  console.log(sendConfirm_(r, 'WIF21', COURSES.WIF21.price));
 }
 
 // Chạy thử trong trình soạn Apps Script: tạo 1 đơn mẫu rồi giả lập thanh toán SePay.

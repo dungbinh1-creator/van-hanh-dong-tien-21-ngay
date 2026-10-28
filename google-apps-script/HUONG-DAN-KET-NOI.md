@@ -53,9 +53,28 @@ Trang web không tự biết khách đã chuyển tiền hay chưa. Cần một 
 
 Code đã hỗ trợ sẵn định dạng webhook của cả SePay và Casso. Nếu webhook gửi trùng, code sẽ bỏ qua nên không có email gửi hai lần.
 
+## Bước 5B. Xác nhận bằng tay trên Sheet (đang dùng)
+
+Không cần SePay hay Casso. Bạn kiểm tra tiền về trên app ngân hàng, rồi đổi ô **Trạng thái** của đơn đó thành **Đã thanh toán**. Email xác nhận kèm link Zoom sẽ tự gửi cho khách.
+
+Cài một lần:
+
+1. Trong trình soạn Apps Script, dán toàn bộ `CODE-DAN-VAO-APPS-SCRIPT.gs` đè lên code cũ.
+2. Điền phần `ZOOM` ở đầu code: `link` (bắt buộc), `meetingId`, `passcode`, `schedule`.
+3. Chọn hàm `thuGuiEmailXacNhan`, bấm **Chạy**. Một email mẫu sẽ về Gmail của bạn, Sheet không bị ghi gì.
+4. Chọn hàm `caiDatGuiEmailTheoSheet`, bấm **Chạy**, rồi cấp quyền khi Google hỏi. Ô Trạng thái sẽ thành danh sách chọn.
+5. Vào **Triển khai › Quản lý triển khai › bút chì › Phiên bản mới › Triển khai** để form trên trang dùng code mới.
+
+Khi vận hành:
+
+- Cột **Email xác nhận** sẽ ghi "Đã gửi …" kèm giờ gửi. Mỗi đơn chỉ gửi một lần, đổi qua đổi lại cũng không gửi trùng.
+- Nếu cột này ghi "Chưa có link Zoom, chưa gửi", bạn điền `ZOOM.link`, xoá ô đó rồi chọn lại "Đã thanh toán".
+- Muốn gửi lại cho một khách, bạn xoá ô Email xác nhận của dòng đó rồi chọn lại "Đã thanh toán".
+- Các ô Thời gian thanh toán, Số tiền nhận (lấy theo học phí) và Mã giao dịch ("Xác nhận tay") tự điền nếu đang trống.
+
 ## Bước 6. Nội dung email xác nhận
 
-Sửa phần `EMAILS` trong `Code.gs`, có 2 mẫu cho WIF21 và WIF02. Có thể dùng các biến `{HoTen}` `{KhoaHoc}` `{SoTien}` `{MaDon}` `{Gmail}` `{SDT}`.
+Sửa phần `EMAILS` trong `Code.gs`, có 2 mẫu cho WIF21 và WIF02. Có thể dùng các biến `{HoTen}` `{KhoaHoc}` `{SoTien}` `{MaDon}` `{Gmail}` `{SDT}` `{LichHoc}` `{ZoomLink}` `{ZoomInfo}`.
 
 Mỗi lần sửa code, vào **Triển khai › Quản lý triển khai › biểu tượng bút chì › Phiên bản: Phiên bản mới › Triển khai**. URL giữ nguyên, không cần dán lại.
 
