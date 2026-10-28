@@ -72,6 +72,14 @@ Khi vận hành:
 - Muốn gửi lại cho một khách, bạn xoá ô Email xác nhận của dòng đó rồi chọn lại "Đã thanh toán".
 - Các ô Thời gian thanh toán, Số tiền nhận (lấy theo học phí) và Mã giao dịch ("Xác nhận tay") tự điền nếu đang trống.
 
+## Bước 5C. Lớp khai giảng 23/11/2026 (đồng hồ, suất ưu đãi, chờ lớp sau)
+
+- Phần `LAUNCH` trong `Code.gs` và `launch` trong `assets/register.js` phải khớp nhau: giờ khai giảng, 30 suất ưu đãi, giá gốc 3.890.000đ.
+- Trang gọi `?action=seats` để lấy số suất còn lại. Số này đếm các đơn WIF21 có Trạng thái "Đã thanh toán", giữ trong bộ đệm 60 giây, và tự làm mới khi bạn đổi Trạng thái.
+- Khi đủ 30 đơn đã thanh toán, đơn mới được ghi học phí 3.890.000đ. Sau 20h ngày 23/11/2026, đơn mới được ghi Trạng thái "Chờ lớp sau" và không có học phí.
+- Mở lớp mới: đổi `LAUNCH.start` (và `launch` trong `register.js`, lịch trong `calendar`), tạo phiên bản mới cho Apps Script, rồi push trang.
+- Xem thử trên máy (chỉ chạy ở localhost): thêm `?xem=con-suat`, `?xem=het-suat` hoặc `?xem=da-khai-giang` vào đường dẫn.
+
 ## Bước 6. Nội dung email xác nhận
 
 Sửa phần `EMAILS` trong `Code.gs`, có 2 mẫu cho WIF21 và WIF02. Có thể dùng các biến `{HoTen}` `{KhoaHoc}` `{SoTien}` `{MaDon}` `{Gmail}` `{SDT}` `{LichHoc}` `{ZoomLink}` `{ZoomInfo}`.

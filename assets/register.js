@@ -16,6 +16,15 @@ window.WIF_CONFIG = {
   zalo: 'https://zalo.me/g/sk6vnppwxvvmqpdhlngc',
   // Khoá 2 ngày đã có trang bán riêng
   twoDayUrl: 'https://kichhoatdongtien.wifinance.com.vn/',
+  // Lớp đang mở. Phải khớp với LAUNCH trong google-apps-script/Code.gs.
+  launch: {
+    course: '21',
+    start: '2026-11-23T20:00:00+07:00', // Giờ khai giảng, sau mốc này chỉ nhận đăng ký chờ lớp sau
+    earlySeats: 30,
+    fullPrice: 3890000,
+    // Lịch 9 buổi Zoom: thứ Hai, Tư, Sáu, 20h00 đến 22h00 giờ Việt Nam
+    calendar: { title: 'Bản Đồ Tài Chính · Buổi học Zoom', startUtc: '20261123T130000Z', endUtc: '20261123T150000Z', rrule: 'FREQ=WEEKLY;BYDAY=MO,WE,FR;COUNT=9' }
+  },
   pollEveryMs: 6000,
   pollForMs: 30 * 60 * 1000
 };
@@ -123,11 +132,14 @@ window.WIF_CONFIG = {
       transferNote: c.code + ' ' + cleanName + ' ' + phone,
       source: utm(), page: location.href.split('?')[0], ts: Date.now()
     };
+    var waitlist = C.state === 'closed';
+    if (waitlist) { order.waitlist = true; order.price = 0; }
     var btn = form.querySelector('button[type=submit]');
     btn.disabled = true; btn.classList.add('loading');
     $('#reg-send-err').hidden = true;
 
     send(order).then(function () {
+      if (waitlist) { $('#wl-email').textContent = order.email; showStep(4); return; }
       store(STORE, order);
       renderPayment(order);
     }).catch(function () {

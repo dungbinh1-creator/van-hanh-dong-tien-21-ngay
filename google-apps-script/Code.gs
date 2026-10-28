@@ -43,13 +43,21 @@ var COURSES = {
   WIF02: { name: 'Kích Hoạt Dòng Tiền',        price: 199000 }
 };
 
+// Lớp khoá 21 ngày đang mở. Phải khớp với launch trong assets/register.js.
+var LAUNCH = {
+  code: 'WIF21',
+  start: new Date('2026-11-23T20:00:00+07:00'), // Sau mốc này, đăng ký mới ghi "Chờ lớp sau"
+  earlySeats: 30,                                // Số suất giá ưu đãi, đếm theo đơn "Đã thanh toán"
+  fullPrice: 3890000                             // Giá khi đã hết suất ưu đãi
+};
+
 // Thông tin lớp gửi trong email xác nhận khoá 21 ngày.
 // Khi link còn trống, hệ thống KHÔNG gửi email và ghi "Chưa có link Zoom" vào cột Email xác nhận.
 var ZOOM = {
   link: '',      // Link phòng Zoom, ví dụ https://us02web.zoom.us/j/...
   meetingId: '', // Không bắt buộc
   passcode: '',  // Không bắt buộc
-  schedule: ''   // Lịch học, ví dụ: 20h00 tối thứ Ba và thứ Năm, khai giảng 05/11/2026
+  schedule: '20h00 đến 22h00 tối thứ Hai, thứ Tư, thứ Sáu. Khai giảng thứ Hai 23/11/2026, 9 buổi: 23, 25, 27, 30/11 và 2, 4, 7, 9, 11/12/2026'
 };
 
 // Nội dung email sau khi thanh toán thành công.
@@ -82,7 +90,25 @@ var HEADERS = ['Thời gian đăng ký', 'Mã đơn', 'Mã khoá', 'Khoá học'
   'Gmail', 'Tỉnh/thành', 'Mong muốn', 'Nội dung chuyển khoản', 'Nguồn', 'Trạng thái',
   'Thời gian thanh toán', 'Số tiền nhận', 'Mã giao dịch', 'Email xác nhận'];
 var COL = {}; HEADERS.forEach(function (h, i) { COL[h] = i + 1; });
-var ST_WAIT = 'Chờ thanh toán', ST_PAID = 'Đã thanh toán', ST_SHORT = 'Chuyển thiếu, cần kiểm tra';
+var ST_WAIT = 'Chờ thanh toán', ST_PAID = 'Đã thanh toán', ST_SHORT = 'Chuyển thiếu, cần kiểm tra', ST_NEXT = 'Chờ lớp sau';
+
+// Số đơn đã thanh toán của lớp đang mở (đơn đăng ký trước giờ khai giảng).
+function paidCount_(sh) {
+  var n = sh.getLastRow() - 1;
+  if (n < 1) return 0;
+  var data = sh.getRange(2, 1, n, HEADERS.length).getValues(), count = 0;
+  data.forEach(function (r) { if (r[COL['Mã khoá'] - 1] === LAUNCH.code && r[COL['Trạng thái'] - 1] === ST_PAID) count++; });
+  return count;
+}
+
+function seats_() {
+  var cache = CacheService.getScriptCache(), hit = cache.get('seats');
+  if (hit) return JSON.parse(hit);
+  var paid = paidCount_(sheet_());
+  var res = { ok: true, total: LAUNCH.earlySeats, paid: paid, left: Math.max(LAUNCH.earlySeats - paid, 0), start: LAUNCH.start.getTime() };
+  cache.put('seats', JSON.stringify(res), 60); // Giữ 60 giây cho đỡ tải Sheet
+  return res;
+}
 
 function sheet_() {
   var ss = SpreadsheetApp.openById(SHEET_ID);
@@ -115,6 +141,7 @@ function doGet(e) {
     }
     return json_({ ok: true, paid: false });
   }
+  if (p.action === 'seats') return json_(seats_());
   return json_({ ok: true, service: 'WI.FINANCE registration' });
 }
 
@@ -142,14 +169,21 @@ function handleRegister_(b) {
 
   var lock = LockService.getScriptLock();
   lock.waitLock(20000);
+  var waitlist = false;
   try {
     var sh = sheet_();
+    var price = course.price, now = new Date();
+    if (b.code === LAUNCH.code) {
+      // Máy chủ tự quyết giá và trạng thái, không tin giá trang web gửi lên.
+      waitlist = now >= LAUNCH.start;
+      if (!waitlist && paidCount_(sh) >= LAUNCH.earlySeats) price = LAUNCH.fullPrice;
+    }
     var row = [];
-    row[COL['Thời gian đăng ký'] - 1] = new Date();
+    row[COL['Thời gian đăng ký'] - 1] = now;
     row[COL['Mã đơn'] - 1] = clean_(b.orderId, 40);
     row[COL['Mã khoá'] - 1] = b.code;
-    row[COL['Khoá học'] - 1] = course.name;
-    row[COL['Học phí'] - 1] = course.price;
+    row[COL['Khoá học'] - 1] = course.name + (waitlist ? ' (lớp sau)' : '');
+    row[COL['Học phí'] - 1] = waitlist ? '' : price;
     row[COL['Họ và tên'] - 1] = clean_(b.fullname, 120);
     row[COL['Số điện thoại'] - 1] = "'" + b.phone;
     row[COL['Gmail'] - 1] = clean_(b.email, 120);
@@ -157,13 +191,13 @@ function handleRegister_(b) {
     row[COL['Mong muốn'] - 1] = clean_(b.wish, 1000);
     row[COL['Nội dung chuyển khoản'] - 1] = clean_(b.transferNote, 80);
     row[COL['Nguồn'] - 1] = clean_(b.source, 300);
-    row[COL['Trạng thái'] - 1] = ST_WAIT;
+    row[COL['Trạng thái'] - 1] = waitlist ? ST_NEXT : ST_WAIT;
     for (var i = 0; i < HEADERS.length; i++) if (row[i] === undefined) row[i] = '';
     sh.appendRow(row);
   } finally {
     lock.releaseLock();
   }
-  if (SEND_REGISTER_EMAIL) sendRegister_(b, course);
+  if (SEND_REGISTER_EMAIL && !waitlist) sendRegister_(b, course);
   return json_({ ok: true });
 }
 
@@ -235,6 +269,7 @@ function handlePayment_(b) {
         if (paid) {
           sh.getRange(rowNo, COL['Email xác nhận']).setValue(sendConfirm_(r, code, tx.amount));
         }
+        CacheService.getScriptCache().remove('seats');
         matched++;
         break;
       }
@@ -283,7 +318,7 @@ function caiDatGuiEmailTheoSheet() {
   ScriptApp.newTrigger('onStatusEdit').forSpreadsheet(ss).onEdit().create();
   // Ô Trạng thái thành danh sách chọn, tránh gõ sai chữ.
   var sh = sheet_();
-  var rule = SpreadsheetApp.newDataValidation().requireValueInList([ST_WAIT, ST_PAID, ST_SHORT], true).setAllowInvalid(true).build();
+  var rule = SpreadsheetApp.newDataValidation().requireValueInList([ST_WAIT, ST_PAID, ST_SHORT, ST_NEXT], true).setAllowInvalid(true).build();
   sh.getRange(2, COL['Trạng thái'], sh.getMaxRows() - 1, 1).setDataValidation(rule);
   console.log('Đã bật: đổi Trạng thái thành "' + ST_PAID + '" sẽ tự gửi email xác nhận.');
 }
@@ -295,6 +330,7 @@ function onStatusEdit(e) {
   if (sh.getName() !== SHEET_NAME) return;
   var c = COL['Trạng thái'];
   if (rg.getColumn() > c || rg.getLastColumn() < c || rg.getLastRow() < 2) return;
+  CacheService.getScriptCache().remove('seats'); // Số suất còn lại cập nhật ngay
 
   var lock = LockService.getScriptLock();
   lock.waitLock(20000);

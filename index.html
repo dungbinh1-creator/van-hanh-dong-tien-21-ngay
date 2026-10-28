@@ -475,6 +475,48 @@ html.reg-lock{overflow:hidden}
 .foot .logo-plate img{width:240px}
 .foot .tl{font-family:var(--serif);font-style:italic;color:#F1E3C2;font-size:16px}
 
+/* ---------- Khai giảng: đồng hồ, suất, thanh dính ---------- */
+[data-cd] [hidden],[data-l-price][hidden],[data-l-perks][hidden],[data-l-open][hidden],[data-l-early][hidden],[data-l-full][hidden],[data-l-closed][hidden],[data-seats-short][hidden],#reg-opts[hidden],#reg-total[hidden],.reg-dots[hidden]{display:none!important}
+.cd{margin:0 0 28px;max-width:600px}
+.cd-label{font-size:12.5px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-l);margin-bottom:10px}
+.cd-clock{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;max-width:440px}
+.cd-clock span{display:grid;justify-items:center;padding:12px 4px 10px;border-radius:14px;background:rgba(255,255,255,.06);box-shadow:inset 0 0 0 1px rgba(231,198,124,.4)}
+.cd-clock b{font-family:var(--serif);font-size:clamp(26px,3.4vw,34px);font-weight:600;color:#fff;line-height:1.15;font-variant-numeric:tabular-nums}
+.cd-clock small{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:#9AA8C2}
+.cd-seats{margin-top:12px;font-size:15px;color:#DCE4F2}
+.cd-seats b{color:var(--gold-l);font-size:17px}
+.cd-closed{font-family:var(--serif);font-size:clamp(19px,2.2vw,22px);color:#fff;line-height:1.5}
+.plan.main .cd{margin:0}
+.plan.main .cd-label{color:#B8872E;text-align:center}
+.plan.main .cd-clock{margin-inline:auto}
+.plan.main .cd-clock span{background:#FBF1DC;box-shadow:inset 0 0 0 1px rgba(200,155,60,.55)}
+.plan.main .cd-clock b{color:var(--navy)}
+.plan.main .cd-clock small{color:#7a7466}
+.plan.main .cd-closed{color:var(--navy);text-align:center}
+.closed-note{padding:16px 18px;border-radius:14px;font-size:15px;line-height:1.65;color:var(--navy);background:#FBF1DC;box-shadow:inset 0 0 0 1px rgba(200,155,60,.55)}
+.lbar{position:fixed;left:50%;bottom:calc(14px + env(safe-area-inset-bottom,0px));z-index:55;width:min(760px,100% - 24px);display:flex;align-items:center;justify-content:space-between;gap:14px;padding:10px 10px 10px 22px;border-radius:999px;background:rgba(6,23,58,.95);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);box-shadow:0 0 0 1px rgba(231,198,124,.5),0 18px 40px -12px rgba(0,0,0,.6);color:#DCE4F2;transform:translate(-50%,160%);visibility:hidden;transition:transform .45s cubic-bezier(.2,.8,.2,1),visibility .45s}
+.lbar.show{transform:translate(-50%,0);visibility:visible}
+.lbar-t{display:block;font-size:11.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-l);line-height:1.4}
+.lbar-c{font-family:var(--serif);font-size:19px;font-weight:600;color:#fff;font-variant-numeric:tabular-nums;line-height:1.35}
+.lbar-s{font-size:13px;color:#C3CDE0;margin-left:8px;font-weight:500}
+.lbar .btn{--h:48px;flex:none;padding:0 24px;font-size:15px}
+.has-lbar .fab{bottom:calc(18px + 84px + env(safe-area-inset-bottom,0px))}
+.has-lbar .fab-zalo{bottom:calc(18px + 84px + 60px + 16px + env(safe-area-inset-bottom,0px))}
+@media (max-width:520px){
+  .cd-clock{gap:8px}
+  .lbar{border-radius:18px;padding:10px 10px 10px 16px;gap:10px}
+  .lbar-c{font-size:16.5px}
+  .lbar-s{display:block;margin:0}
+  .lbar .btn{--h:46px;padding:0 18px;font-size:14.5px}
+  .has-lbar .fab{bottom:calc(18px + 92px + env(safe-area-inset-bottom,0px))}
+  .has-lbar .fab-zalo{bottom:calc(18px + 92px + 54px + 14px + env(safe-area-inset-bottom,0px))}
+}
+.cal{margin-top:18px;padding:16px;border-radius:14px;text-align:center;background:rgba(200,155,60,.1);box-shadow:inset 0 0 0 1px rgba(200,155,60,.4)}
+.cal p{font-size:14px;color:var(--navy);font-weight:600;margin-bottom:10px}
+.cal-row{display:flex;flex-wrap:wrap;justify-content:center;gap:10px}
+.cal .btn{--h:46px;padding:0 20px;font-size:14.5px}
+.done .cal{margin:0 0 18px}
+
 /* ---------- Floating hotline ---------- */
 .fab{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:60;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;color:var(--navy);text-decoration:none;
   background:linear-gradient(140deg,#C89B3C,#E6C98A);box-shadow:0 0 0 1px rgba(255,255,255,.35) inset,0 0 22px rgba(231,198,124,.75),0 12px 26px -10px rgba(6,23,58,.6);transition:transform .3s,box-shadow .3s}
@@ -536,14 +578,21 @@ html.reg-lock{overflow:hidden}
       <p class="hook">Bạn không cần thêm một bảng tính khó hiểu. Bạn cần một nhịp đủ nhỏ để mỗi ngày nhìn tiền của mình một chút, cùng những người đang đi chung một đoạn đường.</p>
 
       <div class="facts">
-        <div class="fact glow"><small>Lịch live</small><b>Zoom tối T2–4–6</b></div>
+        <div class="fact glow"><small>Khai giảng</small><b>20h thứ Hai 23/11/2026<br><span style="white-space:nowrap">Zoom tối T2–4–6</span></b></div>
         <div class="fact glow"><small>Cấu trúc</small><b>9 module live, 1 buổi tổng kết và 2 bài tự học có hướng dẫn</b></div>
         <div class="fact glow"><small>Nhịp thực hành</small><b>15 phút mỗi ngày</b></div>
         <div class="fact glow"><small>Nhóm nhân chứng</small><b>6 đến 8 người</b></div>
       </div>
 
+      <div class="cd" data-cd>
+        <p class="cd-label" data-cd-label>Khai giảng sau</p>
+        <div class="cd-clock" role="timer" aria-live="off"><span><b data-cd-d>--</b><small>Ngày</small></span><span><b data-cd-h>--</b><small>Giờ</small></span><span><b data-cd-m>--</b><small>Phút</small></span><span><b data-cd-s>--</b><small>Giây</small></span></div>
+        <p class="cd-closed" data-cd-closed hidden>Lớp khai giảng 23/11/2026 đã bắt đầu. Bạn đăng ký để được báo lịch lớp sau.</p>
+        <p class="cd-seats" data-seats-line hidden>Còn <b data-seats-left>30</b>/30 suất giá ưu đãi</p>
+      </div>
+
       <div class="price-row">
-        <div class="price"><small>Giá ưu đãi</small><strong>2.499.000đ</strong><span class="was">Giá gốc <s>3.890.000đ</s> · Cho 30 suất đầu tiên</span></div>
+        <div class="price" data-l-price><small data-l-plabel>Giá ưu đãi</small><strong data-l-amount>2.499.000đ</strong><span class="was" data-l-was>Giá gốc <s>3.890.000đ</s> · Cho 30 suất đầu tiên</span></div>
         <a class="btn btn-lg" href="#dang-ky" data-course="21">Đăng ký tham gia
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
       </div>
@@ -812,17 +861,21 @@ html.reg-lock{overflow:hidden}
     </div>
     <div class="choose">
       <div class="glow plan main rv">
-        <span class="deal" aria-label="Ưu đãi giảm 36%"><small>Ưu đãi</small>-36%</span>
+        <span class="deal" data-l-early aria-label="Ưu đãi giảm 36%"><small>Ưu đãi</small>-36%</span>
         <span class="opt">Giai đoạn 2 · Chương trình trọng tâm</span>
         <h3>Bản Đồ Tài Chính Cá Nhân</h3>
         <p class="meta">21 ngày · 9 buổi Zoom</p>
-        <p class="when">Live tối Thứ Hai, Thứ Tư, Thứ Sáu</p>
-        <div class="price-box">
-          <small>Giá ưu đãi</small>
-          <div class="pb-row"><strong>2.499.000đ</strong><span class="per">/người · trọn chương trình</span></div>
-          <span class="was">Giá gốc <s>3.890.000đ</s></span>
+        <p class="when">Khai giảng <b>20h thứ Hai 23/11/2026</b> · Live tối Thứ Hai, Thứ Tư, Thứ Sáu</p>
+        <div class="cd" data-cd>
+          <p class="cd-label" data-cd-label>Khai giảng sau</p>
+          <div class="cd-clock" role="timer" aria-live="off"><span><b data-cd-d>--</b><small>Ngày</small></span><span><b data-cd-h>--</b><small>Giờ</small></span><span><b data-cd-m>--</b><small>Phút</small></span><span><b data-cd-s>--</b><small>Giây</small></span></div>
         </div>
-        <div class="perks"><span class="seats"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z"/></svg>Cho 30 suất đầu tiên</span><span class="bonus"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v9h14v-9M12 8v13M12 8c-1.5-3.5-5-4-5.5-2S9 8 12 8zM12 8c1.5-3.5 5-4 5.5-2S15 8 12 8z"/></svg>Tặng sách Khai Vấn Nhân Mệnh</span></div>
+        <div class="price-box" data-l-price>
+          <small data-l-plabel>Giá ưu đãi</small>
+          <div class="pb-row"><strong data-l-amount>2.499.000đ</strong><span class="per">/người · trọn chương trình</span></div>
+          <span class="was" data-l-was>Giá gốc <s>3.890.000đ</s></span>
+        </div>
+        <div class="perks" data-l-perks><span class="seats"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linejoin="round" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.8.8-4.2 4.1 1 5.8-5.2-2.7-5.2 2.7 1-5.8-4.2-4.1 5.8-.8z"/></svg><span data-seats-text>Cho 30 suất đầu tiên</span></span><span class="bonus" data-l-early><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M5 12v9h14v-9M12 8v13M12 8c-1.5-3.5-5-4-5.5-2S9 8 12 8zM12 8c1.5-3.5 5-4 5.5-2S15 8 12 8z"/></svg>Tặng sách Khai Vấn Nhân Mệnh</span></div>
         <p class="fitfor">Phù hợp nếu bạn sẵn sàng đi sâu và tự tay hoàn thành 5 đầu ra</p>
         <ul class="ticks">
           <li>Tuyên Ngôn Tiền của riêng bạn</li>
@@ -831,9 +884,11 @@ html.reg-lock{overflow:hidden}
           <li>Quỹ an toàn đã mở</li>
           <li>Bản đồ tài chính cá nhân</li>
         </ul>
-        <p class="deal-note">Áp dụng cho <b>30 suất hoàn tất thanh toán đầu tiên</b>. Sau ưu đãi, giá trở về 3.890.000đ/người.</p>
+        <p class="deal-note" data-l-early>Áp dụng cho <b>30 suất hoàn tất thanh toán đầu tiên</b>. Sau ưu đãi, giá trở về 3.890.000đ/người.</p>
+        <p class="deal-note" data-l-full hidden>Đã hết 30 suất giá ưu đãi. Học phí hiện tại là <b>3.890.000đ/người</b>, bạn vẫn đăng ký được đến 20h ngày 23/11/2026.</p>
+        <p class="closed-note" data-l-closed hidden>Lớp khai giảng 20h thứ Hai 23/11/2026 đã bắt đầu. Bạn để lại thông tin, đội ngũ WI.FINANCE sẽ báo lịch lớp tiếp theo cho bạn.</p>
         <a class="btn btn-lg btn-block" href="#dang-ky" data-course="21">Đăng ký giá ưu đãi <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <ol class="steps3"><li><i>1</i>Điền thông tin</li><li><i>2</i>Quét mã VietQR</li><li><i>3</i>Nhận xác nhận và link Zoom qua Gmail</li></ol>
+        <ol class="steps3" data-l-open><li><i>1</i>Điền thông tin</li><li><i>2</i>Quét mã VietQR</li><li><i>3</i>Nhận xác nhận và link Zoom qua Gmail</li></ol>
         <p class="support">Hỗ trợ: <a href="tel:0948387418">Hotline</a> · <a href="https://zalo.me/0948387418" target="_blank" rel="noopener">Zalo</a></p>
       </div>
     </div>
@@ -946,17 +1001,17 @@ html.reg-lock{overflow:hidden}
     <!-- Bước 1 -->
     <div class="reg-step" data-step="1">
       <h3 id="reg-title">Đăng ký tham gia</h3>
-      <p class="sub2">Điền thông tin bên dưới. Sau khi gửi, mã VietQR thanh toán sẽ hiện ngay.</p>
+      <p class="sub2" id="reg-sub">Điền thông tin bên dưới. Sau khi gửi, mã VietQR thanh toán sẽ hiện ngay. Khai giảng 20h thứ Hai 23/11/2026.</p>
       <form id="reg-form" novalidate>
-        <div class="opts" role="radiogroup" aria-label="Khoá học">
-          <label class="opt-card"><input type="radio" name="course" value="21" checked><span class="rd"></span><span><b>Bản Đồ Tài Chính Cá Nhân</b><small>21 ngày · 9 buổi Zoom</small></span><span class="pr">2.499.000đ</span></label>
+        <div class="opts" id="reg-opts" role="radiogroup" aria-label="Khoá học">
+          <label class="opt-card"><input type="radio" name="course" value="21" checked><span class="rd"></span><span><b>Bản Đồ Tài Chính Cá Nhân</b><small>21 ngày · 9 buổi Zoom</small></span><span class="pr" data-l-amount>2.499.000đ</span></label>
         </div>
         <div class="fld" data-field="fullname"><label for="f-name">Họ và tên <i>*</i></label><input id="f-name" name="fullname" autocomplete="name" placeholder="Nguyễn Thị An"><span class="msg"></span></div>
         <div class="fld" data-field="phone"><label for="f-phone">Số điện thoại Zalo <i>*</i></label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="0912345678"><span class="msg"></span></div>
         <div class="fld" data-field="email"><label for="f-mail">Gmail <i>*</i></label><input id="f-mail" name="email" type="email" inputmode="email" autocomplete="email" placeholder="ten@gmail.com"><span class="hint">Email xác nhận và tài liệu khoá học sẽ gửi về địa chỉ này.</span><span class="msg"></span></div>
         <div class="fld" data-field="consent"><label class="chk"><input type="checkbox" name="consent"><span>Tôi đồng ý để WI.FINANCE dùng thông tin này để liên hệ và vận hành lớp học. Thông tin được bảo mật, không chia sẻ cho bên thứ ba.</span></label><span class="msg"></span></div>
-        <div class="total"><span>Học phí <b id="reg-cname" style="font-size:14px;font-weight:500;color:#535a6a"></b></span><b id="reg-price"></b></div>
-        <button class="btn btn-lg btn-block" type="submit">Gửi thông tin và nhận mã QR</button>
+        <div class="total" id="reg-total"><span>Học phí <b id="reg-cname" style="font-size:14px;font-weight:500;color:#535a6a"></b></span><b id="reg-price"></b></div>
+        <button class="btn btn-lg btn-block" type="submit" id="reg-submit">Gửi thông tin và nhận mã QR</button>
         <div class="alert" id="reg-send-err" hidden>Chưa gửi được thông tin. Vui lòng kiểm tra kết nối mạng và bấm gửi lại.</div>
         <p class="safe">Cần tư vấn trước khi đăng ký? <a href="tel:0948387418"><b>Gọi Hotline</b></a></p>
         <p class="safe">WI.FINANCE không bao giờ hỏi mật khẩu hay mã OTP ngân hàng của bạn.</p>
@@ -985,7 +1040,8 @@ html.reg-lock{overflow:hidden}
           <li><span>Lưu ý: chuyển đúng nội dung để hệ thống xác nhận nhanh.</span></li>
         </ol>
       </div>
-      <div class="wait" id="pay-wait">Đang chờ xác nhận thanh toán. Khi nhận được, hệ thống tự gửi email về <b id="pay-email"></b>.</div>
+      <div class="wait" id="pay-wait"><span>Đang chờ xác nhận thanh toán. Khi nhận được, hệ thống tự gửi email về <b id="pay-email"></b>.</span></div>
+      <div class="cal"><p>Lưu lịch 9 buổi học để không lỡ buổi nào</p><div class="cal-row"><a class="btn btn-ghost" data-ics href="#">Thêm vào lịch điện thoại</a><a class="btn btn-ghost" data-gcal href="#" target="_blank" rel="noopener">Google Calendar</a></div></div>
       <p class="safe">Cần hỗ trợ thanh toán? <a href="tel:0948387418"><b>Gọi Hotline</b></a></p>
       <button class="restart" type="button" id="reg-restart">Sửa thông tin hoặc đổi khoá học</button>
     </div>
@@ -995,9 +1051,23 @@ html.reg-lock{overflow:hidden}
       <div class="ok-ic"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
       <h3>Thanh toán thành công</h3>
       <p>Cảm ơn bạn. Email xác nhận đã được gửi về <b id="done-email" style="color:var(--navy)"></b>. Nếu chưa thấy, hãy kiểm tra thêm mục Quảng cáo hoặc Spam.</p>
+      <div class="cal"><p>Lưu lịch 9 buổi học để không lỡ buổi nào</p><div class="cal-row"><a class="btn btn-ghost" data-ics href="#">Thêm vào lịch điện thoại</a><a class="btn btn-ghost" data-gcal href="#" target="_blank" rel="noopener">Google Calendar</a></div></div>
       <a class="btn btn-block" id="reg-zalo" href="https://zalo.me/g/sk6vnppwxvvmqpdhlngc" target="_blank" rel="noopener">Vào cộng đồng Zalo</a>
     </div>
+
+    <!-- Bước chờ lớp sau (sau giờ khai giảng) -->
+    <div class="reg-step done" data-step="4" hidden>
+      <div class="ok-ic"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
+      <h3>Đã ghi nhận đăng ký lớp sau</h3>
+      <p>Cảm ơn bạn. Khi có lịch lớp tiếp theo, đội ngũ WI.FINANCE sẽ liên hệ qua Zalo và Gmail <b id="wl-email" style="color:var(--navy)"></b>.</p>
+      <a class="btn btn-block" href="https://zalo.me/g/sk6vnppwxvvmqpdhlngc" target="_blank" rel="noopener">Vào cộng đồng Zalo</a>
+    </div>
   </div>
+</div>
+
+<div class="lbar" data-lbar aria-hidden="true">
+  <div><span class="lbar-t" data-lbar-t>Khai giảng 20h 23/11 sau</span><span class="lbar-c" data-lbar-c>--</span><span class="lbar-s" data-seats-short hidden></span></div>
+  <a class="btn" href="#dang-ky" data-course="21" tabindex="-1">Đăng ký</a>
 </div>
 
 <a class="fab fab-zalo" href="https://zalo.me/g/sk6vnppwxvvmqpdhlngc" target="_blank" rel="noopener" aria-label="Vào cộng đồng Zalo"><span class="zl">Zalo</span><span class="fab-tip">Cộng đồng Zalo</span></a>
@@ -1030,7 +1100,8 @@ document.addEventListener('click',function(e){var b=e.target.closest('.help [dat
 })();
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
-<script src="assets/vietqr.js?v=202610211200"></script>
-<script src="assets/register.js?v=202610211200"></script>
+<script src="assets/vietqr.js?v=202610281800"></script>
+<script src="assets/register.js?v=202610281800"></script>
+<script src="assets/launch.js?v=202610281800"></script>
 </body>
 </html>
