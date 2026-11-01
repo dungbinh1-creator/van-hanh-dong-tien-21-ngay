@@ -529,6 +529,18 @@ html.reg-lock{overflow:hidden}
 .dark .fact b,.dark .price strong,.dark .price .was,.dark .price s,.hero .cd-seats,.hero .cd-closed,.stat .sl,.foot .tl,.lbar-s,.fab .fab-tip,.dark .badge,.dark .limit p,.dark .limit h3,.dark .ss-title,.dark .textlink b,.dark p a b{color:var(--on-blue)}
 .dark .eyebrow,.dark .fact small,.dark .price small,.hero .cd-label,.hero .cd-seats b,.float b,.dark .num,.dark .mn,.dark .mn small,.dark .coach-role,.dark .pill,.dark .textlink,.cd-clock small,.foot .fl-title,.lbar-t,.lbar-c{color:var(--gold-small)}
 
+/* ---------- Form đăng ký nằm ngang trên màn hình rộng ---------- */
+@media (min-width:820px){
+  .reg-panel:has([data-step="1"]:not([hidden])){width:min(920px,100%)}
+  .reg-fields{display:grid;grid-template-columns:repeat(6,1fr);column-gap:14px;align-items:start}
+  .reg-fields .fld{grid-column:span 2}
+  .reg-fields .fld-half{grid-column:span 3}
+  .reg-send{display:grid;grid-template-columns:1fr 1fr;gap:14px;align-items:stretch;margin-top:16px}
+  .reg-send:has(#reg-total[hidden]){grid-template-columns:1fr}
+  .reg-send .total{margin:0}
+  .reg-send .btn{padding:0 20px;font-size:16px}
+}
+
 /* ---------- Floating hotline ---------- */
 .fab{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(18px + env(safe-area-inset-bottom,0px));z-index:60;width:60px;height:60px;border-radius:50%;display:grid;place-items:center;color:var(--navy);text-decoration:none;
   background:linear-gradient(140deg,#C89B3C,#E6C98A);box-shadow:0 0 0 1px rgba(255,255,255,.35) inset,0 0 22px rgba(231,198,124,.75),0 12px 26px -10px rgba(6,23,58,.6);transition:transform .3s,box-shadow .3s}
@@ -1018,12 +1030,16 @@ html.reg-lock{overflow:hidden}
         <div class="opts" id="reg-opts" role="radiogroup" aria-label="Khoá học">
           <label class="opt-card"><input type="radio" name="course" value="21" checked><span class="rd"></span><span><b>Bản Đồ Dòng Tiền</b><small>21 ngày · 9 buổi Zoom</small></span><span class="pr" data-l-amount>2.499.000đ</span></label>
         </div>
+        <div class="reg-fields">
         <div class="fld" data-field="fullname"><label for="f-name">Họ và tên <i>*</i></label><input id="f-name" name="fullname" autocomplete="name" placeholder="Nguyễn Thị An"><span class="msg"></span></div>
         <div class="fld" data-field="phone"><label for="f-phone">Số điện thoại Zalo <i>*</i></label><input id="f-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="0912345678"><span class="msg"></span></div>
         <div class="fld" data-field="email"><label for="f-mail">Gmail <i>*</i></label><input id="f-mail" name="email" type="email" inputmode="email" autocomplete="email" placeholder="ten@gmail.com"><span class="hint">Email xác nhận và tài liệu khoá học sẽ gửi về địa chỉ này.</span><span class="msg"></span></div>
+        <div class="fld fld-half" data-field="refName"><label for="f-ref-name">Nhân mạch kết nối của bạn là ai? <small>(nếu có)</small></label><input id="f-ref-name" name="refName" autocomplete="off" placeholder="Họ và tên nhân mạch"><span class="msg"></span></div>
+        <div class="fld fld-half" data-field="refPhone"><label for="f-ref-phone">SĐT của nhân mạch là gì? <small>(nếu có)</small></label><input id="f-ref-phone" name="refPhone" type="tel" inputmode="tel" autocomplete="off" placeholder="0912345678"><span class="msg"></span></div>
+        </div>
         <div class="fld" data-field="consent"><label class="chk"><input type="checkbox" name="consent"><span>Tôi đồng ý để WI.FINANCE dùng thông tin này để liên hệ và vận hành lớp học. Thông tin được bảo mật, không chia sẻ cho bên thứ ba.</span></label><span class="msg"></span></div>
-        <div class="total" id="reg-total"><span>Học phí <b id="reg-cname" style="font-size:14px;font-weight:500;color:#535a6a"></b></span><b id="reg-price"></b></div>
-        <button class="btn btn-lg btn-block" type="submit" id="reg-submit">Gửi thông tin và nhận mã QR</button>
+        <div class="reg-send"><div class="total" id="reg-total"><span>Học phí <b id="reg-cname" style="font-size:14px;font-weight:500;color:#535a6a"></b></span><b id="reg-price"></b></div>
+        <button class="btn btn-lg btn-block" type="submit" id="reg-submit">Gửi thông tin và nhận mã QR</button></div>
         <div class="alert" id="reg-send-err" hidden>Chưa gửi được thông tin. Vui lòng kiểm tra kết nối mạng và bấm gửi lại.</div>
         <p class="safe">Cần tư vấn trước khi đăng ký? <a href="tel:0948387418"><b>Gọi Hotline</b></a></p>
         <p class="safe">WI.FINANCE không bao giờ hỏi mật khẩu hay mã OTP ngân hàng của bạn.</p>
@@ -1113,7 +1129,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('.help [dat
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 <script src="assets/vietqr.js?v=202610281800"></script>
-<script src="assets/register.js?v=202611011200"></script>
+<script src="assets/register.js?v=202611021000"></script>
 <script src="assets/launch.js?v=202611011400"></script>
 </body>
 </html>

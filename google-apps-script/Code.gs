@@ -88,7 +88,7 @@ var EMAILS = {
 
 var HEADERS = ['Thời gian đăng ký', 'Mã đơn', 'Mã khoá', 'Khoá học', 'Học phí', 'Họ và tên', 'Số điện thoại',
   'Gmail', 'Tỉnh/thành', 'Mong muốn', 'Nội dung chuyển khoản', 'Nguồn', 'Trạng thái',
-  'Thời gian thanh toán', 'Số tiền nhận', 'Mã giao dịch', 'Email xác nhận'];
+  'Thời gian thanh toán', 'Số tiền nhận', 'Mã giao dịch', 'Email xác nhận', 'Nhân mạch kết nối', 'SĐT nhân mạch'];
 var COL = {}; HEADERS.forEach(function (h, i) { COL[h] = i + 1; });
 var ST_WAIT = 'Chờ thanh toán', ST_PAID = 'Đã thanh toán', ST_SHORT = 'Chuyển thiếu, cần kiểm tra', ST_NEXT = 'Chờ lớp sau';
 
@@ -117,6 +117,13 @@ function sheet_() {
     sh.appendRow(HEADERS);
     sh.getRange(1, 1, 1, HEADERS.length).setFontWeight('bold').setBackground('#0B2A5B').setFontColor('#FFFFFF');
     sh.setFrozenRows(1);
+  }
+  // Sheet cũ thiếu cột mới thì tự thêm vào cuối, không đụng dữ liệu đã có.
+  var lastCol = sh.getLastColumn();
+  if (lastCol < HEADERS.length) {
+    if (sh.getMaxColumns() < HEADERS.length) sh.insertColumnsAfter(sh.getMaxColumns(), HEADERS.length - sh.getMaxColumns());
+    sh.getRange(1, lastCol + 1, 1, HEADERS.length - lastCol).setValues([HEADERS.slice(lastCol)])
+      .setFontWeight('bold').setBackground('#0B2A5B').setFontColor('#FFFFFF');
   }
   return sh;
 }
@@ -189,6 +196,8 @@ function handleRegister_(b) {
     row[COL['Gmail'] - 1] = clean_(b.email, 120);
     row[COL['Tỉnh/thành'] - 1] = clean_(b.city, 80);
     row[COL['Mong muốn'] - 1] = clean_(b.wish, 1000);
+    row[COL['Nhân mạch kết nối'] - 1] = clean_(b.refName, 120);
+    row[COL['SĐT nhân mạch'] - 1] = /^0\d{9}$/.test(b.refPhone || '') ? "'" + b.refPhone : '';
     row[COL['Nội dung chuyển khoản'] - 1] = clean_(b.transferNote, 80);
     row[COL['Nguồn'] - 1] = clean_(b.source, 300);
     row[COL['Trạng thái'] - 1] = waitlist ? ST_NEXT : ST_WAIT;

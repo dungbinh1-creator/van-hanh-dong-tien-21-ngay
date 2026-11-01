@@ -107,6 +107,9 @@ window.WIF_CONFIG = {
     setErr('phone', pOk ? '' : 'Số điện thoại gồm 10 số, ví dụ 0912345678.'); ok = ok && pOk;
     var mOk = /^[a-z0-9._%+-]+@gmail\.com$/.test(mail);
     setErr('email', mOk ? '' : 'Vui lòng dùng địa chỉ Gmail (kết thúc bằng @gmail.com).'); ok = ok && mOk;
+    var refPhone = form.refPhone.value.trim();
+    var refOk = !refPhone || /^0\d{9}$/.test(phoneDigits(refPhone));
+    setErr('refPhone', refOk ? '' : 'Số điện thoại gồm 10 số, hoặc bạn để trống mục này.'); ok = ok && refOk;
     setErr('consent', form.consent.checked ? '' : 'Vui lòng xác nhận để tiếp tục.'); ok = ok && form.consent.checked;
     return ok;
   }
@@ -129,6 +132,7 @@ window.WIF_CONFIG = {
       code: c.code, course: c.name, price: c.price,
       fullname: name, phone: phone, email: form.email.value.trim().toLowerCase(),
       city: '', wish: '',
+      refName: form.refName.value.trim().replace(/\s+/g, ' '), refPhone: phoneDigits(form.refPhone.value),
       transferNote: c.code + ' ' + cleanName + ' ' + phone,
       source: utm(), page: location.href.split('?')[0], ts: Date.now()
     };
