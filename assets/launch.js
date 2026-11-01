@@ -118,15 +118,15 @@
     var cal = L.calendar, site = 'https://bandotaichinh.wifinance.com.vn/';
     var details = 'Link Zoom có trong email xác nhận gửi về Gmail của bạn. Hỗ trợ: Hotline 0948387418';
     var stamp = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');
-    var ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//WI.FINANCE//Ban Do Tai Chinh//VI', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
+    var ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//WI.FINANCE//Ban Do Dong Tien//VI', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
       'BEGIN:VEVENT', 'UID:wif21-' + cal.startUtc + '@wifinance.com.vn', 'DTSTAMP:' + stamp,
       'DTSTART:' + cal.startUtc, 'DTEND:' + cal.endUtc, 'RRULE:' + cal.rrule,
       'SUMMARY:' + cal.title, 'DESCRIPTION:' + details, 'URL:' + site,
-      'BEGIN:VALARM', 'TRIGGER:-PT30M', 'ACTION:DISPLAY', 'DESCRIPTION:Sắp vào lớp Bản Đồ Tài Chính', 'END:VALARM',
+      'BEGIN:VALARM', 'TRIGGER:-PT30M', 'ACTION:DISPLAY', 'DESCRIPTION:Sắp vào lớp Bản Đồ Dòng Tiền', 'END:VALARM',
       'END:VEVENT', 'END:VCALENDAR'].join('\r\n');
     $$('[data-ics]').forEach(function (a) {
       a.href = 'data:text/calendar;charset=utf-8,' + encodeURIComponent(ics);
-      a.download = 'lich-hoc-ban-do-tai-chinh.ics';
+      a.download = 'lich-hoc-ban-do-dong-tien.ics';
     });
     var g = 'https://calendar.google.com/calendar/render?action=TEMPLATE'
       + '&text=' + encodeURIComponent(cal.title)

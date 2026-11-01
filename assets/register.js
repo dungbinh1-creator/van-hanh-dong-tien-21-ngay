@@ -10,7 +10,7 @@ window.WIF_CONFIG = {
     holder: 'HOANG THU HA'
   },
   courses: {
-    '21': { code: 'WIF21', name: 'Bản Đồ Tài Chính', price: 2499000 },
+    '21': { code: 'WIF21', name: 'Bản Đồ Dòng Tiền', price: 2499000 },
     '2':  { code: 'WIF02', name: 'Kích Hoạt Dòng Tiền', price: 199000 }
   },
   zalo: 'https://zalo.me/g/sk6vnppwxvvmqpdhlngc',
@@ -23,7 +23,7 @@ window.WIF_CONFIG = {
     earlySeats: 30,
     fullPrice: 3890000,
     // Lịch 9 buổi Zoom: thứ Hai, Tư, Sáu, 20h00 đến 22h00 giờ Việt Nam
-    calendar: { title: 'Bản Đồ Tài Chính · Buổi học Zoom', startUtc: '20261123T130000Z', endUtc: '20261123T150000Z', rrule: 'FREQ=WEEKLY;BYDAY=MO,WE,FR;COUNT=9' }
+    calendar: { title: 'Bản Đồ Dòng Tiền · Buổi học Zoom', startUtc: '20261123T130000Z', endUtc: '20261123T150000Z', rrule: 'FREQ=WEEKLY;BYDAY=MO,WE,FR;COUNT=9' }
   },
   pollEveryMs: 6000,
   pollForMs: 30 * 60 * 1000
