@@ -1,10 +1,11 @@
-// Chuyển mọi truy cập vào *.pages.dev sang tên miền chính, giữ nguyên đường dẫn và tham số.
+// Chuyển mọi truy cập vào *.pages.dev và tên miền cũ sang tên miền chính, giữ nguyên đường dẫn và tham số.
 // Đồng thời bắt trình duyệt kiểm tra lại file .js mỗi lần, tránh chạy script cũ sau khi sửa.
-const MAIN_HOST = 'bandotaichinh.wifinance.com.vn';
+const MAIN_HOST = 'bandodongtien.wifinance.com.vn';
+const OLD_HOST = 'bandotaichinh.wifinance.com.vn';
 
 export async function onRequest(context) {
   const url = new URL(context.request.url);
-  if (url.hostname.endsWith('.pages.dev')) {
+  if (url.hostname.endsWith('.pages.dev') || url.hostname === OLD_HOST) {
     url.protocol = 'https:';
     url.hostname = MAIN_HOST;
     url.port = '';

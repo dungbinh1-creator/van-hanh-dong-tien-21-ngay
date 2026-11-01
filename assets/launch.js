@@ -115,7 +115,7 @@
 
   /* ---------- Thêm vào lịch ---------- */
   function initCalendar() {
-    var cal = L.calendar, site = 'https://bandotaichinh.wifinance.com.vn/';
+    var cal = L.calendar, site = 'https://bandodongtien.wifinance.com.vn/';
     var details = 'Link Zoom có trong email xác nhận gửi về Gmail của bạn. Hỗ trợ: Hotline 0948387418';
     var stamp = new Date().toISOString().replace(/[-:]/g, '').replace(/\.\d+/, '');
     var ics = ['BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//WI.FINANCE//Ban Do Dong Tien//VI', 'CALSCALE:GREGORIAN', 'METHOD:PUBLISH',
