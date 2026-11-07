@@ -3,10 +3,10 @@ window.WIF_CONFIG = {
   // Dán URL Web App của Google Apps Script (kết thúc bằng /exec) vào đây sau khi triển khai.
   appsScriptUrl: 'https://script.google.com/macros/s/AKfycbx6oOH3D2kSWa1DHiMsxZ3SHL8RcinEYFjqVQxetUHM4P9Xb5MV5fcNV0-GJHpC6_9m/exec',
   bank: {
-    bin: '970407',
-    short: 'TCB',
-    name: 'Techcombank',
-    account: '1669889999',
+    bin: '970415',
+    short: 'ICB',
+    name: 'VietinBank',
+    account: '100881581999',
     holder: 'HOANG THU HA'
   },
   courses: {
