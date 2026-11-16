@@ -97,6 +97,25 @@ window.WIF_CONFIG = {
     f.classList.toggle('err', !!msg);
     var m = f.querySelector('.msg'); if (m) m.textContent = msg || '';
   }
+  // Ngày sinh dạng dd/mm/yyyy (chấp nhận cả dấu - hoặc .), trả về chuỗi chuẩn 'dd/mm/yyyy' hoặc ''.
+  function parseDob(v) {
+    var m = String(v || '').trim().match(/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})$/);
+    if (!m) return '';
+    var d = +m[1], mo = +m[2], y = +m[3], dt = new Date(y, mo - 1, d), now = new Date();
+    if (dt.getFullYear() !== y || dt.getMonth() !== mo - 1 || dt.getDate() !== d) return '';
+    if (y < 1920 || dt > now) return '';
+    return (d < 10 ? '0' : '') + d + '/' + (mo < 10 ? '0' : '') + mo + '/' + y;
+  }
+  // Gõ số tới đâu tự chèn dấu / tới đó
+  form.dob.addEventListener('input', function (e) {
+    if (e.inputType && e.inputType.indexOf('delete') === 0) return;
+    var v = form.dob.value;
+    if (/[^\d\/]/.test(v)) return;
+    var d = v.replace(/\D/g, '').slice(0, 8);
+    var out = d.slice(0, 2) + (d.length > 2 ? '/' + d.slice(2, 4) : '') + (d.length > 4 ? '/' + d.slice(4) : '');
+    if (d.length === 2 || d.length === 4) out += '/';
+    form.dob.value = out;
+  });
   function validate() {
     var ok = true;
     var name = form.fullname.value.trim();
@@ -107,6 +126,12 @@ window.WIF_CONFIG = {
     setErr('phone', pOk ? '' : 'Số điện thoại gồm 10 số, ví dụ 0912345678.'); ok = ok && pOk;
     var mOk = /^[a-z0-9._%+-]+@gmail\.com$/.test(mail);
     setErr('email', mOk ? '' : 'Vui lòng dùng địa chỉ Gmail (kết thúc bằng @gmail.com).'); ok = ok && mOk;
+    var dobOk = !!parseDob(form.dob.value);
+    setErr('dob', dobOk ? '' : 'Vui lòng nhập ngày sinh theo dạng ngày/tháng/năm, ví dụ 15/08/1990.'); ok = ok && dobOk;
+    var wishOk = form.wish.value.trim().length >= 3;
+    setErr('wish', wishOk ? '' : 'Vui lòng chia sẻ mong muốn của bạn khi đến với chương trình.'); ok = ok && wishOk;
+    var chOk = form.challenge.value.trim().length >= 3;
+    setErr('challenge', chOk ? '' : 'Vui lòng chia sẻ thách thức lớn nhất của bạn hiện nay.'); ok = ok && chOk;
     var refPhone = form.refPhone.value.trim();
     var refOk = !refPhone || /^0\d{9}$/.test(phoneDigits(refPhone));
     setErr('refPhone', refOk ? '' : 'Số điện thoại gồm 10 số, hoặc bạn để trống mục này.'); ok = ok && refOk;
@@ -131,7 +156,8 @@ window.WIF_CONFIG = {
       orderId: c.code + '-' + Date.now().toString(36).toUpperCase() + Math.random().toString(36).slice(2, 5).toUpperCase(),
       code: c.code, course: c.name, price: c.price,
       fullname: name, phone: phone, email: form.email.value.trim().toLowerCase(),
-      city: '', wish: '',
+      city: '', dob: parseDob(form.dob.value),
+      wish: form.wish.value.trim(), challenge: form.challenge.value.trim(),
       refName: form.refName.value.trim().replace(/\s+/g, ' '), refPhone: phoneDigits(form.refPhone.value),
       transferNote: c.code + ' ' + cleanName + ' ' + phone,
       source: utm(), page: location.href.split('?')[0], ts: Date.now()

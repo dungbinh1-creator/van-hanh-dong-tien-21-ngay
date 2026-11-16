@@ -88,7 +88,8 @@ var EMAILS = {
 
 var HEADERS = ['Thời gian đăng ký', 'Mã đơn', 'Mã khoá', 'Khoá học', 'Học phí', 'Họ và tên', 'Số điện thoại',
   'Gmail', 'Tỉnh/thành', 'Mong muốn', 'Nội dung chuyển khoản', 'Nguồn', 'Trạng thái',
-  'Thời gian thanh toán', 'Số tiền nhận', 'Mã giao dịch', 'Email xác nhận', 'Nhân mạch kết nối', 'SĐT nhân mạch'];
+  'Thời gian thanh toán', 'Số tiền nhận', 'Mã giao dịch', 'Email xác nhận', 'Nhân mạch kết nối', 'SĐT nhân mạch',
+  'Ngày sinh', 'Thách thức'];
 var COL = {}; HEADERS.forEach(function (h, i) { COL[h] = i + 1; });
 var ST_WAIT = 'Chờ thanh toán', ST_PAID = 'Đã thanh toán', ST_SHORT = 'Chuyển thiếu, cần kiểm tra', ST_NEXT = 'Chờ lớp sau';
 
@@ -196,6 +197,8 @@ function handleRegister_(b) {
     row[COL['Gmail'] - 1] = clean_(b.email, 120);
     row[COL['Tỉnh/thành'] - 1] = clean_(b.city, 80);
     row[COL['Mong muốn'] - 1] = clean_(b.wish, 1000);
+    row[COL['Ngày sinh'] - 1] = /^\d{2}\/\d{2}\/\d{4}$/.test(b.dob || '') ? "'" + b.dob : '';
+    row[COL['Thách thức'] - 1] = clean_(b.challenge, 1000);
     row[COL['Nhân mạch kết nối'] - 1] = clean_(b.refName, 120);
     row[COL['SĐT nhân mạch'] - 1] = /^0\d{9}$/.test(b.refPhone || '') ? "'" + b.refPhone : '';
     row[COL['Nội dung chuyển khoản'] - 1] = clean_(b.transferNote, 80);
