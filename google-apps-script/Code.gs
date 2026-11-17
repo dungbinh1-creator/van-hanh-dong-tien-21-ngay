@@ -60,6 +60,18 @@ var ZOOM = {
   schedule: '20h00 đến 22h00 tối thứ Hai, thứ Tư, thứ Sáu. Khai giảng thứ Hai 23/11/2026, 9 buổi: 23, 25, 27, 30/11 và 2, 4, 7, 9, 11/12/2026'
 };
 
+// Học viên khoá 21 ngày vào app + link Zoom RIÊNG (Sếp Dũng duyệt 17/11/2026).
+// Khi đơn "Đã thanh toán": gọi cổng cap-quyen-hoc-vien của app → Gmail thành Học viên 365 ngày,
+// Zoom tạo link riêng theo tên (vào phòng là app tự điểm danh). Khoá bí mật để trong
+// Cài đặt dự án → Thuộc tính tập lệnh: CAP_QUYEN_SECRET (không ghi vào code).
+var APP = {
+  capQuyenUrl: 'https://tkgbghgstkridfpkjypk.supabase.co/functions/v1/cap-quyen-hoc-vien',
+  url: 'https://app.wifinance.com.vn',
+  days: 365,          // Số ngày dùng app
+  cohortCode: '',     // Mã khoá trong app (VD 'K21-01'); trống thì học viên tự chọn khoá trong app
+  zoomMeetingId: ''   // Trống = dùng phòng mặc định đã cài trong app (ZOOM_MEETING_ID)
+};
+
 // Nội dung email sau khi thanh toán thành công.
 // Có thể dùng các biến: {HoTen} {KhoaHoc} {SoTien} {MaDon} {Gmail} {SDT} {LichHoc} {ZoomLink} {ZoomInfo}
 var EMAILS = {
@@ -72,7 +84,11 @@ var EMAILS = {
         + '<tr><td>Lịch học</td><td><b>{LichHoc}</b></td></tr>'
         + '<tr><td>Link Zoom</td><td><a href="{ZoomLink}"><b>Vào phòng học</b></a></td></tr>'
         + '{ZoomInfo}'
+        + '<tr><td>App Tài Chính Tâm Thức</td><td><a href="{AppLink}"><b>Mở app</b></a></td></tr>'
         + '</table>'
+        + '<p><b>Link Zoom này là của riêng bạn</b>, gắn với tên và Gmail của bạn. Mỗi lần vào lớp bằng link này, app tự điểm danh để tính điểm thi đua. '
+        + 'Bạn không chia sẻ link cho người khác: link chỉ vào được một máy cùng lúc.</p>'
+        + '<p><b>Vào app:</b> bấm Mở app, đăng nhập bằng <b>đúng Gmail {Gmail}</b>. App tự nhận bạn là học viên, dùng trọn 1 năm, không cần nhập mã.</p>'
         + '<p>Bạn lưu email này lại để vào lớp đúng giờ. Nếu cần hỗ trợ, bạn trả lời email này hoặc gọi Hotline 0948387418.</p>'
         + '<p>Thân mến,<br>Hoàng Thu Hà<br>WI.FINANCE · Tài Chính Tâm Thức</p>'
   },
@@ -300,15 +316,23 @@ function esc_(v) {
 function sendConfirm_(r, code, amount) {
   var tpl = EMAILS[code];
   if (!tpl) return 'Không có mẫu email cho mã ' + code;
-  if (code === 'WIF21' && !ZOOM.link) return 'Chưa có link Zoom, chưa gửi';
   var to = String(r[COL['Gmail'] - 1]).trim();
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(to)) return 'Gmail không hợp lệ, chưa gửi';
+  var zoomLink = ZOOM.link;
+  if (code === 'WIF21') {
+    // Cấp quyền app + lấy link Zoom riêng. Lỗi thì KHÔNG gửi mail (tránh gửi link chung), chọn lại "Đã thanh toán" để thử lại.
+    var cap = capQuyen_(r, to);
+    if (!cap.ok) return 'Lỗi cấp quyền app, chưa gửi: ' + cap.error;
+    if (cap.zoom_join_url) zoomLink = cap.zoom_join_url;
+    else return 'Chưa có link Zoom riêng (' + (cap.zoom_error || 'chưa cài Zoom') + '), đã cấp quyền app, chưa gửi mail';
+  }
   var info = (ZOOM.meetingId ? '<tr><td>Meeting ID</td><td><b>' + esc_(ZOOM.meetingId) + '</b></td></tr>' : '')
            + (ZOOM.passcode ? '<tr><td>Mật khẩu</td><td><b>' + esc_(ZOOM.passcode) + '</b></td></tr>' : '');
   var vars = {
     '{HoTen}': esc_(r[COL['Họ và tên'] - 1]), '{KhoaHoc}': esc_(r[COL['Khoá học'] - 1]), '{SoTien}': money_(amount),
     '{MaDon}': esc_(r[COL['Mã đơn'] - 1]), '{Gmail}': esc_(to), '{SDT}': String(r[COL['Số điện thoại'] - 1]).replace(/\D/g, ''),
-    '{LichHoc}': esc_(ZOOM.schedule || 'Hà sẽ gửi lịch cụ thể qua Zalo'), '{ZoomLink}': esc_(ZOOM.link), '{ZoomInfo}': info
+    '{LichHoc}': esc_(ZOOM.schedule || 'Hà sẽ gửi lịch cụ thể qua Zalo'), '{ZoomLink}': esc_(zoomLink), '{ZoomInfo}': info,
+    '{AppLink}': esc_(APP.url)
   };
   function fill(s) { Object.keys(vars).forEach(function (k) { s = s.split(k).join(vars[k]); }); return s; }
   try {
@@ -317,6 +341,28 @@ function sendConfirm_(r, code, amount) {
   } catch (err) {
     console.error(err);
     return 'Lỗi gửi email';
+  }
+}
+
+// Gọi cổng cấp quyền của app. Gọi lại cùng mã đơn không cấp hai lần, chỉ trả lại link đã có.
+function capQuyen_(r, email) {
+  var secret = PropertiesService.getScriptProperties().getProperty('CAP_QUYEN_SECRET');
+  if (!secret) return { ok: false, error: 'chưa cài CAP_QUYEN_SECRET' };
+  try {
+    var res = UrlFetchApp.fetch(APP.capQuyenUrl, {
+      method: 'post', contentType: 'application/json', muteHttpExceptions: true,
+      headers: { 'x-wif-secret': secret },
+      payload: JSON.stringify({
+        email: email, full_name: String(r[COL['Họ và tên'] - 1] || '').trim(), order_id: String(r[COL['Mã đơn'] - 1] || '').trim(),
+        days: APP.days, cohort_code: APP.cohortCode, zoom_meeting_id: APP.zoomMeetingId || undefined
+      })
+    });
+    var body = JSON.parse(res.getContentText() || '{}');
+    if (res.getResponseCode() !== 200 || !body.ok) return { ok: false, error: body.error || ('mã ' + res.getResponseCode()) };
+    return body;
+  } catch (err) {
+    console.error(err);
+    return { ok: false, error: String(err).slice(0, 120) };
   }
 }
 
@@ -373,6 +419,14 @@ function thuGuiEmailXacNhan() {
   r[COL['Gmail'] - 1] = Session.getActiveUser().getEmail();
   r[COL['Số điện thoại'] - 1] = '0900000000';
   console.log(sendConfirm_(r, 'WIF21', COURSES.WIF21.price));
+}
+
+// Kiểm cổng cấp quyền mà không gửi mail: cấp quyền + link Zoom riêng cho Gmail đang mở trình soạn.
+function thuCapQuyenApp() {
+  var r = [];
+  r[COL['Họ và tên'] - 1] = 'Học Viên Thử';
+  r[COL['Mã đơn'] - 1] = 'TEST-CAP-QUYEN';
+  console.log(JSON.stringify(capQuyen_(r, Session.getActiveUser().getEmail())));
 }
 
 // Chạy thử trong trình soạn Apps Script: tạo 1 đơn mẫu rồi giả lập thanh toán SePay.
