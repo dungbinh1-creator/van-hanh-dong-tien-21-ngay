@@ -61,7 +61,7 @@ var ZOOM = {
   link: '',      // Link phòng Zoom, ví dụ https://us02web.zoom.us/j/...
   meetingId: '', // Không bắt buộc
   passcode: '',  // Không bắt buộc
-  schedule: '20h00 đến 22h00 tối thứ Hai, thứ Tư, thứ Sáu. Khai giảng thứ Hai 23/11/2026, 9 buổi: 23, 25, 27, 30/11 và 2, 4, 7, 9, 11/12/2026'
+  schedule: '20h00 đến 22h00 tối thứ Hai, thứ Tư, thứ Sáu. Khai giảng thứ Hai 23/11/2026, 9 buổi học: 25, 27, 30/11 và 2, 4, 7, 9, 11, 14/12/2026'
 };
 
 // Học viên khoá 21 ngày vào app + link Zoom RIÊNG (Sếp Dũng duyệt 17/11/2026).
