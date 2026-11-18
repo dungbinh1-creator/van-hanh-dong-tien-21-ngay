@@ -102,6 +102,7 @@ var EMAILS = {
         + '<h3 style="color:#0B2A5B;margin:22px 0 6px">② Mở App Bản Đồ Dòng Tiền · dùng trọn 13 tháng</h3>'
         + '<p style="margin:0 0 8px">Đăng nhập bằng <b>đúng Gmail {Gmail}</b>. App tự nhận bạn là học viên, không cần nhập mã.</p>'
         + '<p><a href="{AppLink}" style="' + BTN_ + '">📱 Mở app</a></p>'
+        + '<p style="margin:0 0 8px;color:#b45309"><b>Bạn đăng nhập app trước buổi học đầu tiên để được điểm danh tự động.</b></p>'
         // Bước 3: video hướng dẫn
         + '<h3 style="color:#0B2A5B;margin:22px 0 6px">③ Xem hướng dẫn sử dụng app</h3>'
         + '<p><a href="' + QUA.huongDanApp + '" style="' + BTN_ + '">▶️ Xem video hướng dẫn</a></p>'
