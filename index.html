@@ -423,6 +423,19 @@ html.reg-lock{overflow:hidden}
 .notify{margin-top:16px}
 .notify p{margin:8px 2px 0;font-size:13.5px;line-height:1.55;color:#4b5563}
 .notify[hidden]{display:none}
+.wait{align-items:flex-start}
+.wait::before{margin-top:5px}
+.wait-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}
+.wait-tags i{font-style:normal;font-size:12.5px;font-weight:600;padding:3px 10px;border-radius:999px}
+.wait-tags .ok{color:#1F6B3A;background:#DDF1E3}
+.wait-tags .pend{color:#7A5410;background:rgba(200,155,60,.2)}
+#pay-notify-btn{--h:54px;font-size:16.5px}
+@media (min-width:820px){
+  .reg-panel:has([data-step="2"]:not([hidden])){width:min(920px,100%)}
+  .pay-grid{display:grid;grid-template-columns:280px minmax(0,1fr);gap:24px;align-items:start}
+  .pay-grid .qr-wrap{margin:0;position:sticky;top:0}
+  .pay-grid .notify{margin-top:14px}
+}
 .restart{display:block;margin:16px auto 0;border:0;background:none;font:inherit;font-size:13.5px;color:var(--gray);text-decoration:underline;cursor:pointer;border-radius:999px;padding:4px 10px;transition:box-shadow .3s ease}
 .restart:hover,.restart:focus-visible{box-shadow:0 0 0 2px rgba(230,201,138,.6),0 0 24px 5px rgba(230,201,138,.7),0 0 50px 10px rgba(200,155,60,.45)}
 .done{text-align:center;padding:10px 0}
@@ -1056,11 +1069,13 @@ html.reg-lock{overflow:hidden}
     <div class="reg-step" data-step="2" hidden>
       <h3>Quét mã để hoàn tất học phí</h3>
       <p class="sub2">Mở app ngân hàng và quét mã. Số tiền và nội dung đã được điền sẵn cho khoá <b id="pay-course" style="color:var(--navy)"></b>.</p>
+      <div class="pay-grid">
       <div class="qr-wrap">
         <div class="qr-img"><img id="reg-qr" alt="Mã VietQR thanh toán học phí" width="300" height="300"></div>
         <span class="qr-brand">VietQR · Napas 247 · VietinBank</span>
         <a class="qr-save" id="reg-qr-save" href="#">Lưu ảnh QR về máy</a>
       </div>
+      <div class="pay-side">
       <div class="pay-rows">
         <div class="pay-row"><span>Ngân hàng</span><b>VietinBank</b></div>
         <div class="pay-row"><span>Số tài khoản</span><b>1008 8158 1999</b><button class="cp" type="button" data-copy="100881581999">Chép</button></div>
@@ -1077,7 +1092,9 @@ html.reg-lock{overflow:hidden}
         <button class="btn btn-block" type="button" id="pay-notify-btn">Tôi đã chuyển khoản</button>
         <p>Sau khi chuyển khoản, anh/chị bấm nút này để Ban tổ chức kiểm tra. Email xác nhận sẽ gửi về <b id="pay-email"></b> trong ngày.</p>
       </div>
-      <div class="wait" id="pay-wait" hidden><span><b>Ban tổ chức đã nhận thông báo của anh/chị.</b> Wi.Finance sẽ đối chiếu học phí và gửi email xác nhận kèm thông tin lớp học về Gmail của anh/chị trong ngày. Nếu sau 24 giờ chưa thấy email, anh/chị kiểm tra mục Spam hoặc gọi Hotline 0948 387 418.</span></div>
+      <div class="wait" id="pay-wait" hidden><span><b>Ban tổ chức đã nhận thông báo của anh/chị.</b> Wi.Finance sẽ đối chiếu học phí và gửi email xác nhận kèm thông tin lớp học về Gmail của anh/chị trong ngày. Nếu sau 24 giờ chưa thấy email, anh/chị kiểm tra mục Spam hoặc gọi Hotline 0948 387 418.<span class="wait-tags"><i class="ok">✓ Đã gửi thông tin</i><i class="ok">✓ Đã báo chuyển khoản</i><i class="pend">⏳ Chờ xác nhận học phí</i></span></span></div>
+      </div>
+      </div>
       <div class="cal"><p>Lưu lịch khai giảng và 9 buổi học để không lỡ buổi nào</p><div class="cal-row"><a class="btn btn-ghost" data-ics href="#">Thêm vào lịch điện thoại</a><a class="btn btn-ghost" data-gcal href="#" target="_blank" rel="noopener">Google Calendar</a></div></div>
       <p class="safe">Cần hỗ trợ thanh toán? <a href="tel:0948387418"><b>Gọi Hotline</b></a></p>
       <button class="restart" type="button" id="reg-restart">Sửa thông tin hoặc đổi khoá học</button>
@@ -1087,7 +1104,7 @@ html.reg-lock{overflow:hidden}
     <div class="reg-step done" data-step="3" hidden>
       <div class="ok-ic"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div>
       <h3>Thanh toán thành công</h3>
-      <p>Cảm ơn bạn. Email xác nhận đã được gửi về <b id="done-email" style="color:var(--navy)"></b>. Nếu chưa thấy, hãy kiểm tra thêm mục Quảng cáo hoặc Spam.</p>
+      <p>Chào mừng anh/chị đến với chương trình Bản Đồ Dòng Tiền. Email xác nhận kèm lịch học đã gửi về Gmail của anh/chị (<b id="done-email" style="color:var(--navy)"></b>). Buổi khai giảng 20:00 thứ Hai 23/11/2026.</p>
       <div class="cal"><p>Lưu lịch khai giảng và 9 buổi học để không lỡ buổi nào</p><div class="cal-row"><a class="btn btn-ghost" data-ics href="#">Thêm vào lịch điện thoại</a><a class="btn btn-ghost" data-gcal href="#" target="_blank" rel="noopener">Google Calendar</a></div></div>
       <a class="btn btn-block" id="reg-zalo" href="https://zalo.me/g/sk6vnppwxvvmqpdhlngc" target="_blank" rel="noopener">Vào cộng đồng Zalo</a>
     </div>
