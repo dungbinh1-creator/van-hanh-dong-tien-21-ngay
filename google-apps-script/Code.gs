@@ -61,36 +61,55 @@ var ZOOM = {
 };
 
 // Học viên khoá 21 ngày vào app + link Zoom RIÊNG (Sếp Dũng duyệt 17/11/2026).
-// Khi đơn "Đã thanh toán": gọi cổng cap-quyen-hoc-vien của app → Gmail thành Học viên 365 ngày,
+// Khi đơn "Đã thanh toán": gọi cổng cap-quyen-hoc-vien của app → Gmail thành Học viên 396 ngày (13 tháng),
 // Zoom tạo link riêng theo tên (vào phòng là app tự điểm danh). Khoá bí mật để trong
 // Cài đặt dự án → Thuộc tính tập lệnh: CAP_QUYEN_SECRET (không ghi vào code).
 var APP = {
   capQuyenUrl: 'https://tkgbghgstkridfpkjypk.supabase.co/functions/v1/cap-quyen-hoc-vien',
   url: 'https://app.wifinance.com.vn',
-  days: 365,          // Số ngày dùng app
+  days: 396,          // Số ngày dùng app: 13 tháng (Sếp duyệt 18/11/2026)
   cohortCode: 'K21-01', // Mã khoá trong app (VD 'K21-01'); trống thì học viên tự chọn khoá trong app
   zoomMeetingId: ''   // Trống = dùng phòng mặc định đã cài trong app (ZOOM_MEETING_ID)
 };
 
 // Nội dung email sau khi thanh toán thành công.
 // Có thể dùng các biến: {HoTen} {KhoaHoc} {SoTien} {MaDon} {Gmail} {SDT} {LichHoc} {ZoomLink} {ZoomInfo}
+// Quà và tài liệu gửi kèm mail xác nhận khoá 21 ngày (Sếp duyệt 18/11/2026).
+var QUA = {
+  trangQua: 'https://bandodongtien.wifinance.com.vn/qua-tang/',
+  workbook: 'https://drive.google.com/file/d/1DdeOmQ1izgCjzkwGqdPn21rkwoO6j1wH/view',
+  huongDanApp: 'https://youtube.com/live/VL06pLI0qW0'
+};
+var BTN_ = 'display:inline-block;background:#0B2A5B;color:#ffffff;padding:11px 20px;border-radius:8px;text-decoration:none;font-weight:bold;margin:2px 0';
 var EMAILS = {
   WIF21: {
     subject: 'WI.FINANCE · Xác nhận đăng ký và link Zoom khoá {KhoaHoc}',
-    html: '<p>Chào {HoTen},</p>'
+    html: '<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.6;color:#1f2937;max-width:600px">'
+        + '<p>Chào {HoTen},</p>'
         + '<p>Hà đã nhận học phí <b>{SoTien}</b> cho khoá <b>{KhoaHoc}</b>. Mã đơn của bạn: <b>{MaDon}</b>.</p>'
-        + '<p>Cảm ơn bạn đã chọn đồng hành cùng Hà trong hành trình này. Thông tin lớp học của bạn:</p>'
-        + '<table cellpadding="6" style="border-collapse:collapse">'
-        + '<tr><td>Lịch học</td><td><b>{LichHoc}</b></td></tr>'
-        + '<tr><td>Link Zoom</td><td><a href="{ZoomLink}"><b>Vào phòng học</b></a></td></tr>'
-        + '{ZoomInfo}'
-        + '<tr><td>App Tài Chính Tâm Thức</td><td><a href="{AppLink}"><b>Mở app</b></a></td></tr>'
-        + '</table>'
-        + '<p><b>Link Zoom này là của riêng bạn</b>, gắn với tên và Gmail của bạn. Mỗi lần vào lớp bằng link này, app tự điểm danh để tính điểm thi đua. '
+        + '<p>Cảm ơn bạn đã chọn đồng hành cùng Hà trong hành trình này. Bạn làm lần lượt 4 bước dưới đây nhé:</p>'
+        // Bước 1: vào lớp
+        + '<h3 style="color:#0B2A5B;margin:22px 0 6px">① Vào lớp học Zoom</h3>'
+        + '<p style="margin:0 0 8px">Lịch học: <b>{LichHoc}</b></p>{ZoomInfo}'
+        + '<p><a href="{ZoomLink}" style="' + BTN_ + '">🎥 Vào phòng học</a></p>'
+        + '<p style="font-size:13px;color:#6b7280">Link Zoom này là <b>của riêng bạn</b>, gắn với tên và Gmail của bạn. Mỗi lần vào lớp bằng link này, app tự điểm danh để tính điểm thi đua. '
         + 'Bạn không chia sẻ link cho người khác: link chỉ vào được một máy cùng lúc.</p>'
-        + '<p><b>Vào app:</b> bấm Mở app, đăng nhập bằng <b>đúng Gmail {Gmail}</b>. App tự nhận bạn là học viên, dùng trọn 1 năm, không cần nhập mã.</p>'
+        // Bước 2: app
+        + '<h3 style="color:#0B2A5B;margin:22px 0 6px">② Mở App Bản Đồ Dòng Tiền · dùng trọn 13 tháng</h3>'
+        + '<p style="margin:0 0 8px">Đăng nhập bằng <b>đúng Gmail {Gmail}</b>. App tự nhận bạn là học viên, không cần nhập mã.</p>'
+        + '<p><a href="{AppLink}" style="' + BTN_ + '">📱 Mở app</a></p>'
+        // Bước 3: video hướng dẫn
+        + '<h3 style="color:#0B2A5B;margin:22px 0 6px">③ Xem hướng dẫn sử dụng app</h3>'
+        + '<p><a href="' + QUA.huongDanApp + '" style="' + BTN_ + '">▶️ Xem video hướng dẫn</a></p>'
+        // Bước 4: quà + workbook
+        + '<h3 style="color:#0B2A5B;margin:22px 0 6px">④ Nhận quà đồng hành và Workbook</h3>'
+        + '<p style="margin:0 0 8px"><b>Workbook Bản Đồ Dòng Tiền 21 ngày</b>: luyện nội lực cùng chuyên gia mỗi ngày.</p>'
+        + '<p><a href="' + QUA.workbook + '" style="' + BTN_ + '">📘 Tải Workbook</a> &nbsp; '
+        + '<a href="' + QUA.trangQua + '" style="' + BTN_ + '">🎁 Nhận 3 phần quà</a></p>'
+        + '<p style="font-size:13px;color:#6b7280">3 phần quà gồm: Bộ công cụ, Ebook và Sổ thực hành.</p>'
         + '<p>Bạn lưu email này lại để vào lớp đúng giờ. Nếu cần hỗ trợ, bạn trả lời email này hoặc gọi Hotline 0948387418.</p>'
         + '<p>Thân mến,<br>Hoàng Thu Hà<br>WI.FINANCE · Tài Chính Tâm Thức</p>'
+        + '</div>'
   },
   WIF02: {
     subject: 'WI.FINANCE · Xác nhận thanh toán khoá {KhoaHoc}',
@@ -313,21 +332,23 @@ function esc_(v) {
 }
 
 // Gửi email xác nhận, trả về chữ ghi vào cột "Email xác nhận".
-function sendConfirm_(r, code, amount) {
+function sendConfirm_(r, code, amount, xemThu) {
   var tpl = EMAILS[code];
   if (!tpl) return 'Không có mẫu email cho mã ' + code;
   var to = String(r[COL['Gmail'] - 1]).trim();
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(to)) return 'Gmail không hợp lệ, chưa gửi';
   var zoomLink = ZOOM.link;
-  if (code === 'WIF21') {
+  if (code === 'WIF21' && xemThu) {
+    zoomLink = 'https://zoom.us/'; // xem thử: không cấp quyền, không tạo link Zoom
+  } else if (code === 'WIF21') {
     // Cấp quyền app + lấy link Zoom riêng. Lỗi thì KHÔNG gửi mail (tránh gửi link chung), chọn lại "Đã thanh toán" để thử lại.
     var cap = capQuyen_(r, to);
     if (!cap.ok) return 'Lỗi cấp quyền app, chưa gửi: ' + cap.error;
     if (cap.zoom_join_url) zoomLink = cap.zoom_join_url;
     else return 'Chưa có link Zoom riêng (' + (cap.zoom_error || 'chưa cài Zoom') + '), đã cấp quyền app, chưa gửi mail';
   }
-  var info = (ZOOM.meetingId ? '<tr><td>Meeting ID</td><td><b>' + esc_(ZOOM.meetingId) + '</b></td></tr>' : '')
-           + (ZOOM.passcode ? '<tr><td>Mật khẩu</td><td><b>' + esc_(ZOOM.passcode) + '</b></td></tr>' : '');
+  var info = (ZOOM.meetingId ? '<p style="margin:0 0 4px">Meeting ID: <b>' + esc_(ZOOM.meetingId) + '</b></p>' : '')
+           + (ZOOM.passcode ? '<p style="margin:0 0 4px">Mật khẩu: <b>' + esc_(ZOOM.passcode) + '</b></p>' : '');
   var vars = {
     '{HoTen}': esc_(r[COL['Họ và tên'] - 1]), '{KhoaHoc}': esc_(r[COL['Khoá học'] - 1]), '{SoTien}': money_(amount),
     '{MaDon}': esc_(r[COL['Mã đơn'] - 1]), '{Gmail}': esc_(to), '{SDT}': String(r[COL['Số điện thoại'] - 1]).replace(/\D/g, ''),
@@ -336,7 +357,7 @@ function sendConfirm_(r, code, amount) {
   };
   function fill(s) { Object.keys(vars).forEach(function (k) { s = s.split(k).join(vars[k]); }); return s; }
   try {
-    MailApp.sendEmail({ to: to, subject: fill(tpl.subject).replace(/&amp;/g, '&'), htmlBody: fill(tpl.html), name: SENDER_NAME, replyTo: REPLY_TO });
+    MailApp.sendEmail({ to: to, subject: (xemThu ? '[XEM THỬ] ' : '') + fill(tpl.subject).replace(/&amp;/g, '&'), htmlBody: fill(tpl.html), name: SENDER_NAME, replyTo: REPLY_TO });
     return 'Đã gửi ' + new Date().toLocaleString('vi-VN');
   } catch (err) {
     console.error(err);
@@ -427,6 +448,17 @@ function thuCapQuyenApp() {
   r[COL['Họ và tên'] - 1] = 'Học Viên Thử';
   r[COL['Mã đơn'] - 1] = 'TEST-CAP-QUYEN';
   console.log(JSON.stringify(capQuyen_(r, Session.getActiveUser().getEmail())));
+}
+
+// Gửi thử mail xác nhận khoá 21 ngày về Gmail của mình (không cấp quyền app, không tạo link Zoom, không ghi Sheet).
+function thuMailXacNhan21() {
+  var r = [];
+  r[COL['Họ và tên'] - 1] = 'Học Viên Thử';
+  r[COL['Khoá học'] - 1] = 'Bản Đồ Dòng Tiền 21 ngày';
+  r[COL['Mã đơn'] - 1] = 'XEM-THU';
+  r[COL['Gmail'] - 1] = Session.getActiveUser().getEmail();
+  r[COL['Số điện thoại'] - 1] = '';
+  console.log(sendConfirm_(r, 'WIF21', 2499000, true));
 }
 
 // Chạy thử trong trình soạn Apps Script: tạo 1 đơn mẫu rồi giả lập thanh toán SePay.
