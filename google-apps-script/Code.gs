@@ -68,7 +68,7 @@ var APP = {
   capQuyenUrl: 'https://tkgbghgstkridfpkjypk.supabase.co/functions/v1/cap-quyen-hoc-vien',
   url: 'https://app.wifinance.com.vn',
   days: 365,          // Số ngày dùng app
-  cohortCode: '',     // Mã khoá trong app (VD 'K21-01'); trống thì học viên tự chọn khoá trong app
+  cohortCode: 'K21-01', // Mã khoá trong app (VD 'K21-01'); trống thì học viên tự chọn khoá trong app
   zoomMeetingId: ''   // Trống = dùng phòng mặc định đã cài trong app (ZOOM_MEETING_ID)
 };
 
@@ -350,7 +350,7 @@ function capQuyen_(r, email) {
   if (!secret) return { ok: false, error: 'chưa cài CAP_QUYEN_SECRET' };
   try {
     var res = UrlFetchApp.fetch(APP.capQuyenUrl, {
-      method: 'post', contentType: 'application/json', muteHttpExceptions: true,
+      method: 'post', contentType: 'application/json; charset=utf-8', muteHttpExceptions: true,
       headers: { 'x-wif-secret': secret },
       payload: JSON.stringify({
         email: email, full_name: String(r[COL['Họ và tên'] - 1] || '').trim(), order_id: String(r[COL['Mã đơn'] - 1] || '').trim(),
