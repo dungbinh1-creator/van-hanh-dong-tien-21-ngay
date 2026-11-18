@@ -420,6 +420,9 @@ html.reg-lock{overflow:hidden}
 .wait{display:flex;gap:10px;align-items:center;margin-top:16px;padding:12px 14px;border-radius:12px;font-size:14px;color:var(--navy);background:rgba(30,79,163,.07)}
 .wait::before{content:"";flex:none;width:10px;height:10px;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold);animation:pulse 1.6s ease-in-out infinite}
 .wait[hidden]{display:none}
+.notify{margin-top:16px}
+.notify p{margin:8px 2px 0;font-size:13.5px;line-height:1.55;color:#4b5563}
+.notify[hidden]{display:none}
 .restart{display:block;margin:16px auto 0;border:0;background:none;font:inherit;font-size:13.5px;color:var(--gray);text-decoration:underline;cursor:pointer;border-radius:999px;padding:4px 10px;transition:box-shadow .3s ease}
 .restart:hover,.restart:focus-visible{box-shadow:0 0 0 2px rgba(230,201,138,.6),0 0 24px 5px rgba(230,201,138,.7),0 0 50px 10px rgba(200,155,60,.45)}
 .done{text-align:center;padding:10px 0}
@@ -1068,10 +1071,13 @@ html.reg-lock{overflow:hidden}
         <ol>
           <li><span>Số tiền cần chuyển: <b id="pay-amount"></b> <button class="cp" type="button" id="pay-amount-copy" data-copy="">Chép</button></span></li>
           <li><span>Nội dung chuyển khoản: <span class="code" id="pay-note"></span> <button class="cp" type="button" id="pay-note-copy" data-copy="">Chép</button></span></li>
-          <li><span>Lưu ý: chuyển đúng nội dung để hệ thống xác nhận nhanh.</span></li>
         </ol>
       </div>
-      <div class="wait" id="pay-wait"><span>Đang chờ xác nhận thanh toán. Khi nhận được, hệ thống tự gửi email về <b id="pay-email"></b>.</span></div>
+      <div class="notify" id="pay-notify">
+        <button class="btn btn-block" type="button" id="pay-notify-btn">Tôi đã chuyển khoản</button>
+        <p>Sau khi chuyển khoản, anh/chị bấm nút này để Ban tổ chức kiểm tra. Email xác nhận sẽ gửi về <b id="pay-email"></b> trong ngày.</p>
+      </div>
+      <div class="wait" id="pay-wait" hidden><span><b>Ban tổ chức đã nhận thông báo của anh/chị.</b> Wi.Finance sẽ đối chiếu học phí và gửi email xác nhận kèm thông tin lớp học về Gmail của anh/chị trong ngày. Nếu sau 24 giờ chưa thấy email, anh/chị kiểm tra mục Spam hoặc gọi Hotline 0948 387 418.</span></div>
       <div class="cal"><p>Lưu lịch 9 buổi học để không lỡ buổi nào</p><div class="cal-row"><a class="btn btn-ghost" data-ics href="#">Thêm vào lịch điện thoại</a><a class="btn btn-ghost" data-gcal href="#" target="_blank" rel="noopener">Google Calendar</a></div></div>
       <p class="safe">Cần hỗ trợ thanh toán? <a href="tel:0948387418"><b>Gọi Hotline</b></a></p>
       <button class="restart" type="button" id="reg-restart">Sửa thông tin hoặc đổi khoá học</button>
@@ -1132,7 +1138,7 @@ document.addEventListener('click',function(e){var b=e.target.closest('.help [dat
 </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
 <script src="assets/vietqr.js?v=202610281800"></script>
-<script src="assets/register.js?v=202611161000"></script>
+<script src="assets/register.js?v=202611181500"></script>
 <script src="assets/launch.js?v=202611011400"></script>
 </body>
 </html>

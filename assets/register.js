@@ -35,7 +35,7 @@ window.WIF_CONFIG = {
   if (!modal) return;
   var form = document.getElementById('reg-form');
   var STORE = 'wif_pending_order';
-  var pollTimer = null, pollStart = 0, lastFocus = null;
+  var pollTimer = null, pollStart = 0, lastFocus = null, curOrder = null;
 
   function $(sel, el) { return (el || modal).querySelector(sel); }
   function money(n) { return n.toLocaleString('vi-VN').replace(/,/g, '.') + ' VND'; }
@@ -206,10 +206,29 @@ window.WIF_CONFIG = {
     $('#pay-note-copy').setAttribute('data-copy', o.transferNote);
     $('#pay-email').textContent = o.email;
     $('#done-email').textContent = o.email;
-    $('#pay-wait').hidden = !C.appsScriptUrl;
+    curOrder = o;
+    showNotified(!!o.notified);
     showStep(2);
     startPolling(o);
   }
+  // Thanh toán bán tự động: khách bấm "Tôi đã chuyển khoản" → Apps Script mail báo Hà (1 lần) → Hà xác nhận trên Sheet.
+  function showNotified(yes) { $('#pay-notify').hidden = yes; $('#pay-wait').hidden = !yes; }
+  $('#pay-notify-btn').addEventListener('click', function () {
+    var o = curOrder || store(STORE);
+    if (!o) return;
+    var btn = this;
+    btn.disabled = true; btn.classList.add('loading');
+    var body = JSON.stringify({ action: 'notify', orderId: o.orderId, email: o.email });
+    var p = C.appsScriptUrl
+      ? fetch(C.appsScriptUrl, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: body })
+      : Promise.resolve();
+    p.catch(function () {}).then(function () {
+      btn.disabled = false; btn.classList.remove('loading');
+      o.notified = true; store(STORE, o);
+      showNotified(true);
+      startPolling(o);
+    });
+  });
   modal.addEventListener('click', function (e) {
     var b = e.target.closest('[data-copy]');
     if (!b) return;

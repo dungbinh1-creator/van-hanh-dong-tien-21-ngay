@@ -12,6 +12,10 @@ var SHEET_NAME = 'Đăng ký Landing 21 ngày';
 
 // Đổi thành một chuỗi bí mật bất kỳ, rồi gắn vào URL webhook: .../exec?token=CHUOI_NAY
 var WEBHOOK_TOKEN = 'DOI-THANH-CHUOI-BI-MAT-CUA-BAN';
+// Thanh toán bán tự động (Sếp Dũng duyệt 18/11/2026): TẮT nhận tín hiệu ngân hàng (SePay/Casso), giữ code.
+// Khách bấm "Tôi đã chuyển khoản" → mail báo Hà → Hà đổi Trạng thái "Đã thanh toán" trên Sheet → máy gửi mail xác nhận.
+var PAYMENT_WEBHOOK_ON = false;
+var NOTIFY_TO = 'coachmethuha@gmail.com'; // Nhận mail "Cần xác nhận học phí"
 
 var SENDER_NAME = 'WI.FINANCE · Hoàng Thu Hà';
 // Khách bấm "Trả lời" email sẽ gửi về địa chỉ này.
@@ -124,9 +128,9 @@ var EMAILS = {
 var HEADERS = ['Thời gian đăng ký', 'Mã đơn', 'Mã khoá', 'Khoá học', 'Học phí', 'Họ và tên', 'Số điện thoại',
   'Gmail', 'Tỉnh/thành', 'Mong muốn', 'Nội dung chuyển khoản', 'Nguồn', 'Trạng thái',
   'Thời gian thanh toán', 'Số tiền nhận', 'Mã giao dịch', 'Email xác nhận', 'Nhân mạch kết nối', 'SĐT nhân mạch',
-  'Ngày sinh', 'Thách thức'];
+  'Ngày sinh', 'Thách thức', 'Báo đã chuyển khoản'];
 var COL = {}; HEADERS.forEach(function (h, i) { COL[h] = i + 1; });
-var ST_WAIT = 'Chờ thanh toán', ST_PAID = 'Đã thanh toán', ST_SHORT = 'Chuyển thiếu, cần kiểm tra', ST_NEXT = 'Chờ lớp sau';
+var ST_WAIT = 'Chờ thanh toán', ST_PAID = 'Đã thanh toán', ST_SHORT = 'Chuyển thiếu, cần kiểm tra', ST_NEXT = 'Chờ lớp sau', ST_CANCEL = 'Đã hủy';
 
 // Số đơn đã thanh toán của lớp đang mở (đơn đăng ký trước giờ khai giảng).
 function paidCount_(sh) {
@@ -196,9 +200,11 @@ function doPost(e) {
 
   if (p.token !== undefined) {
     if (p.token !== WEBHOOK_TOKEN) return json_({ success: false, error: 'invalid token' });
+    if (!PAYMENT_WEBHOOK_ON) return json_({ success: true, matched: 0, note: 'webhook tat, xac nhan tay' });
     return handlePayment_(body);
   }
   if (body.action === 'register') return handleRegister_(body);
+  if (body.action === 'notify') return handleNotify_(body);
   return json_({ ok: false, error: 'unknown request' });
 }
 
@@ -246,6 +252,68 @@ function handleRegister_(b) {
   }
   if (SEND_REGISTER_EMAIL && !waitlist) sendRegister_(b, course);
   return json_({ ok: true });
+}
+
+// ---------- Khách bấm "Tôi đã chuyển khoản": báo Hà 1 lần duy nhất ----------
+// Chỉ nhận khi mã đơn + Gmail khớp một dòng đang "Chờ thanh toán" và cột "Báo đã chuyển khoản" còn trống.
+function handleNotify_(b) {
+  var orderId = String(b.orderId || '').trim(), email = String(b.email || '').trim().toLowerCase();
+  if (!orderId || !email) return json_({ ok: false, error: 'missing' });
+  var lock = LockService.getScriptLock();
+  lock.waitLock(20000);
+  try {
+    var sh = sheet_(), n = sh.getLastRow() - 1;
+    if (n < 1) return json_({ ok: false, error: 'not found' });
+    var data = sh.getRange(2, 1, n, HEADERS.length).getValues();
+    for (var i = n - 1; i >= 0; i--) {
+      var r = data[i];
+      if (String(r[COL['Mã đơn'] - 1]) !== orderId) continue;
+      if (String(r[COL['Gmail'] - 1]).trim().toLowerCase() !== email) return json_({ ok: false, error: 'not found' });
+      if (r[COL['Trạng thái'] - 1] !== ST_WAIT) return json_({ ok: true, status: r[COL['Trạng thái'] - 1] });
+      if (r[COL['Báo đã chuyển khoản'] - 1]) return json_({ ok: true, repeat: true });
+      var rowNo = i + 2;
+      sh.getRange(rowNo, COL['Báo đã chuyển khoản']).setValue(new Date());
+      SpreadsheetApp.flush();
+      sendNotifyHa_(r, rowNo, sh.getSheetId());
+      return json_({ ok: true });
+    }
+    return json_({ ok: false, error: 'not found' });
+  } finally {
+    lock.releaseLock();
+  }
+}
+
+function sendNotifyHa_(r, rowNo, gid) {
+  function v(h) { return esc_(r[COL[h] - 1]); }
+  var name = String(r[COL['Họ và tên'] - 1] || ''), order = String(r[COL['Mã đơn'] - 1] || '');
+  var amount = money_(Number(r[COL['Học phí'] - 1]) || 0);
+  var link = 'https://docs.google.com/spreadsheets/d/' + SHEET_ID + '/edit#gid=' + gid + '&range=A' + rowNo;
+  var row = function (k, val) { return '<tr><td style="color:#6b7280;padding:4px 12px 4px 0;vertical-align:top">' + k + '</td><td><b>' + (val || '—') + '</b></td></tr>'; };
+  var html = '<div style="font-family:Arial,sans-serif;font-size:15px;line-height:1.6;color:#1f2937;max-width:600px">'
+    + '<p>Học viên vừa báo <b>đã chuyển khoản</b> khoá <b>' + v('Khoá học') + '</b>.</p>'
+    + '<table style="border-collapse:collapse">'
+    + row('Họ và tên', v('Họ và tên'))
+    + row('SĐT Zalo', String(r[COL['Số điện thoại'] - 1]).replace(/\D/g, ''))
+    + row('Gmail', v('Gmail'))
+    + row('Ngày sinh', v('Ngày sinh'))
+    + row('Số tiền cần nhận', esc_(amount))
+    + row('Nội dung chuyển khoản', v('Nội dung chuyển khoản'))
+    + row('Mã đơn', esc_(order) + ' · dòng ' + rowNo)
+    + row('Mong muốn', v('Mong muốn'))
+    + row('Thách thức', v('Thách thức'))
+    + row('Nhân mạch', [v('Nhân mạch kết nối'), String(r[COL['SĐT nhân mạch'] - 1] || '').replace(/\D/g, '')].filter(String).join(' · '))
+    + '</table>'
+    + '<p style="margin-top:18px"><b>Việc của Hà:</b> mở app VietinBank đối chiếu. Đã nhận đủ thì mở Sheet, dòng của học viên, '
+    + 'đổi cột <b>Trạng thái</b> thành <b>"Đã thanh toán"</b>. Máy tự gửi email xác nhận cho học viên.</p>'
+    + '<p><a href="' + link + '" style="' + BTN_ + '">📄 Mở Sheet đăng ký</a></p>'
+    + '<p style="font-size:13px;color:#6b7280">Sau khi đổi, cột "Email xác nhận" hiện "Đã gửi …" là xong. Hiện chữ khác thì chọn lại "Đã thanh toán" để máy thử lại.</p>'
+    + '</div>';
+  try {
+    MailApp.sendEmail({ to: NOTIFY_TO, subject: '💰 Cần xác nhận học phí: ' + name + ' · ' + amount + ' · ' + order,
+      htmlBody: html, name: 'WI.FINANCE · Landing 21 ngày' });
+  } catch (err) {
+    console.error(err);
+  }
 }
 
 function sendRegister_(b, course) {
@@ -397,7 +465,7 @@ function caiDatGuiEmailTheoSheet() {
   ScriptApp.newTrigger('onStatusEdit').forSpreadsheet(ss).onEdit().create();
   // Ô Trạng thái thành danh sách chọn, tránh gõ sai chữ.
   var sh = sheet_();
-  var rule = SpreadsheetApp.newDataValidation().requireValueInList([ST_WAIT, ST_PAID, ST_SHORT, ST_NEXT], true).setAllowInvalid(true).build();
+  var rule = SpreadsheetApp.newDataValidation().requireValueInList([ST_WAIT, ST_PAID, ST_SHORT, ST_NEXT, ST_CANCEL], true).setAllowInvalid(true).build();
   sh.getRange(2, COL['Trạng thái'], sh.getMaxRows() - 1, 1).setDataValidation(rule);
   console.log('Đã bật: đổi Trạng thái thành "' + ST_PAID + '" sẽ tự gửi email xác nhận.');
 }
@@ -468,3 +536,5 @@ function testFlow() {
   var res = handlePayment_({ id: 'TEST' + Date.now(), transferType: 'in', transferAmount: 199000, content: 'WIF02 HOC VIEN THU 0900000000' });
   console.log(res.getContent());
 }
+
+// Bản bán tự động · 18/11/2026
