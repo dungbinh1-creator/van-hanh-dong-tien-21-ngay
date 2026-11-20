@@ -296,6 +296,13 @@ p+p{margin-top:14px}
   .tile.open .meta{position:sticky;padding-top:24px}
   .tile.open .tile-x{display:block}
 }
+.rv-grid[hidden],.rv-body[hidden],.rv-open[hidden]{display:none}
+.rv-ctl{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:12px 22px;margin-top:26px}
+.rv-pager{display:flex;gap:8px}
+.rv-pg{width:40px;height:40px;border-radius:50%;border:0;cursor:pointer;font:inherit;font-size:15px;font-weight:600;color:var(--navy);background:#fff;box-shadow:0 0 0 1px rgba(200,155,60,.5)}
+.rv-pg.on{background:linear-gradient(140deg,#F6DDA0,#C89B3C);box-shadow:0 0 14px rgba(200,155,60,.5)}
+.rv-fold,.rv-open{border:0;cursor:pointer;font:inherit;font-size:14px;font-weight:600;color:var(--cobalt);background:rgba(30,79,163,.08);padding:10px 18px;border-radius:999px}
+.rv-open{display:block;margin:18px auto 0;font-size:15px;padding:12px 24px;color:var(--navy);background:linear-gradient(110deg,#C89B3C 0%,#E6C98A 100%)}
 .note{margin:30px auto 0;max-width:820px;font-size:14px;color:var(--gray);text-align:center;padding:16px 22px;border-radius:14px;border:1px dashed rgba(138,131,117,.45)}
 
 /* ---------- Fit ---------- */
@@ -809,9 +816,55 @@ html.reg-lock{overflow:hidden}
     <div class="head center rv">
       <span class="eyebrow">Phản hồi thật</span>
       <h2>Điều người từng được Hà đồng hành chia sẻ</h2>
-      <p class="lead">Sáu tin nhắn gửi lại sau các buổi khai vấn 1:1, giữ nguyên văn. Rê chuột hoặc chạm vào từng ô để đọc trọn tin nhắn.</p>
+      <p class="lead">Cảm nhận của học viên sau các buổi học và tin nhắn sau khai vấn 1:1, giữ nguyên văn. Rê chuột hoặc chạm vào từng ô để đọc trọn.</p>
+      <button class="rv-open" type="button" id="rv-open" hidden>Xem 12 phản hồi</button>
     </div>
-    <div class="rv-grid rv">
+    <div class="rv-body" id="rv-body">
+    <div class="rv-grid rv" data-page="1">
+      <figure class="tile" tabindex="0" aria-label="Cảm nhận của Nguyễn Thị Thành. Rê chuột hoặc chạm để đọc đầy đủ">
+        <div class="card">
+          <button class="tile-x" type="button" aria-label="Đóng">×</button>
+          <img src="assets/review-lop-1.jpg" alt="Bình luận cảm nhận: Cội nguồn tài chính của tôi bắt nguồn từ chính tôi nhưng không phải lỗi do tôi, là kết quả của những niềm tin bên trong. Chu trình thành công: niềm tin, tiềm năng, hành động, kết quả. Em đã nhận diện những niềm tin cản trở dòng tiền của mình và thay bằng niềm tin mới." loading="lazy" width="800">
+          <figcaption class="meta"><span class="av">NT</span><span><b>Nguyễn Thị Thành</b><small>Học viên sau buổi học</small></span><span class="more">Xem đầy đủ</span></figcaption>
+        </div>
+      </figure>
+      <figure class="tile" tabindex="0" aria-label="Cảm nhận của Nguyễn Hồng Gái. Rê chuột hoặc chạm để đọc đầy đủ">
+        <div class="card">
+          <button class="tile-x" type="button" aria-label="Đóng">×</button>
+          <img src="assets/review-lop-2.jpg" alt="Bình luận cảm nhận: Chị biết ơn em Hoàng Hà và ban tổ chức Khơi Thông Dòng Tiền, 4 buổi học giải quyết được nghi vấn hơn 40 năm: làm mãi không dư, niềm tin và động cơ phía sau hành vi chi tiền của tôi là gì, tôi cần có niềm tin nhận thức gì để dòng tiền dương." loading="lazy" width="800">
+          <figcaption class="meta"><span class="av">HG</span><span><b>Nguyễn Hồng Gái</b><small>Học viên sau buổi học</small></span><span class="more">Xem đầy đủ</span></figcaption>
+        </div>
+      </figure>
+      <figure class="tile" tabindex="0" aria-label="Cảm nhận của Hong Lac Nguyen. Rê chuột hoặc chạm để đọc đầy đủ">
+        <div class="card">
+          <button class="tile-x" type="button" aria-label="Đóng">×</button>
+          <img src="assets/review-lop-3.jpg" alt="Bình luận cảm nhận: Bài học em tâm đắc: 4 mùa tài chính, mùa đông nào rồi cũng sẽ qua; trạng thái tâm thức giúp mình làm chủ mọi quyết định; chiến lược như tấm bản đồ giúp ta tiến dần đến nguồn tài chính mình mong muốn. Biết ơn cô Hà." loading="lazy" width="800">
+          <figcaption class="meta"><span class="av">HL</span><span><b>Hong Lac Nguyen</b><small>Học viên sau buổi học</small></span><span class="more">Xem đầy đủ</span></figcaption>
+        </div>
+      </figure>
+      <figure class="tile" tabindex="0" aria-label="Cảm nhận của Yen Nguyen. Rê chuột hoặc chạm để đọc đầy đủ">
+        <div class="card">
+          <button class="tile-x" type="button" aria-label="Đóng">×</button>
+          <img src="assets/review-lop-4.jpg" alt="Bình luận cảm nhận: Em biết ơn buổi học sáng nay, cô Hà đã cho em rõ tiền là gì, niềm tin ảnh hưởng đến hành động. Quan sát mà không phán xét, nhận diện nỗi lo và những niềm tin giới hạn, và thay đổi niềm tin mới về tiền." loading="lazy" width="800">
+          <figcaption class="meta"><span class="av">YN</span><span><b>Yen Nguyen</b><small>Học viên sau buổi học</small></span><span class="more">Xem đầy đủ</span></figcaption>
+        </div>
+      </figure>
+      <figure class="tile" tabindex="0" aria-label="Cảm nhận của Huyền Nguyễn. Rê chuột hoặc chạm để đọc đầy đủ">
+        <div class="card">
+          <button class="tile-x" type="button" aria-label="Đóng">×</button>
+          <img src="assets/review-lop-5.jpg" alt="Bình luận cảm nhận: 4 mùa tài chính: không có mùa đông nào kéo dài mãi mãi. Để tạo ra sự đột phá cần làm chủ trạng thái nội tâm, có niềm tin tuyệt đối và có chiến lược cụ thể." loading="lazy" width="800">
+          <figcaption class="meta"><span class="av">HN</span><span><b>Huyền Nguyễn</b><small>Học viên sau buổi học</small></span><span class="more">Xem đầy đủ</span></figcaption>
+        </div>
+      </figure>
+      <figure class="tile" tabindex="0" aria-label="Cảm nhận của Nguyen Hai Yen. Rê chuột hoặc chạm để đọc đầy đủ">
+        <div class="card">
+          <button class="tile-x" type="button" aria-label="Đóng">×</button>
+          <img src="assets/review-lop-6.jpg" alt="Bình luận cảm nhận: Bài học tâm đắc: mình là nhân của mọi quả mình đang có, tiền đến từ nội tâm an vui. Phát triển bản thân và nội tâm an vui sẽ thu hút tiền về. Chăm sóc sức khoẻ và các mối quan hệ." loading="lazy" width="800">
+          <figcaption class="meta"><span class="av">HY</span><span><b>Nguyen Hai Yen</b><small>Học viên sau buổi học</small></span><span class="more">Xem đầy đủ</span></figcaption>
+        </div>
+      </figure>
+    </div>
+    <div class="rv-grid" data-page="2" hidden>
       <figure class="tile" tabindex="0" aria-label="Phản hồi của Mến Đặng. Rê chuột hoặc chạm để đọc đầy đủ">
         <div class="card">
           <button class="tile-x" type="button" aria-label="Đóng">×</button>
@@ -855,7 +908,17 @@ html.reg-lock{overflow:hidden}
         </div>
       </figure>
     </div>
-    <p class="note rv">Đây là trải nghiệm cá nhân sau các buổi khai vấn 1:1 cùng Hoàng Thu Hà. Phản hồi không phải kết quả điển hình và không phải đánh giá về khoá Bản Đồ Dòng Tiền. Kết quả của mỗi người phụ thuộc vào hoàn cảnh và mức độ thực hành riêng.</p>
+    <div class="rv-ctl">
+      <div class="rv-pager" role="group" aria-label="Chuyển trang phản hồi">
+        <button type="button" class="rv-pg" data-go="prev" aria-label="Trang trước">‹</button>
+        <button type="button" class="rv-pg on" data-go="1" aria-current="true">1</button>
+        <button type="button" class="rv-pg" data-go="2">2</button>
+        <button type="button" class="rv-pg" data-go="next" aria-label="Trang sau">›</button>
+      </div>
+      <button type="button" class="rv-fold" id="rv-fold">Thu gọn phản hồi</button>
+    </div>
+    </div>
+    <p class="note rv">Đây là trải nghiệm cá nhân của học viên sau các buổi học và khách hàng sau các buổi khai vấn 1:1 cùng Hoàng Thu Hà. Phản hồi không phải kết quả điển hình và không phải đánh giá về khoá Bản Đồ Dòng Tiền. Kết quả của mỗi người phụ thuộc vào hoàn cảnh và mức độ thực hành riêng.</p>
   </div>
 </section>
 
@@ -1157,5 +1220,20 @@ document.addEventListener('click',function(e){var b=e.target.closest('.help [dat
 <script src="assets/vietqr.js?v=202610281800"></script>
 <script src="assets/register.js?v=202611181700"></script>
 <script src="assets/launch.js?v=202611011400"></script>
+<script>
+(function(){
+  var body=document.getElementById('rv-body'),open=document.getElementById('rv-open'),sec=document.getElementById('phan-hoi');
+  if(!body)return;
+  var pages=body.querySelectorAll('.rv-grid'),btns=body.querySelectorAll('.rv-pg'),cur=1;
+  function go(n){cur=Math.min(Math.max(n,1),pages.length);
+    pages.forEach(function(g){g.hidden=g.getAttribute('data-page')!==String(cur)});
+    btns.forEach(function(b){var on=b.getAttribute('data-go')===String(cur);b.classList.toggle('on',on);if(on)b.setAttribute('aria-current','true');else b.removeAttribute('aria-current')});
+    document.querySelectorAll('.tile.open').forEach(function(t){t.classList.remove('open')});
+    var r=sec.getBoundingClientRect();if(r.top<0)sec.scrollIntoView({behavior:'smooth'});}
+  btns.forEach(function(b){b.addEventListener('click',function(){var v=b.getAttribute('data-go');go(v==='prev'?cur-1:v==='next'?cur+1:+v)})});
+  document.getElementById('rv-fold').addEventListener('click',function(){body.hidden=true;open.hidden=false;var r=sec.getBoundingClientRect();if(r.top<0)sec.scrollIntoView({behavior:'smooth'})});
+  open.addEventListener('click',function(){body.hidden=false;open.hidden=true});
+})();
+</script>
 </body>
 </html>
